@@ -1,0 +1,3 @@
+[type=checkbox],[type=radio]{padding:0}
+
+.new-checkbox,.w3-radio{width:24px;height:24px;position:relative;top:6px}
