@@ -22,6 +22,7 @@ class HomeController
         }
         
         $login = $_SESSION['LOGIN'];
+        $nome = $this->texto($login);
 
         // Carregar a view home
         require APP . 'view/_templates/heade.php';
@@ -29,5 +30,14 @@ class HomeController
         require APP . 'view/home/index.php';
         require APP . 'view/_templates/sidebar.php';
         require APP . 'view/_templates/footer.php';
+    }
+
+    public function texto($login){
+        $nomeCompleto = $login->nome_completo;
+                
+        $primeiroNome = explode(' ', $nomeCompleto, 2);
+        $primeiroNome = $primeiroNome[0];
+        
+        return $primeiroNome;
     }
 }

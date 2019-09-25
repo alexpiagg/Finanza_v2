@@ -8,11 +8,7 @@
             -->
             
             <?php       
-                $nomeCompleto = $login->nome_completo;
-                
-                $primeiroNome = explode(' ', $nomeCompleto, 2);
-                $primeiroNome = $primeiroNome[0];
-                echo "<h5 class='centered'> Olá, " . $primeiroNome . "</h5>";
+                echo "<h5 class='centered'> Olá, " .  $nome . "</h5>";
             ?>
 
             <!--Principal-->
