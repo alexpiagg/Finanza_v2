@@ -17,7 +17,7 @@ class LoginController
         require APP . 'view/login/index.php';
     }
 
-    public function access()
+    public function logon()
     {
         $login = new Login();
         if (isset($_POST["submit_login"])) 
@@ -31,8 +31,18 @@ class LoginController
         }
         else
         {
+            session_start();
+            $_SESSION["LOGIN"] = $logado;
+            
             header('location: ' . URL . 'home');
         }
         
+    }
+
+    public function logout(){
+        session_start();
+        $_SESSION = array();
+        
+        header('location: ' . URL . 'login');
     }
 }

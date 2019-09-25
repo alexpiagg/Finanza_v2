@@ -20,7 +20,7 @@
 	  <div id="login-page">
 	  	<div class="container">
 			  
-	  			<form class="form-login" action="<?php echo URL; ?>login/access" method="POST">
+	  			<form class="form-login" action="<?php echo URL; ?>login/logon" method="POST">
 				<!-- <form class="form-login" method="post" action="index.php"> -->
 		        <h2 class="form-login-heading">Acessar Finanza</h2>
 		        <div class="login-wrap">

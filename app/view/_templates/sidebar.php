@@ -8,18 +8,13 @@
             -->
             
             <?php       
-            /*
-                include_once __DIR__.'/Utils/SessionUtil.php';
-
-                validateLogin('LOGIN');
-                $nomeCompleto = getSession('LOGIN')['nome_completo'];
+                $nomeCompleto = $login->nome_completo;
                 
                 $primeiroNome = explode(' ', $nomeCompleto, 2);
                 $primeiroNome = $primeiroNome[0];
                 echo "<h5 class='centered'> Olá, " . $primeiroNome . "</h5>";
- */
             ?>
-           
+
             <!--Principal-->
             <li class="sub-menu">
                 <a href="javascript:;" >
