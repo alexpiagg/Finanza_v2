@@ -32,7 +32,8 @@ class HomeController
         require APP . 'view/_templates/footer.php';
     }
 
-    public function texto($login){
+    public function texto($login)
+    {
         $nomeCompleto = $login->nome_completo;
                 
         $primeiroNome = explode(' ', $nomeCompleto, 2);

@@ -7,8 +7,8 @@
             <p class="centered"><a href="index.php"><img src="assets/img/dollar_sign.jpg" class="img-rounded" width="60"></a></p>
             -->
             
-            <?php       
-                echo "<h5 class='centered'> Olá, " .  $nome . "</h5>";
+            <?php
+                echo "<h5 class='centered'> Olá, " . $this->texto($login) . "</h5>";
             ?>
 
             <!--Principal-->
