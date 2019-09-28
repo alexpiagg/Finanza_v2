@@ -1,10 +1,5 @@
 <?php
 
-/**
- * Classe ProdutosController
- *
- */
-
 namespace Mini\Controller;
 
 use Mini\Model\Produto;

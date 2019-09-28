@@ -27,8 +27,14 @@ class HomeController
         // Carregar a view home
         require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';
+
         require APP . 'view/home/index.php';
+        
         require APP . 'view/_templates/sidebar.php';
+        
+        $timeline = new \Mini\Controller\TimelineController();
+        $timeline->index();
+        
         require APP . 'view/_templates/footer.php';
     }
 
