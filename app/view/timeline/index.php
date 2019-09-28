@@ -13,7 +13,7 @@
 <h4>
 <?php 
 
-    echo "Seu Saldo em ". date('d-m-Y') . ": <b> R$ 100,00</b>"; 
+    echo "Seu Saldo em ". date('d-m-Y') . ": <b> R$ ". $saldoConta ."</b>"; 
 
 ?>
 </h4>
@@ -23,53 +23,8 @@
 
 <?php
 
-    $idx = 0;
-    foreach ($retorno as $time){
-        $tipo  = $time->tipo;
-        $local = $time->descricao;
-        $data  = $time->data;
-        $valor = $time->valor;
-        $box   = "";
-        
-        $seta = "fa-circle";
-        if ($tipo == "RECEITA"){
-            $seta = "fa-plus";
-        }
-
-        //Determinando se a caixa da timeline ficará na esq. ou direita        
-        if ($idx & 1) {
-            $box = '<li>
-                        <div class="timeline-badge">
-                        <a><i class="fa ' . $seta . '" id=""></i></a>
-                    </div>';    
-        }
-        else{
-            $box = '<li class="timeline-inverted">
-                    <div class="timeline-badge">
-                        <a><i class="fa ' . $seta . ' invert" id=""></i></a>
-                    </div>';           
-        }
-
-        $idx++;
-
-        echo    $box .
-                '   <div class="timeline-panel">
-                        <div class="timeline-heading">
-                            <h4> ' . $tipo . ' </h4>                        
-                        </div>
-                        <div class="timeline-body">
-                            <p>' 
-                                .
-                            '</p>
-                            
-                        </div>
-                        <div class="timeline-footer">
-                            <p class="text-right"></p>
-                        </div>
-                    </div>
-                </li>';
-
-    }
+    $this->geraTimeline($retornoView);
+    
 ?>
     
 
