@@ -31,6 +31,7 @@ class SobreController
         
         require APP . 'view/_templates/sidebar.php';
         require APP . 'view/sobre/index.php';
+        
         require APP . 'view/_templates/footer.php';
     }
 

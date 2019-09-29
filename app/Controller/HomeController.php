@@ -32,8 +32,9 @@ class HomeController
         $login = $_SESSION['LOGIN'];
         $nome = Utils::getPrimeiroNome($login);
 
-        require APP . 'view/home/index.php';
+        
         require APP . 'view/_templates/sidebar.php';
+        require APP . 'view/home/index.php';
 
         $timeline = new \Mini\Controller\TimelineController();
         $timeline->index();
