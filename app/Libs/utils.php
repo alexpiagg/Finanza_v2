@@ -27,6 +27,16 @@ class Utils {
         return $listaMeses;
     }
 
+    public static function getPrimeiroNome($login)
+    {
+        $nomeCompleto = $login->nome_completo;
+                
+        $primeiroNome = explode(' ', $nomeCompleto, 2);
+        $primeiroNome = $primeiroNome[0];
+        
+        return $primeiroNome;
+    }
+
     public static function listarAnos(){
         $listaMeses = array(
             '1999',

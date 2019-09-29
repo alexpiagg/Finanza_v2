@@ -6,7 +6,8 @@
     </div>
 
     <!--logo start-->
-    <a href="index.php" class="logo"><b>Finanza</b></a>
+
+    <a class="logo" href="<?php echo URL; ?>home"> <b>Finanza</b> </a>
     <!--logo end-->
 
     <div class="top-menu">

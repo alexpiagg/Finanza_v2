@@ -3,12 +3,9 @@
     <div id="sidebar"  class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu" id="nav-accordion">
-            <!--
-            <p class="centered"><a href="index.php"><img src="assets/img/dollar_sign.jpg" class="img-rounded" width="60"></a></p>
-            -->
-            
+
             <?php
-                echo "<h5 class='centered'> Olá, " . $this->texto($login) . "</h5>";
+                echo "<h5 class='centered'> Olá, " . 'TESTE' . "</h5>";
             ?>
 
             <!--Principal-->
@@ -78,7 +75,7 @@
                     <span>Help</span>
                 </a>
                     <ul class="sub">
-                        <li><a  href="frmSobre.php">Sobre</a></li>
+                        <li><a href="<?php echo URL; ?>sobre">Sobre</a></li>
                     </ul>
             </li>         
             
