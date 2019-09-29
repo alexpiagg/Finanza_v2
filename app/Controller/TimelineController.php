@@ -1,14 +1,8 @@
 <?php
 
-/**
- * Classe ProdutosController
- *
- */
-
 namespace Mini\Controller;
 
 use Mini\Model\Gasto;
-use Mini\Libs\Utils;
 
 class TimelineController
 {
@@ -22,8 +16,8 @@ class TimelineController
 
         $retornoView = $gasto->getTimeline($dataInicial, $dataFinal, 1);
 
-        $login = $_SESSION['LOGIN'];
-        $saldoConta = Utils::formatarMoeda($login->valor);
+        $login = $_SESSION['LOGIN'];        
+        $saldoConta = number_format($login->valor, 2, ',', '.');
 
         require APP . 'view/timeline/index.php';
     }
@@ -62,7 +56,7 @@ class TimelineController
                             </div>
                             <div class="timeline-body">
                                 <p>'
-                                . $time->descricao . ' ( R$ ' . Utils::formatarMoeda($time->valor) . ' )' .
+                                . $time->descricao . ' ( R$ ' . number_format($time->valor, 2, ',', '.') . ' )' .
                                 '</p>
                                 
                             </div>

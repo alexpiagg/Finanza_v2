@@ -24,15 +24,14 @@ class HomeController
         }
         
         // $login = $_SESSION['LOGIN'];
-
+       
         // Carregar a view home
         require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';
 
-        $login = $_SESSION['LOGIN'];
-        $nome = Utils::getPrimeiroNome($login);
+        // $login = $_SESSION['LOGIN'];
+        // $nome = Utils::getPrimeiroNome($login);
 
-        
         require APP . 'view/_templates/sidebar.php';
         require APP . 'view/home/index.php';
 
