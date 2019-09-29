@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="pt-br">
 
 <body>
 
@@ -23,9 +23,7 @@
         </section>
     
     </section><!-- /MAIN CONTENT -->
-    
     </section>
-
 </body>
 
 </html>

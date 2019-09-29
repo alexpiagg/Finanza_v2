@@ -17,25 +17,26 @@ class TimelineController
     {
         $dataInicial = date('Y-m-d', strtotime('first day of this month'));
         $dataFinal = date('Y-m-d', strtotime('last day of this month'));
-        
+
         $gasto = new Gasto();
-        
+
         $retornoView = $gasto->getTimeline($dataInicial, $dataFinal, 1);
-        
+
         $login = $_SESSION['LOGIN'];
         $saldoConta = Utils::formatarMoeda($login->valor);
 
         require APP . 'view/timeline/index.php';
     }
-   
-    function geraTimeline($dados){
+
+    function geraTimeline($dados)
+    {
         $idx = 0;
 
-        foreach ($dados as $time){
+        foreach ($dados as $time) {
             $box   = "";
-            
+
             $seta = "fa-circle";
-            if ($time->tipo == "RECEITA"){
+            if ($time->tipo == "RECEITA") {
                 $seta = "fa-plus";
             }
 
@@ -44,27 +45,24 @@ class TimelineController
                 $box = '<li>
                             <div class="timeline-badge">
                             <a><i class="fa ' . $seta . '" id=""></i></a>
-                        </div>';    
-            }
-            else{
+                        </div>';
+            } else {
                 $box = '<li class="timeline-inverted">
                         <div class="timeline-badge">
                             <a><i class="fa ' . $seta . ' invert" id=""></i></a>
-                        </div>';           
+                        </div>';
             }
 
             $idx++;
 
             echo    $box .
-                    '   <div class="timeline-panel">
+                '   <div class="timeline-panel">
                             <div class="timeline-heading">
                                 <h4> ' . $time->tipo . ' </h4>                        
                             </div>
                             <div class="timeline-body">
-                                <p>' 
-                                    //. $time->descricao . ' ( R$ ' . $time->valor .' )' .
-                                    . $time->descricao . ' ( R$ ' . Utils::formatarMoeda($time->valor) .' )' .
-                                    
+                                <p>'
+                                . $time->descricao . ' ( R$ ' . Utils::formatarMoeda($time->valor) . ' )' .
                                 '</p>
                                 
                             </div>
@@ -73,7 +71,6 @@ class TimelineController
                             </div>
                         </div>
                     </li>';
-
         }
     }
 }

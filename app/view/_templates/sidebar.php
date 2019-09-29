@@ -5,7 +5,7 @@
         <ul class="sidebar-menu" id="nav-accordion">
 
             <?php
-                echo "<h5 class='centered'> Olá, " . 'TESTE' . "</h5>";
+                echo "<h5 class='centered'> Olá, " . $nome . "</h5>";
             ?>
 
             <!--Principal-->

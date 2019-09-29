@@ -7,6 +7,8 @@
 
 namespace Mini\Controller;
 
+use Mini\Libs\Utils;
+
 class HomeController
 {
     /**
@@ -27,9 +29,12 @@ class HomeController
         require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';
 
+        $login = $_SESSION['LOGIN'];
+        $nome = Utils::getPrimeiroNome($login);
+
         require APP . 'view/home/index.php';
         require APP . 'view/_templates/sidebar.php';
-        
+
         $timeline = new \Mini\Controller\TimelineController();
         $timeline->index();
 
