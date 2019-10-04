@@ -15,10 +15,10 @@
                     <span>Relatórios</span>
                 </a>
                 <ul class="sub">
-                    <li><a href="<?php echo URL; ?>rptPorCategoria">Por Categoria</a></li>
+                    <li><a href="<?php echo URL; ?>relatorios">Por Categoria</a></li>
                 </ul>
                 <ul class="sub">
-                    <li><a  href="frmRelPorCategoriaGrafico.php">Por Categoria - Gráfico</a></li>
+                    <li><a href="<?php echo URL; ?>relatorios/teste/">Por Categoria - Gráfico</a></li>
                 </ul>
                 <ul class="sub">
                     <li><a  href="frmRelPorMes.php">Por Mês</a></li>
