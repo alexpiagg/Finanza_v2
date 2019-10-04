@@ -5,7 +5,7 @@
         <ul class="sidebar-menu" id="nav-accordion">
 
             <?php
-                echo "<h5 class='centered'> Olá, " . 'Teste' . "</h5>";
+                echo "<h5 class='centered'> Seja Bem Vindo! </h5>";
             ?>
 
             <!--Principal-->
@@ -15,7 +15,7 @@
                     <span>Relatórios</span>
                 </a>
                 <ul class="sub">
-                    <li><a  href="frmRelPorCategoria.php">Por Categoria</a></li>
+                    <li><a href="<?php echo URL; ?>rptPorCategoria">Por Categoria</a></li>
                 </ul>
                 <ul class="sub">
                     <li><a  href="frmRelPorCategoriaGrafico.php">Por Categoria - Gráfico</a></li>
@@ -57,17 +57,6 @@
                     </ul>                    
             </li>
 
-            <!--Ferrament   as-->
-            <li class="sub-menu">
-                <a href="javascript:;" >
-                    <i class="fa fa-wrench"></i>
-                    <span>Ferramentas</span>
-                </a>
-                    <ul class="sub">
-                        <li><a  href="frmImportarGastos.php">Importar Gastos</a></li>
-                    </ul>
-            </li>            
-            
             <!--Sobre-->
             <li class="sub-menu">
                 <a href="javascript:;" >

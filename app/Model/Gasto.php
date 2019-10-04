@@ -44,6 +44,61 @@ class Gasto extends Model
         $query->execute($parameters);
         
         return $query->fetchAll();
-        //return ($query->rowcount() > 0 ? $query->fetch() : false);
     }
+
+    function getRptPorCategoria()
+    {
+        $sql = "SELECT
+                    g.id,
+                    g.local,
+                    g.data,
+                    g.valor,
+                    g.id_tipo_gasto,
+                    g.cartao_credito
+                FROM gasto g 
+                WHERE g.data >= :dataInicial  
+                  AND g.data <= :dataFinal 
+                  AND g.id_tipo_gasto != 0
+                  AND g.id_conta = 1";
+
+        $dataInicial = "2019-01-01";
+        $dataFinal = "2019-01-30";
+
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal);
+
+        $query->execute($parameters);
+
+        return $query->fetchAll();
+    }
+
+    /*
+     * Retorna os gastos totais por categoria
+     */
+    public function getGastosAgrupados(){
+
+      $sql = "SELECT 
+                  tg.tipo,
+                  tg.id,
+                  SUM(g.valor) total
+              FROM gasto g
+              JOIN tipo_gasto tg ON tg.id = g.id_tipo_gasto
+              WHERE g.data >= :dataInicial
+                    AND g.data <= :dataFinal
+                    AND g.id_conta = 1 
+                    AND g.id_tipo_gasto != 0
+              GROUP BY tg.id ";
+
+$dataInicial = "2019-01-01";
+$dataFinal = "2019-01-30";
+
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal);
+
+        $query->execute($parameters);
+
+        return $query->fetchAll();
+  }
 }
