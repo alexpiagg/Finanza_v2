@@ -6,4 +6,22 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Mini\\Controller\\ClientesController' => $baseDir . '/app/Controller/ClientesController.php',
+    'Mini\\Controller\\ErrorController' => $baseDir . '/app/Controller/ErrorController.php',
+    'Mini\\Controller\\FuncionariosController' => $baseDir . '/app/Controller/FuncionariosController.php',
+    'Mini\\Controller\\HomeController' => $baseDir . '/app/Controller/HomeController.php',
+    'Mini\\Controller\\LoginController' => $baseDir . '/app/Controller/LoginController.php',
+    'Mini\\Controller\\ProdutosController' => $baseDir . '/app/Controller/ProdutosController.php',
+    'Mini\\Controller\\RelatoriosController' => $baseDir . '/app/Controller/RelatoriosController.php',
+    'Mini\\Controller\\SobreController' => $baseDir . '/app/Controller/SobreController.php',
+    'Mini\\Controller\\TimelineController' => $baseDir . '/app/Controller/TimelineController.php',
+    'Mini\\Core\\Application' => $baseDir . '/app/Core/Application.php',
+    'Mini\\Core\\Model' => $baseDir . '/app/Core/Model.php',
+    'Mini\\Libs\\Helper' => $baseDir . '/app/Libs/helper.php',
+    'Mini\\Libs\\Utils' => $baseDir . '/app/Libs/utils.php',
+    'Mini\\Model\\Cliente' => $baseDir . '/app/Model/Cliente.php',
+    'Mini\\Model\\Funcionario' => $baseDir . '/app/Model/Funcionario.php',
+    'Mini\\Model\\Gasto' => $baseDir . '/app/Model/Gasto.php',
+    'Mini\\Model\\Login' => $baseDir . '/app/Model/Login.php',
+    'Mini\\Model\\Produto' => $baseDir . '/app/Model/Produto.php',
 );

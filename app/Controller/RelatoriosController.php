@@ -40,28 +40,28 @@ class RelatoriosController
         require APP . 'view/relatorios/index.php';
     }
 
-    public function teste()
+    public function edit()
     {        
-        session_start();
-        if (!isset($_SESSION['LOGIN']))
-        {
-            header('location: ' . URL . 'login');
-        }
+        // session_start();
+        // if (!isset($_SESSION['LOGIN']))
+        // {
+        //     header('location: ' . URL . 'login');
+        // }
         
-        $retornoDetalhe = null;
-        $retornoTotais = null;
+        // $retornoDetalhe = null;
+        // $retornoTotais = null;
 
-        if (true){
-            $gasto = new Gasto();
-            $retornoDetalhe = $gasto->getRptPorCategoria();
+        // if (true){
+        //     $gasto = new Gasto();
+        //     $retornoDetalhe = $gasto->getRptPorCategoria();
 
-            $retornoTotais = $gasto->getGastosAgrupados();
-        }
-      
-        require APP . 'view/_templates/heade.php';        
+        //     $retornoTotais = $gasto->getGastosAgrupados();
+        // }
+        
+        require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/sidebar.php';
 
-        require APP . 'view/relatorios/teste.php';
+        require APP . 'view/relatorios/edit.php';
     }
 }

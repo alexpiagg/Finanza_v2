@@ -1,12 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <body>
     <section id="container">
 
-        <!-- **********************************************************************************************************************************************************
-       MAIN CONTENT
-       *********************************************************************************************************************************************************** -->
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
@@ -18,7 +16,7 @@
                     <!--<section id="main-content">-->
                     <section class="col-md-12">
                         <section class="wrapper">
-                            <form class="form-horizontal style-form" action="<?php echo URL; ?>rptPorCategoria" method="POST">
+                            <form class="form-horizontal style-form" action="<?php echo URL; ?>relatorios/edit/" method="POST">
                                 <div class="form-group">
 
                                     <legend> Filtros: </legend>

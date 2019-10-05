@@ -20,11 +20,33 @@ class ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416
         ),
     );
 
+    public static $classMap = array (
+        'Mini\\Controller\\ClientesController' => __DIR__ . '/../..' . '/app/Controller/ClientesController.php',
+        'Mini\\Controller\\ErrorController' => __DIR__ . '/../..' . '/app/Controller/ErrorController.php',
+        'Mini\\Controller\\FuncionariosController' => __DIR__ . '/../..' . '/app/Controller/FuncionariosController.php',
+        'Mini\\Controller\\HomeController' => __DIR__ . '/../..' . '/app/Controller/HomeController.php',
+        'Mini\\Controller\\LoginController' => __DIR__ . '/../..' . '/app/Controller/LoginController.php',
+        'Mini\\Controller\\ProdutosController' => __DIR__ . '/../..' . '/app/Controller/ProdutosController.php',
+        'Mini\\Controller\\RelatoriosController' => __DIR__ . '/../..' . '/app/Controller/RelatoriosController.php',
+        'Mini\\Controller\\SobreController' => __DIR__ . '/../..' . '/app/Controller/SobreController.php',
+        'Mini\\Controller\\TimelineController' => __DIR__ . '/../..' . '/app/Controller/TimelineController.php',
+        'Mini\\Core\\Application' => __DIR__ . '/../..' . '/app/Core/Application.php',
+        'Mini\\Core\\Model' => __DIR__ . '/../..' . '/app/Core/Model.php',
+        'Mini\\Libs\\Helper' => __DIR__ . '/../..' . '/app/Libs/helper.php',
+        'Mini\\Libs\\Utils' => __DIR__ . '/../..' . '/app/Libs/utils.php',
+        'Mini\\Model\\Cliente' => __DIR__ . '/../..' . '/app/Model/Cliente.php',
+        'Mini\\Model\\Funcionario' => __DIR__ . '/../..' . '/app/Model/Funcionario.php',
+        'Mini\\Model\\Gasto' => __DIR__ . '/../..' . '/app/Model/Gasto.php',
+        'Mini\\Model\\Login' => __DIR__ . '/../..' . '/app/Model/Login.php',
+        'Mini\\Model\\Produto' => __DIR__ . '/../..' . '/app/Model/Produto.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416::$classMap;
 
         }, null, ClassLoader::class);
     }

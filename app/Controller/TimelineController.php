@@ -3,6 +3,7 @@
 namespace Mini\Controller;
 
 use Mini\Model\Gasto;
+use Mini\Libs\Utils;
 
 class TimelineController
 {
@@ -17,7 +18,7 @@ class TimelineController
         $retornoView = $gasto->getTimeline($dataInicial, $dataFinal, 1);
 
         $login = $_SESSION['LOGIN'];        
-        $saldoConta = number_format($login->valor, 2, ',', '.');
+        $saldoConta = Utils::formatarMoeda($login->valor);
 
         require APP . 'view/timeline/index.php';
     }
@@ -25,7 +26,7 @@ class TimelineController
     function geraTimeline($dados)
     {
         $idx = 0;
-
+        
         foreach ($dados as $time) {
             $box   = "";
 
@@ -56,7 +57,7 @@ class TimelineController
                             </div>
                             <div class="timeline-body">
                                 <p>'
-                                . $time->descricao . ' ( R$ ' . number_format($time->valor, 2, ',', '.') . ' )' .
+                                . $time->descricao . ' ( R$ ' . Utils::formatarMoeda($time->valor) . ' )' .                                
                                 '</p>
                                 
                             </div>

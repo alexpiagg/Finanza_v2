@@ -1,3 +1,4 @@
+
 <!--sidebar start-->
 <aside>
     <div id="sidebar"  class="nav-collapse ">
@@ -18,7 +19,7 @@
                     <li><a href="<?php echo URL; ?>relatorios">Por Categoria</a></li>
                 </ul>
                 <ul class="sub">
-                    <li><a href="<?php echo URL; ?>relatorios/teste/">Por Categoria - Gráfico</a></li>
+                    <li><a href="<?php echo URL; ?>relatorios/edit/">Por Categoria - Gráfico</a></li>
                 </ul>
                 <ul class="sub">
                     <li><a  href="frmRelPorMes.php">Por Mês</a></li>
@@ -73,3 +74,4 @@
     </div>
 </aside>
 <!--sidebar end-->
+

@@ -1,4 +1,3 @@
-<!--header start-->
 <header class="header black-bg">
 
     <div class="sidebar-toggle-box">
@@ -20,4 +19,3 @@
 
 </header>
 
-<!--header end-->
