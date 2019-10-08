@@ -27,6 +27,14 @@ class Utils {
         return $listaMeses;
     }
 
+    public static function isLogged(){
+        session_start();
+        if (!isset($_SESSION['LOGIN']))
+        {
+            header('location: ' . URL . 'login');
+        }
+    }
+
     public static function getPrimeiroNome($login)
     {
         $nomeCompleto = $login->nome_completo;

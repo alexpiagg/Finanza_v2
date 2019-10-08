@@ -8,6 +8,7 @@
 namespace Mini\Controller;
 
 use Mini\Model\Gasto;
+use Mini\Libs\Utils;
 
 class RelatoriosController
 {
@@ -17,11 +18,7 @@ class RelatoriosController
      */
     public function index()
     {        
-        session_start();
-        if (!isset($_SESSION['LOGIN']))
-        {
-            header('location: ' . URL . 'login');
-        }
+        Utils::isLogged();
 
         require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';

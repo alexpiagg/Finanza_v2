@@ -17,11 +17,7 @@ class HomeController
      */
     public function index()
     {
-        session_start();
-        if (!isset($_SESSION['LOGIN']))
-        {
-            header('location: ' . URL . 'login');
-        }
+        Utils::isLogged();
         
         // Carregar a view home
         require APP . 'view/_templates/heade.php';
