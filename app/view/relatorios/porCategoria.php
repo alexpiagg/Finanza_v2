@@ -63,7 +63,7 @@
 
                         <?php
 
-                            if (isset($retornoTotais)) {
+                            if (isset($retornoTotais) && count($retornoTotais) > 0) {
 
                                 $id = 0;
                                 $totalGeral = 0;

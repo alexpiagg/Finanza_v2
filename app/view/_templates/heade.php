@@ -8,38 +8,49 @@
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
     <title>Finanza</title>
-    <!-- Bootstrap core CSS -->
-    <link href="<?php echo URL; ?>assets/css/bootstrap.css" rel="stylesheet">
     
-    <!--external css-->
-    <link href="<?php echo URL; ?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <link href="<?php echo URL; ?>assets/css/jquery-ui-1.11.4.css" rel="stylesheet">
+    <!-- CSS -->
+    <link href="<?php echo URL; ?>assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+      
+    <link href="<?php echo URL; ?>assets/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+   
+    <link href="<?php echo URL; ?>assets/css/jquery-ui-1.11.4.css" rel="stylesheet" type="text/css">
+   
+    <link href="<?php echo URL; ?>assets/css/style.css" rel="stylesheet" type="text/css">
 
-    <!-- Custom styles for this template -->
-    <link href="<?php echo URL; ?>assets/css/style.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets/css/style-responsive.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets/css/new-checkbox.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets/css/style-responsive.css" rel="stylesheet" type="text/css">
+
+    <link href="<?php echo URL; ?>assets/css/new-checkbox.css" rel="stylesheet" type="text/css">
+
     <link href="<?php echo URL; ?>assets/lineicons/style.css" rel="stylesheet" type="text/css" >
+
     <link href="<?php echo URL; ?>assets/img/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
-    <!-- JavaScript -->
+    <link src="<?php echo URL; ?>assets/js/chart-master/Chart.js" rel="shortcut icon" type="image/x-icon">
 
-    <script src="<?php echo URL; ?>assets/js/jquery.js"></script>
-    <script src="<?php echo URL; ?>assets/js/jquery-1.8.3.min.js"></script>
-    <script src="<?php echo URL; ?>assets/js/jquery-ui-1.9.2.custom.min.js"></script>
-
-    <script src="<?php echo URL; ?>assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo URL; ?>assets/js/jquery.dcjqaccordion.2.7.js"> type="text/javascript"</script>
-    <script src="<?php echo URL; ?>assets/js/jquery.scrollTo.min.js"></script>
-    <script src="<?php echo URL; ?>assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets/js/jquery.sparkline.js"></script>
-
-    <!--common script for all pages-->
-    <script src="<?php echo URL; ?>assets/js/common-scripts.js"></script>
     
+    <!-- JavaScript -->
+    <script src="<?php echo URL; ?>assets/js/jquery.js" type="text/javascript"></script>
+   
+    <script src="<?php echo URL; ?>assets/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+   
+    <script src="<?php echo URL; ?>assets/js/jquery-ui-1.9.2.custom.min.js" type="text/javascript"></script>
+
+    <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+   
+    <script src="<?php echo URL; ?>assets/js/jquery.dcjqaccordion.2.7.js" type="text/javascript"> </script>
+   
+    <script src="<?php echo URL; ?>assets/js/jquery.scrollTo.min.js" type="text/javascript"></script>
+   
+    <script src="<?php echo URL; ?>assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    
+    <script src="<?php echo URL; ?>assets/js/common-scripts.js" type="text/javascript"></script>
+   
+    <script src="<?php echo URL; ?>assets/js/jquery.sparkline.js" type="text/javascript"></script>
+
     <script src="<?php echo URL; ?>assets/js/gritter/js/jquery.gritter.js" type="text/javascript"></script>
+   
     <script src="<?php echo URL; ?>assets/js/gritter-conf.js" type="text/javascript"></script>
 
-    <!--script for this page-->
-    <script src="<?php echo URL; ?>assets/js/sparkline-chart.js"></script>
+    <script src="<?php echo URL; ?>assets/js/sparkline-chart.js" type="text/javascript"></script>
 </head>

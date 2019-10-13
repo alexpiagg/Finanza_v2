@@ -10,17 +10,18 @@ namespace Mini\Controller;
 use Mini\Model\Gasto;
 use Mini\Model\TipoGasto;
 use Mini\Libs\Utils;
+use Mini\Core\Controller;
 
-class RelatoriosController
+class RelatoriosController extends Controller
 {
-    /**
-     * PAGE: index
-     * Este método lida com o que acontece quando você se move para http://localhost/projeto/home/index (que é a página padrão)
-     */
+    
+    public function index()
+    {
+        
+    }
+
     public function porCategoria()
     {        
-        Utils::isLogged();
-
         $tipoGasto = new TipoGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
@@ -41,25 +42,21 @@ class RelatoriosController
 
     public function porCategoriaGrafico()
     {        
-        // session_start();
-        // if (!isset($_SESSION['LOGIN']))
-        // {
-        //     header('location: ' . URL . 'login');
-        // }
-        
-        // $retornoDetalhe = null;
-        // $retornoTotais = null;
+        $listaAnos = Utils::listarAnos();
+        $listaMeses = Utils::listarMeses();
 
-        // if (true){
-        //     $gasto = new Gasto();
-        //     $retornoDetalhe = $gasto->getRptPorCategoria();
-
-        //     $retornoTotais = $gasto->getGastosAgrupados();
-        // }
-        
         require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/sidebar.php';
+
+        if (isset($_POST["submit_porcategoriagrafico"])) {
+            $gasto = new Gasto();
+           
+            $dataIni = $_POST['listaAno'] . '-' . $_POST['listaMes'] . '-' . '01';
+            $dataFim = $_POST['listaAno'] . '-'. $_POST['listaMes'] . '-' . date('t', strtotime($dataIni));
+        
+            $retornoTotais = $gasto->getGastosAgrupados($dataIni, $dataFim, 0, $_SESSION['LOGIN']->id_conta);
+        }
 
         require APP . 'view/relatorios/porCategoriaGrafico.php';
     }

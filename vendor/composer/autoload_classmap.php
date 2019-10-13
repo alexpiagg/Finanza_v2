@@ -16,6 +16,7 @@ return array(
     'Mini\\Controller\\SobreController' => $baseDir . '/app/Controller/SobreController.php',
     'Mini\\Controller\\TimelineController' => $baseDir . '/app/Controller/TimelineController.php',
     'Mini\\Core\\Application' => $baseDir . '/app/Core/Application.php',
+    'Mini\\Core\\Controller' => $baseDir . '/app/Core/Controller.php',
     'Mini\\Core\\Model' => $baseDir . '/app/Core/Model.php',
     'Mini\\Libs\\Helper' => $baseDir . '/app/Libs/helper.php',
     'Mini\\Libs\\Utils' => $baseDir . '/app/Libs/utils.php',

@@ -31,6 +31,7 @@ class ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416
         'Mini\\Controller\\SobreController' => __DIR__ . '/../..' . '/app/Controller/SobreController.php',
         'Mini\\Controller\\TimelineController' => __DIR__ . '/../..' . '/app/Controller/TimelineController.php',
         'Mini\\Core\\Application' => __DIR__ . '/../..' . '/app/Core/Application.php',
+        'Mini\\Core\\Controller' => __DIR__ . '/../..' . '/app/Core/Controller.php',
         'Mini\\Core\\Model' => __DIR__ . '/../..' . '/app/Core/Model.php',
         'Mini\\Libs\\Helper' => __DIR__ . '/../..' . '/app/Libs/helper.php',
         'Mini\\Libs\\Utils' => __DIR__ . '/../..' . '/app/Libs/utils.php',

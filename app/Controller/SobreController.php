@@ -7,17 +7,15 @@
 
 namespace Mini\Controller;
 
-use Mini\Libs\Utils;
+use Mini\Core\Controller;
 
-class SobreController
+class SobreController extends Controller
 {
     /**
      * Action: index
      */
     public function index()
     {
-        Utils::isLogged();
-
         // Carregar a view home
         require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';                       

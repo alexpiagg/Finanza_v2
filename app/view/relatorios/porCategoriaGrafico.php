@@ -1,161 +1,112 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <body>
-    <section id="container">
+<section id="container">
+    <!--main content start-->
+    <section id="main-content">
+        <section class="wrapper">
 
-        <!--main content start-->
-        <section id="main-content">
-            <section class="wrapper">
-
+            <form class="form-horizontal style-form" action="<?php echo URL; ?>relatorios/porCategoriaGrafico/" method="POST">
                 <h3><i class="fa fa-angle-right"></i> Relatórios > Por Categoria - Gráfico </h3>
                 <div class="row">
+                    <div class="col-lg-9 main-chart">
 
-                    <!--main content start-->
-                    <!--<section id="main-content">-->
-                    <section class="col-md-12">
-                        <section class="wrapper">
-                            <form class="form-horizontal style-form" action="<?php echo URL; ?>relatorios/edit/" method="POST">
-                                <div class="form-group">
+                        <div class="form-group">
+                            <div class="col-sm-6">
 
-                                    <legend> Filtros: </legend>
+                                <label>Mês:</label>
+                                <select name="listaMes" class="form-control">
+                                    <?php
+                                    //Preenche a comboBox (select) com os meses
+                                    foreach ($listaMeses as $idx => $nome) {
 
-                                    <div class="col-sm-4">
-                                        <label>Data Início: </label>
-                                        <input type="date" class="form-control" value=<?php echo date("Y-m-d") ?> name="dataIni" required>
+                                        //Selecionando um campo                                                            
+                                        echo '<option value=' . $idx . ' name="mes">' . $nome . '</option>';
+                                    }
+                                    ?>
+                                </select>
 
-                                    </div>
+                            </div>
 
-                                    <div class="col-sm-4">
-                                        <label>Data Fim:</label>
-                                        <input type="date" class="form-control" value=<?php echo date("Y-m-d") ?> name="dataFim">
-                                    </div>
+                            <div class="col-sm-6">
+                                <label>Ano:</label>
+                                <select name="listaAno" class="form-control">
+                                    <?php
 
-                                    <div class="col-sm-4">
-                                        <label>Categoria:</label>
-                                        <select name="tipoGasto" class="form-control">
-                                            <option value="0" name="tipo"> Selecione: </option>
-                                            <?php
-                                            /*
-                                            $tipoGastos = new TipoGastoVO();
-                                            $tipoGastos->id_conta = getSession('LOGIN')['id_conta'];
+                                    foreach ($listaAnos as $item) {
+                                        echo '<option value=' . $item . ' name="ano">' . $item . '</option>';
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
 
-                                            $tipoGastoBus = new TipoGastoBusiness();
-                                            $retorno = $tipoGastoBus->getAll($tipoGastos);
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <input type="submit" class="btn btn-default" value="Buscar" name="submit_porcategoriagrafico">
+                            </div>
+                        </div>
 
-                                            //Preenche a comboBox (select) de categorias
-                                            foreach ($retorno as $valor) {
-                                                echo '<option value=' . $valor['id'] . ' name="tipo">' . $valor['tipo'] . '</option>';
-                                            }
-                                            */
-                                            ?>
-                                        </select>
-                                    </div>
-                                </div>
+                        <legend></legend>
 
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <input type="submit" class="btn btn-default" value="Buscar">
-                                    </div>
-                                </div>
+                    </div>
+                    <!--/grey-panel-->
+                </div>
+                <!--col-md-4-->
 
-                                <legend></legend>
-                            </form>
-                        </section>
-                    </section>
-                    <div class="col-md-12">
-                        <div class="content-panel">
-                            <h4><i class="fa fa-angle-right"></i> Resultados </h4>
-                            <hr>
+                <div class="row mt">
+                    <!--CUSTOM CHART START -->
+                    <div class="border-head">
+                        <h3>CATEGORIAS</h3>
+                    </div>
+
+                    <div class="custom-bar-chart">
+                        <ul class="y-axis">
+                            <li><span>2.000</span></li>
+                            <li><span>1.600</span></li>
+                            <li><span>1.200</span></li>
+                            <li><span>800</span></li>
+                            <li><span>400</span></li>
+                            <li><span>0</span></li>
+                        </ul>
 
                         <?php
 
-                            if (isset($retornoTotais)) {
+                        if (isset($retornoTotais)) {
 
-                                $id = 0;
-                                $totalGeral = 0;
+                            foreach ($retornoTotais as $valor) {
+                                $tipo =  substr($valor->tipo, 0, 4);
 
-                                    //Preenche o efeito de accordion, para cada categoria
-                                    echo '<div id="accordion">';
+                                $valorFormatado = number_format($valor->total, 2, ',', '.');
 
-                                    foreach ($retornoTotais as $valor) {
-                                        ++$id;
+                                $valor2 = floatval($valor->total);
 
-                                        $totalGeral += $valor->total;
-                                        echo "<h3>" . $id . "- " . $valor->tipo . " (R$    " . number_format($valor->total, 2, ',', '.') . ") </h3>
-                                            <div>
-                                            <p>";
+                                $percentual = intval(($valor2 / 2000) * 100);
 
-                                        //Inicio - Cabeçalho da table de detalhes
-                                        echo '  <table class="table table-bordered table-striped table-condensed cf table-hover">
-                                                    <thead class="cf">
-                                                        <tr>
-                                                            <th>Data</th>
-                                                            <th>Local</th>
-                                                            <th class="numeric">Valor (R$)</th>
-                                                        </tr>
-                                                    </thead>
-                                                <tbody>';
-
-                                        //Imprimindo o detalhes de gastos
-                                        foreach ($retornoDetalhe as $row) {
-
-                                            if ($row->id_tipo_gasto == $valor->id) {
-                                                echo 
-                                                    '   <tr>
-                                                            <td data-title="Code">' . date_format(date_create($row->data), 'd/m/Y') . '</td>
-                                                            <td data-title="Company">' . $row->local . '</td>
-                                                            <td class="numeric" data-title="Price">' . number_format($row->valor, 2, ',', '.') . '</td>
-                                                        </tr> ';
-                                            }
-                                        }
-
-                                        //Fim - Cabeçalho da table de detalhes
-                                        echo '  </tbody>
-                                            </table>';
-
-                                        echo "</p>
-                                            </div>";
-                                    }
-                                    
-                                    echo "<h3> Total Geral:  </h3>
-                                                <div>
-                                                <p>
-                                                    R$ " . number_format($totalGeral, 2, ',', '.') . "
-                                                </p>
-                                                </div>";
-
-                                    echo "</div>";
-
-                            } else {
-                                echo '0 Registro(s)';
+                                echo "
+                                        <div class='bar'>
+                                            <div class='title'> $tipo. </div>
+                                            <div class='value tooltips' data-original-title=' $valorFormatado ' data-toggle='tooltip' data-placement='top'>$percentual%</div>
+                                        </div> ";
                             }
 
-                            echo "</tbody>";
-                            echo "</table>";                            
+                        }
                         ?>
+                    </div>
+                    <!--custom chart end-->
+                </div><!-- /row -->
+            </form>
+        </section>
 
-                        </div>
-                        <! --/content-panel -->
-                    </div><!-- /col-md-12 -->
-                </div><!-- row -->
-            </section>
-            <! --/wrapper -->
-
-        </section><!-- /MAIN CONTENT -->
     </section>
-</body>
 
-<script>
-    //Efeito do accordion, categorias 
-    $(function() {
-        $("#accordion").accordion({
-            active: false,
-            collapsible: true,
-            heightStyle: "content"
-        });
-    });
-</script>
+    <script src="<?php echo URL; ?>assets/js/bootstrap.min.js"></script>
+    <script src="<?php echo URL; ?>assets/js/common-scripts.js"></script>
+
+    <!--main content end-->
+</section>
+
+</body>
 
 </html>

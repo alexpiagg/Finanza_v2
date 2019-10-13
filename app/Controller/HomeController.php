@@ -7,9 +7,9 @@
 
 namespace Mini\Controller;
 
-use Mini\Libs\Utils;
+use Mini\Core\Controller;
 
-class HomeController
+class HomeController extends Controller
 {
     /**
      * PAGE: index
@@ -17,8 +17,6 @@ class HomeController
      */
     public function index()
     {
-        Utils::isLogged();
-        
         // Carregar a view home
         require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';
