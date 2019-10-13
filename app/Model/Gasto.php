@@ -62,19 +62,14 @@ class Gasto extends Model
                   AND g.id_conta = :idConta 
                 ";
 
-    $parameters = array();
-    $novoValor = array();
-
+    $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
+    
     if ($tipoGasto > 0) {
       $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
-      $novoValor =  array(':idTipoGasto' => $tipoGasto);
+      $parameters[':idTipoGasto'] =  $tipoGasto;
     }
 
-    $query = $this->db->prepare($sql);
-
-    $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
-    $parameters  = array_merge($parameters, $novoValor);
-
+    $query = $this->db->prepare($sql);    
     $query->execute($parameters);
 
     return $query->fetchAll();
@@ -98,22 +93,16 @@ class Gasto extends Model
                     
                ";
 
-    $parameters = array();
-    $novoValor  = array();
+    $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
 
     if ($tipoGasto > 0) {
       $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
-      $novoValor =  array(':idTipoGasto' => $tipoGasto);
+      $parameters[':idTipoGasto'] =  $tipoGasto;
     }
 
     $sql .= " GROUP BY tg.id ";
 
     $query = $this->db->prepare($sql);
-
-    $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
-
-    $parameters  = array_merge($parameters, $novoValor);
-
     $query->execute($parameters);
 
     return $query->fetchAll();
