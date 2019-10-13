@@ -1,25 +1,26 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <body>
     <section id="container">
-    
+
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
 
-                <h3><i class="fa fa-angle-right"></i> Relatórios > Por Categoria </h3>
+                <h3><i class="fa fa-angle-right"></i> Relatórios > Por Categoria - Gráfico </h3>
                 <div class="row">
 
                     <!--main content start-->
                     <!--<section id="main-content">-->
                     <section class="col-md-12">
                         <section class="wrapper">
-                            <form class="form-horizontal style-form" action="<?php echo URL; ?>relatorios" method="POST">
+                            <form class="form-horizontal style-form" action="<?php echo URL; ?>relatorios/edit/" method="POST">
                                 <div class="form-group">
 
                                     <legend> Filtros: </legend>
-                                    
+
                                     <div class="col-sm-4">
                                         <label>Data Início: </label>
                                         <input type="date" class="form-control" value=<?php echo date("Y-m-d") ?> name="dataIni" required>

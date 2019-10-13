@@ -39,6 +39,7 @@ class ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416
         'Mini\\Model\\Gasto' => __DIR__ . '/../..' . '/app/Model/Gasto.php',
         'Mini\\Model\\Login' => __DIR__ . '/../..' . '/app/Model/Login.php',
         'Mini\\Model\\Produto' => __DIR__ . '/../..' . '/app/Model/Produto.php',
+        'Mini\\Model\\TipoGasto' => __DIR__ . '/../..' . '/app/Model/TipoGasto.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -1,26 +1,25 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
 <body>
     <section id="container">
-
+    
         <!--main content start-->
         <section id="main-content">
             <section class="wrapper">
 
-                <h3><i class="fa fa-angle-right"></i> TESTE Relatórios > Por Categoria - Gráfico </h3>
+                <h3><i class="fa fa-angle-right"></i> Relatórios > Por Categoria </h3>
                 <div class="row">
 
                     <!--main content start-->
                     <!--<section id="main-content">-->
                     <section class="col-md-12">
                         <section class="wrapper">
-                            <form class="form-horizontal style-form" action="<?php echo URL; ?>relatorios/edit/" method="POST">
+                            <form class="form-horizontal style-form" action="<?php echo URL; ?>relatorios/porCategoria/" method="POST">
                                 <div class="form-group">
 
                                     <legend> Filtros: </legend>
-
+                                    
                                     <div class="col-sm-4">
                                         <label>Data Início: </label>
                                         <input type="date" class="form-control" value=<?php echo date("Y-m-d") ?> name="dataIni" required>
@@ -35,20 +34,13 @@
                                     <div class="col-sm-4">
                                         <label>Categoria:</label>
                                         <select name="tipoGasto" class="form-control">
-                                            <option value="0" name="tipo"> Selecione: </option>
+                                            <option value="0" name="tipoGasto"> Selecione: </option>
                                             <?php
-                                            /*
-                                            $tipoGastos = new TipoGastoVO();
-                                            $tipoGastos->id_conta = getSession('LOGIN')['id_conta'];
 
-                                            $tipoGastoBus = new TipoGastoBusiness();
-                                            $retorno = $tipoGastoBus->getAll($tipoGastos);
-
-                                            //Preenche a comboBox (select) de categorias
-                                            foreach ($retorno as $valor) {
-                                                echo '<option value=' . $valor['id'] . ' name="tipo">' . $valor['tipo'] . '</option>';
-                                            }
-                                            */
+                                                foreach ($listaTipoGastos as $tipo) {
+                                                    echo '<option value=' . $tipo->id . ' name="tipo">' . $tipo->tipo . '</option>';
+                                                }
+                                            
                                             ?>
                                         </select>
                                     </div>
@@ -56,7 +48,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="submit" class="btn btn-default" value="Buscar">
+                                        <input type="submit" class="btn btn-default" value="Buscar" name="submit_porcategoria" >
                                     </div>
                                 </div>
 

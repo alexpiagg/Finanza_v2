@@ -6,10 +6,11 @@ use Mini\Core\Model;
 
 class Gasto extends Model
 {
-    
-    function getTimeline($dataInicial, $dataFinal, $idConta){
-        
-        $sql = "SELECT 
+
+  function getTimeline($dataInicial, $dataFinal, $idConta)
+  {
+
+    $sql = "SELECT 
                     r.data,
                     r.descricao,
                     r.valor,
@@ -37,18 +38,18 @@ class Gasto extends Model
                     DATA DESC,                    
                     ID DESC ";
 
-        $query = $this->db->prepare($sql);
+    $query = $this->db->prepare($sql);
 
-        $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
+    $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
 
-        $query->execute($parameters);
-        
-        return $query->fetchAll();
-    }
+    $query->execute($parameters);
 
-    function getRptPorCategoria()
-    {
-        $sql = "SELECT
+    return $query->fetchAll();
+  }
+
+  function getRelPorCategoria($dataInicial, $dataFinal, $tipoGasto, $idConta)
+  {
+    $sql = "SELECT
                     g.id,
                     g.local,
                     g.data,
@@ -58,27 +59,34 @@ class Gasto extends Model
                 FROM gasto g 
                 WHERE g.data >= :dataInicial  
                   AND g.data <= :dataFinal 
-                  AND g.id_tipo_gasto != 0
-                  AND g.id_conta = 1";
+                  AND g.id_conta = :idConta 
+                ";
 
-        $dataInicial = "2019-01-01";
-        $dataFinal = "2019-01-30";
+    $parameters = array();
+    $novoValor = array();
 
-        $query = $this->db->prepare($sql);
-
-        $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal);
-
-        $query->execute($parameters);
-
-        return $query->fetchAll();
+    if ($tipoGasto > 0) {
+      $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
+      $novoValor =  array(':idTipoGasto' => $tipoGasto);
     }
 
-    /*
+    $query = $this->db->prepare($sql);
+
+    $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
+    $parameters  = array_merge($parameters, $novoValor);
+
+    $query->execute($parameters);
+
+    return $query->fetchAll();
+  }
+
+  /*
      * Retorna os gastos totais por categoria
      */
-    public function getGastosAgrupados(){
+  public function getGastosAgrupados($dataInicial, $dataFinal, $tipoGasto, $idConta)
+  {
 
-      $sql = "SELECT 
+    $sql = "SELECT 
                   tg.tipo,
                   tg.id,
                   SUM(g.valor) total
@@ -86,19 +94,28 @@ class Gasto extends Model
               JOIN tipo_gasto tg ON tg.id = g.id_tipo_gasto
               WHERE g.data >= :dataInicial
                     AND g.data <= :dataFinal
-                    AND g.id_conta = 1 
-                    AND g.id_tipo_gasto != 0
-              GROUP BY tg.id ";
+                    AND g.id_conta = :idConta
+                    
+               ";
 
-$dataInicial = "2019-01-01";
-$dataFinal = "2019-01-30";
+    $parameters = array();
+    $novoValor  = array();
 
-        $query = $this->db->prepare($sql);
+    if ($tipoGasto > 0) {
+      $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
+      $novoValor =  array(':idTipoGasto' => $tipoGasto);
+    }
 
-        $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal);
+    $sql .= " GROUP BY tg.id ";
 
-        $query->execute($parameters);
+    $query = $this->db->prepare($sql);
 
-        return $query->fetchAll();
+    $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
+
+    $parameters  = array_merge($parameters, $novoValor);
+
+    $query->execute($parameters);
+
+    return $query->fetchAll();
   }
 }
