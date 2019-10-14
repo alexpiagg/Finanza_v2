@@ -129,25 +129,14 @@
                         ?>
 
                         </div>
-                        <! --/content-panel -->
+                        <!--/content-panel -->
                     </div><!-- /col-md-12 -->
                 </div><!-- row -->
             </section>
-            <! --/wrapper -->
+            <!--/wrapper -->
 
         </section><!-- /MAIN CONTENT -->
     </section>
 </body>
-
-<script>
-    //Efeito do accordion, categorias 
-    $(function() {
-        $("#accordion").accordion({
-            active: false,
-            collapsible: true,
-            heightStyle: "content"
-        });
-    });
-</script>
 
 </html>

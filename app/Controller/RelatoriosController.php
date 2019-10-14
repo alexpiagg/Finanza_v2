@@ -38,6 +38,7 @@ class RelatoriosController extends Controller
         }
 
         require APP . 'view/relatorios/porCategoria.php';
+        require APP . 'view/_templates/footer.php';
     }
 
     public function porCategoriaGrafico()
@@ -59,5 +60,32 @@ class RelatoriosController extends Controller
         }
 
         require APP . 'view/relatorios/porCategoriaGrafico.php';
+        require APP . 'view/_templates/footer.php';
+    }
+
+    public function porMes()
+    {
+        $tipoGasto = new TipoGasto();
+        $listaTipoGastos = $tipoGasto->getAll();
+
+        require APP . 'view/_templates/heade.php';
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/_templates/sidebar.php';
+        
+        $listaMeses = Utils::listarMeses();
+
+        if (isset($_POST["submit_pormes"])) {
+
+            $gasto = new Gasto();
+
+            $retornoDados = $gasto->getGastosPorMeses($_POST['dataIni'], $_POST['dataFim'], $_POST['tipoGasto'], $_SESSION['LOGIN']->id_conta);
+        }
+
+        require APP . 'view/relatorios/porMes.php';
+        require APP . 'view/_templates/footer.php';
+    }
+
+    public function filterArrayByValue($dados, $mes){        
+        return Utils::filterArrayByValue($dados, 'mes', $mes);
     }
 }

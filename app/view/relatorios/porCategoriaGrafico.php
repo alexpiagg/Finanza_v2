@@ -100,10 +100,6 @@
         </section>
 
     </section>
-
-    <script src="<?php echo URL; ?>assets/js/bootstrap.min.js"></script>
-    <script src="<?php echo URL; ?>assets/js/common-scripts.js"></script>
-
     <!--main content end-->
 </section>
 

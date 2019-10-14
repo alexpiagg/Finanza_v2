@@ -3,6 +3,7 @@
 namespace Mini\Model;
 
 use Mini\Core\Model;
+use PDO;
 
 class Gasto extends Model
 {
@@ -106,5 +107,37 @@ class Gasto extends Model
     $query->execute($parameters);
 
     return $query->fetchAll();
+  }
+
+  /*
+     * Retorna a soma por categoria, agrupado por meses
+     */
+    public function getGastosPorMeses($dataInicial, $dataFinal, $tipoGasto, $idConta){
+
+      $sql = "SELECT	
+                  MONTH(G.data) mes,
+                  TG.tipo,
+                  SUM(valor) total
+              FROM gasto G
+              JOIN tipo_gasto TG ON TG.id = G.id_tipo_gasto
+              WHERE DATA >= :dataInicial
+                AND DATA <= :dataFinal
+                AND G.id_conta = :idConta ";
+
+      $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
+
+      if ($tipoGasto > 0) {
+        $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
+        $parameters[':idTipoGasto'] =  $tipoGasto;
+      }
+      
+      $sql = $sql . " GROUP BY 
+                          TG.TIPO,
+                          MONTH(G.data) ";
+
+      $query = $this->db->prepare($sql);
+      $query->execute($parameters);
+  
+      return $query->fetchAll(PDO::FETCH_ASSOC);
   }
 }
