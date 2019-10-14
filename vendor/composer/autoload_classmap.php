@@ -25,5 +25,6 @@ return array(
     'Mini\\Model\\Gasto' => $baseDir . '/app/Model/Gasto.php',
     'Mini\\Model\\Login' => $baseDir . '/app/Model/Login.php',
     'Mini\\Model\\Produto' => $baseDir . '/app/Model/Produto.php',
+    'Mini\\Model\\Receita' => $baseDir . '/app/Model/Receita.php',
     'Mini\\Model\\TipoGasto' => $baseDir . '/app/Model/TipoGasto.php',
 );

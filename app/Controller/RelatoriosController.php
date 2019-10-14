@@ -9,6 +9,7 @@ namespace Mini\Controller;
 
 use Mini\Model\Gasto;
 use Mini\Model\TipoGasto;
+use Mini\Model\Receita;
 use Mini\Libs\Utils;
 use Mini\Core\Controller;
 
@@ -82,6 +83,28 @@ class RelatoriosController extends Controller
         }
 
         require APP . 'view/relatorios/porMes.php';
+        require APP . 'view/_templates/footer.php';
+    }
+
+    public function porReceita()
+    {
+        $tipoGasto = new TipoGasto();
+        $listaTipoGastos = $tipoGasto->getAll();
+
+        require APP . 'view/_templates/heade.php';
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/_templates/sidebar.php';
+        
+        $listaMeses = Utils::listarMeses();
+
+        if (isset($_POST["submit_porreceita"])) {
+
+            $receita = new Receita();
+
+            $retornoDados = $receita->getReceitasPorMeses($_POST['dataIni'], $_POST['dataFim'], $_POST['descricao'], $_SESSION['LOGIN']->id_conta);
+        }
+
+        require APP . 'view/relatorios/porReceita.php';
         require APP . 'view/_templates/footer.php';
     }
 

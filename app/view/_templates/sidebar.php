@@ -22,13 +22,13 @@
                     <li><a href="<?php echo URL; ?>relatorios/porCategoriaGrafico/">Por Categoria - Gráfico</a></li>
                 </ul>
                 <ul class="sub">
-                <li><a href="<?php echo URL; ?>relatorios/porMes/">Por Mês</a></li>
+                    <li><a href="<?php echo URL; ?>relatorios/porMes/">Por Mês</a></li>
                 </ul>
                 <ul class="sub">
-                    <li><a  href="frmRelPorReceita.php">Por Receita</a></li>
+                    <li><a href="<?php echo URL; ?>relatorios/porReceita/">Por Receita</a></li>
                 </ul>
                 <ul class="sub">
-                    <li><a  href="frmRelPorTotais.php">Por Totais</a></li>
+                    <li><a href="<?php echo URL; ?>relatorios/porTotais/">Por Totais</a></li>
                 </ul>                
             </li>
 
