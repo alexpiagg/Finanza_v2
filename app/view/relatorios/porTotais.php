@@ -1,22 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
-<?php
-
-// $gastoBus = new GastoBusiness();    
-// $totalAno = $gastoBus->getTotalAno();
-// $totalMesAnterior = $gastoBus->getTotalMesAnterior();
-// $totalMesAtual = $gastoBus->getTotalMesAtual();
-// $totalConta = Utils::formatarMoeda(getSession('LOGIN')['valor']);
-
-
-// $receitaBus = new ReceitaBusiness();
-// $totalReceitaMesAtual = $receitaBus->getTotalMesAtual();
-// $totalReceitaAno = $receitaBus->getTotalAno();
-
-?>
-
-	<body>
+<body>
 	
 	<section id="container" >
 	

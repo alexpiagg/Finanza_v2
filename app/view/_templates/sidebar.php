@@ -39,7 +39,7 @@
                     <span>Cadastros</span>
                 </a>
                     <ul class="sub">
-                        <li><a  href="frmListarTipoGastos.php">Categorias</a></li>
+                        <li><a href="<?php echo URL; ?>categoria">Categorias</a></li>
                     </ul>
                     <ul class="sub">
                         <li><a  href="frmCadContas.php?acao=UPDATE">Conta</a></li>

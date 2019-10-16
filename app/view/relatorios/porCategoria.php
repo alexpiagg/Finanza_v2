@@ -34,14 +34,12 @@
                                     <div class="col-sm-4">
                                         <label>Categoria:</label>
                                         <select name="tipoGasto" class="form-control">
-                                            <option value="0" name="tipoGasto"> Selecione: </option>
-                                            <?php
+                                            <option value="0" name="tipoGasto"> Selecione: </option>                                           
 
-                                                foreach ($listaTipoGastos as $tipo) {
-                                                    echo '<option value=' . $tipo->id . ' name="tipo">' . $tipo->tipo . '</option>';
-                                                }
+                                            <?php foreach ($listaTipoGastos as $tipo) { ?>                                                
+                                                    <option value= <?php echo $tipo->id ?> name="tipo"> <?php echo $tipo->tipo; ?> </option>;
+                                            <?php } ?>
                                             
-                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -63,70 +61,84 @@
 
                         <?php
 
-                            if (isset($retornoTotais) && count($retornoTotais) > 0) {
+                            if (isset($retornoTotais) && count($retornoTotais) > 0) 
+                            {
 
                                 $id = 0;
                                 $totalGeral = 0;
+                        ?>
+                                    <!-- /Preenche o efeito de accordion, para cada categoria -->
+                                    <div id="accordion">
 
-                                    //Preenche o efeito de accordion, para cada categoria
-                                    echo '<div id="accordion">';
-
-                                    foreach ($retornoTotais as $valor) {
+                                    <?php 
+                                    foreach ($retornoTotais as $valor) 
+                                    {
                                         ++$id;
 
                                         $totalGeral += $valor->total;
-                                        echo "<h3>" . $id . "- " . $valor->tipo . " (R$    " . number_format($valor->total, 2, ',', '.') . ") </h3>
+                                    ?>
+                                        <h3> 
+                                            <?php 
+                                                echo $id  . "- " . $valor->tipo  ?> (R$ <?php echo number_format($valor->total, 2, ',', '.') ?> ) </h3>
+                                            
                                             <div>
-                                            <p>";
+                                            <p>
 
-                                        //Inicio - Cabeçalho da table de detalhes
-                                        echo '  <table class="table table-bordered table-striped table-condensed cf table-hover">
-                                                    <thead class="cf">
-                                                        <tr>
-                                                            <th>Data</th>
-                                                            <th>Local</th>
-                                                            <th class="numeric">Valor (R$)</th>
-                                                        </tr>
-                                                    </thead>
-                                                <tbody>';
+                                        <!-- Inicio - Cabeçalho da table de detalhes -->
+                                        <table class="table table-bordered table-striped table-condensed cf table-hover">
+                                            <thead class="cf">
+                                                <tr>
+                                                    <th>Data</th>
+                                                    <th>Local</th>
+                                                    <th class="numeric">Valor (R$)</th>
+                                                </tr>
+                                            </thead>
+                                        <tbody>
+                                        
+                                        <?php foreach ($retornoDetalhe as $row) 
+                                        {
+                                                if ($row->id_tipo_gasto == $valor->id) 
+                                                {
+                                        ?>
+                                                    <tr>
+                                                        <td data-title="Code"> <?php echo date_format(date_create($row->data), 'd/m/Y') ?> </td>
+                                                        <td data-title="Company"> <?php echo $row->local ?> </td>
+                                                        <td class="numeric" data-title="Price"> <?php echo number_format($row->valor, 2, ',', '.') ?> </td>
+                                                    </tr> 
+                                        
+                                                <?php 
+                                                }                                                
+                                        }  
+                                        ?>
 
-                                        //Imprimindo o detalhes de gastos
-                                        foreach ($retornoDetalhe as $row) {
+                                        <!-- Fim - Cabeçalho da table de detalhes -->
+                                        </tbody>
+                                        </table>
 
-                                            if ($row->id_tipo_gasto == $valor->id) {
-                                                echo 
-                                                    '   <tr>
-                                                            <td data-title="Code">' . date_format(date_create($row->data), 'd/m/Y') . '</td>
-                                                            <td data-title="Company">' . $row->local . '</td>
-                                                            <td class="numeric" data-title="Price">' . number_format($row->valor, 2, ',', '.') . '</td>
-                                                        </tr> ';
-                                            }
-                                        }
+                                        </p>
+                                            </div>
+                                    <?php 
+                                    }   
+                                    ?>
 
-                                        //Fim - Cabeçalho da table de detalhes
-                                        echo '  </tbody>
-                                            </table>';
+                                    <h3> Total Geral:  </h3>
+                                        <div>
+                                            <p>
+                                                R$ <?php echo number_format($totalGeral, 2, ',', '.') ?>
+                                            </p>
+                                        </div>
+                                    </div>
 
-                                        echo "</p>
-                                            </div>";
-                                    }
-                                    
-                                    echo "<h3> Total Geral:  </h3>
-                                                <div>
-                                                <p>
-                                                    R$ " . number_format($totalGeral, 2, ',', '.') . "
-                                                </p>
-                                                </div>";
-
-                                    echo "</div>";
-
-                            } else {
-                                echo '0 Registro(s)';
+                            <?php 
                             }
+                            else 
+                            { 
+                                echo '0 Registro(s)';
+                            }  
+                            ?>
 
-                            echo "</tbody>";
-                            echo "</table>";                            
-                        ?>
+                        </tbody>
+                        </table>
 
                         </div>
                         <!--/content-panel -->
