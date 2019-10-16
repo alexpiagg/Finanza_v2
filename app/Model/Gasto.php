@@ -64,21 +64,21 @@ class Gasto extends Model
                 ";
 
     $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
-    
+
     if ($tipoGasto > 0) {
       $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
       $parameters[':idTipoGasto'] =  $tipoGasto;
     }
 
-    $query = $this->db->prepare($sql);    
+    $query = $this->db->prepare($sql);
     $query->execute($parameters);
 
     return $query->fetchAll();
   }
 
   /*
-     * Retorna os gastos totais por categoria
-     */
+    * Retorna os gastos totais por categoria
+    */
   public function getGastosAgrupados($dataInicial, $dataFinal, $tipoGasto, $idConta)
   {
 
@@ -112,9 +112,10 @@ class Gasto extends Model
   /*
      * Retorna a soma por categoria, agrupado por meses
      */
-    public function getGastosPorMeses($dataInicial, $dataFinal, $tipoGasto, $idConta){
+  public function getGastosPorMeses($dataInicial, $dataFinal, $tipoGasto, $idConta)
+  {
 
-      $sql = "SELECT	
+    $sql = "SELECT	
                   MONTH(G.data) mes,
                   TG.tipo,
                   SUM(valor) total
@@ -124,20 +125,55 @@ class Gasto extends Model
                 AND DATA <= :dataFinal
                 AND G.id_conta = :idConta ";
 
-      $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
+    $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
 
-      if ($tipoGasto > 0) {
-        $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
-        $parameters[':idTipoGasto'] =  $tipoGasto;
-      }
-      
-      $sql = $sql . " GROUP BY 
+    if ($tipoGasto > 0) {
+      $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
+      $parameters[':idTipoGasto'] =  $tipoGasto;
+    }
+
+    $sql = $sql . " GROUP BY 
                           TG.TIPO,
                           MONTH(G.data) ";
 
-      $query = $this->db->prepare($sql);
-      $query->execute($parameters);
-  
-      return $query->fetchAll(PDO::FETCH_ASSOC);
+    $query = $this->db->prepare($sql);
+    $query->execute($parameters);
+
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function getAll($dataInicial, $dataFinal, $idConta)
+  {
+
+    $sql = "SELECT
+                  g.id,
+                  g.local,
+                  g.data,
+                  g.valor,
+                  g.id_tipo_gasto,
+                  g.cartao_credito
+              FROM gasto g
+              WHERE 1 = 1 ";
+
+
+    if ($dataInicial != null) {
+      $sql .= " AND g.data >= :dataInicial ";
+      $parameters[':dataInicial'] =  $dataInicial;
+    }
+
+    if ($dataFinal != null) {
+      $sql .= " AND g.data <= :dataFinal ";
+      $parameters[':dataFinal'] =  $dataFinal;
+    }
+
+    if ($idConta > 0) {
+      $sql .= " AND g.id_conta >= :idConta ";
+      $parameters[':idConta'] =  $idConta;
+    }
+
+    $query = $this->db->prepare($sql);
+    $query->execute($parameters);
+
+    return $query->fetchAll(PDO::FETCH_ASSOC);
   }
 }

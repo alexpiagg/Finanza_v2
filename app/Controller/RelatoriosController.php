@@ -15,21 +15,19 @@ use Mini\Core\Controller;
 
 class RelatoriosController extends Controller
 {
-    
+
     public function index()
-    {
-        
-    }
+    { }
 
     public function porCategoria()
-    {        
+    {
         $tipoGasto = new TipoGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
         require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/sidebar.php';
-        
+
         if (isset($_POST["submit_porcategoria"])) {
 
             $gasto = new Gasto();
@@ -43,7 +41,7 @@ class RelatoriosController extends Controller
     }
 
     public function porCategoriaGrafico()
-    {        
+    {
         $listaAnos = Utils::listarAnos();
         $listaMeses = Utils::listarMeses();
 
@@ -53,10 +51,10 @@ class RelatoriosController extends Controller
 
         if (isset($_POST["submit_porcategoriagrafico"])) {
             $gasto = new Gasto();
-           
+
             $dataIni = $_POST['listaAno'] . '-' . $_POST['listaMes'] . '-' . '01';
-            $dataFim = $_POST['listaAno'] . '-'. $_POST['listaMes'] . '-' . date('t', strtotime($dataIni));
-        
+            $dataFim = $_POST['listaAno'] . '-' . $_POST['listaMes'] . '-' . date('t', strtotime($dataIni));
+
             $retornoTotais = $gasto->getGastosAgrupados($dataIni, $dataFim, 0, $_SESSION['LOGIN']->id_conta);
         }
 
@@ -72,7 +70,7 @@ class RelatoriosController extends Controller
         require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/sidebar.php';
-        
+
         $listaMeses = Utils::listarMeses();
 
         if (isset($_POST["submit_pormes"])) {
@@ -94,7 +92,7 @@ class RelatoriosController extends Controller
         require APP . 'view/_templates/heade.php';
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/sidebar.php';
-        
+
         $listaMeses = Utils::listarMeses();
 
         if (isset($_POST["submit_porreceita"])) {
@@ -108,7 +106,73 @@ class RelatoriosController extends Controller
         require APP . 'view/_templates/footer.php';
     }
 
-    public function filterArrayByValue($dados, $mes){        
+    public function filterArrayByValue($dados, $mes)
+    {
         return Utils::filterArrayByValue($dados, 'mes', $mes);
+    }
+
+    public function porTotais()
+    {
+        require APP . 'view/_templates/heade.php';
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/_templates/sidebar.php';
+
+        $gasto = new Gasto();
+        $id_conta =  $_SESSION['LOGIN']->id_conta;
+
+        //Total gasto mês Anterior
+        $dataIni = date('Y-m-d', strtotime("first day of -1 month"));
+        $dataFim = date('Y-m-d', strtotime("last day of -1 month"));
+        
+        $retornoDados = $gasto->getAll($dataIni, $dataFim, $id_conta);
+        $totalMesAnterior = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
+
+        //--------------------------------------------------------------------------------------
+
+        //Total gasto mês Atual
+        $dataIni = date('Y-m-d', strtotime('first day of this month'));
+        $dataFim  = date('Y-m-d', strtotime('last day of this month'));
+
+        $retornoDados = $gasto->getAll($dataIni, $dataFim, $id_conta);
+        $totalMesAtual = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
+        
+        //--------------------------------------------------------------------------------------
+
+        //Total gasto ano
+        $dataIni = date('Y-01-01');;
+        $dataFim  = date('Y-12-31');;
+
+        $retornoDados = $gasto->getAll($dataIni, $dataFim, $id_conta);
+        $totalAno = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
+
+        //--------------------------------------------------------------------------------------
+
+        //Total receita mês atual
+        $receita = new Receita();
+        $dataIni = date('Y-m-d', strtotime('first day of this month'));
+        $dataFim  = date('Y-m-d', strtotime('last day of this month'));
+        
+        $retornoDados = $receita->getAll($dataIni, $dataFim, $id_conta);
+        $totalReceitaMesAtual = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
+
+        //--------------------------------------------------------------------------------------
+
+        //Total receita ano
+        $receita = new Receita();
+        $dataIni = date('Y-01-01');;
+        $dataFim  = date('Y-12-31');;
+
+        $retornoDados = $receita->getAll($dataIni, $dataFim, $id_conta);
+        $totalReceitaAno = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
+        
+        //--------------------------------------------------------------------------------------
+
+        //Total na conta
+        $totalConta = Utils::formatarMoeda($_SESSION['LOGIN']->valor);
+
+        //--------------------------------------------------------------------------------------
+
+        require APP . 'view/relatorios/porTotais.php';
+        require APP . 'view/_templates/footer.php';
     }
 }
