@@ -11,7 +11,7 @@ class TipoGasto extends Model
         $sql = "SELECT 
                     T.id, 
                     T.tipo,
-                    T.excluido,
+                    IFNULL(T.excluido, 0) excluido,
                     T.id_conta 
                 FROM tipo_gasto T ";
        
@@ -27,7 +27,7 @@ class TipoGasto extends Model
         $sql = "SELECT 
                     T.id, 
                     T.tipo,
-                    T.excluido,
+                    IFNULL(T.excluido, 0) excluido,
                     T.id_conta 
                 FROM tipo_gasto T 
                 WHERE T.id_conta = :idConta";
@@ -40,7 +40,8 @@ class TipoGasto extends Model
         }
 
         if (isset($excluido)) {
-            $sql .=  " AND IFNULL(T.excluido, '') = :excluido ";
+            $sql .=  " AND IFNULL(T.excluido, 0) = :excluido ";
+            
             $parameters[':excluido'] = $excluido;
         }
 
@@ -69,5 +70,14 @@ class TipoGasto extends Model
         $query->execute($parameters);
 
         return $query->fetch();
+    }
+
+    public function update($id, $tipo, $excluido, $id_conta)
+    {
+        $sql = "UPDATE tipo_gasto SET tipo = :tipo, excluido = :excluido, id_conta = :id_conta WHERE id = :id";
+        $query = $this->db->prepare($sql);
+        $parameters = array('id' => $id, ':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
+
+        $query->execute($parameters);
     }
 }
