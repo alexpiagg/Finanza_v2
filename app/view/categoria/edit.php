@@ -25,21 +25,25 @@
                                     <div class="form-group">
                                         <label class="col-sm-1 col-sm-1 control-label">Descrição:</label>
                                         <div class="col-sm-10">
-                                            <input type="text" maxlength="100" value="<?php echo $retornoTipoGastos['tipo'] ?>" name="descricao" class="form-control" required>
+                                            <input type="text" maxlength="100" value="<?php if (isset($retorno)) {echo $retorno->tipo;}  ?>" name="descricao" class="form-control" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label class="col-sm-1 col-sm-1 control-label">Excluído?</label>
                                         <div class="col-sm-10">
-                                            <input class="new-checkbox" type="checkbox" name="excluido" <?php echo ($retornoTipoGastos['excluido'] == null || $retornoTipoGastos['excluido'] == "0" ? "" : "checked") ?>>
+                                            <input class="new-checkbox" type="checkbox" name="excluido"  <?php if (isset($$checked)){ echo $checked; }
+                                             ?> 
+                                            >
                                         </div>
                                     </div>
 
                                 </div>
-
+                                
                                 <input type='submit' value='Salvar' class='btn btn-success' name="submit_editcategoria">
-                                <input type="button" onclick="location.href = <?php echo URL; ?>'categoria' class="btn btn-danger" value="Voltar">
+                                <input type="button" onclick="location.href=' <?php echo URL .'categoria'; ?>' " class="btn btn-danger" value="Voltar" />
+                                
+
                             </form>
                         </section>
                     </section>

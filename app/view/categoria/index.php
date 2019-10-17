@@ -77,17 +77,21 @@
                             <?php foreach ($listaCategorias as $categ) { ?>
 
                                 <tr>
-                                    <td data-title='Company'> <?php echo $categ->tipo; ?> </td>
-                                    <td data-title='numeric'> <?php echo ($categ->excluido == 1 ? 'Sim' : 'Não'); ?> </td>
-                                <td>
+                                    <td data-title='Company'> 
+                                        <?php echo $categ->tipo; ?> 
+                                    </td>
 
-                                <button title='Editar' onclick="location.href=<?php echo URL . 'categoria/edit/' .  $categ->id; ?>" class="btn btn-primary btn-md"> <i class='fa fa-pencil'></i>
-                                </button>
+                                    <td data-title='numeric'> 
+                                        <?php echo ($categ->excluido == 1 ? 'Sim' : 'Não'); ?> 
+                                    </td>
 
-                                <button title='Excluir' onclick="location.href=<?php echo URL . 'categoria/delete/' .  $categ->id; ?>" class='btn btn-danger btn-md'> <i class='fa fa-trash-o'></i> 
-                                </button>
+                                    <td>
+                                        
+                                        <a title="Editar" class="btn btn-primary" href='<?php echo URL . 'categoria/edit/' .  $categ->id; ?>' role="button"><i class='fa fa-pencil'></i></a>
 
-                                </td>
+                                        <a title="Excluir" class="btn btn-danger" href='<?php echo URL . 'categoria/delete/' .  $categ->id; ?>' role="button"><i class='fa fa-trash-o'></i></a>
+
+                                    </td>
                                 </tr>
                             <?php } ?>
 

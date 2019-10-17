@@ -34,8 +34,8 @@ class CategoriaController extends Controller
             
             $retorno = $tipoGasto->getById($categoria_id, $_SESSION['LOGIN']->id_conta);
 
-            // Se o cliente não foi encontrado, então ele teria retornado falso, e precisamos exibir a página de erro
-            if ($tipoGasto === false) {
+            // Se a categoria não for encontrada, então ele teria retornado falso, e precisamos exibir a página de erro
+            if ($retorno === false) {
                 $page = new \Mini\Controller\ErrorController();
                 $page->index();
             } else {
@@ -43,6 +43,8 @@ class CategoriaController extends Controller
                 require APP . 'view/_templates/heade.php';
                 require APP . 'view/_templates/header.php';
                 require APP . 'view/_templates/sidebar.php';
+
+                $checked = $retorno->excluido == 0 || $retorno->excluido == null ? false : true;
 
                 require APP . 'view/categoria/edit.php';
 

@@ -68,6 +68,6 @@ class TipoGasto extends Model
 
         $query->execute($parameters);
 
-        return $query->fetchAll();
+        return $query->fetch();
     }
 }
