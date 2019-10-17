@@ -9,7 +9,6 @@
 			<section class="wrapper">
 				<h3><i class="fa fa-angle-right"></i> Relatórios > Por Totais </h3>
 				
-				<!-- SIMPLE TO DO LIST -->
 				<div class="row mt">
 					<div class="col-md-12">
 							<div class="panel-heading">
@@ -56,12 +55,12 @@
 											</tr>
 										</tbody>
 									</table>							
-								</div><!--/table-responsive-->
-					</div> <!--/col-md-12-->
-				</div> <!--row-->
+								</div>
+					</div>
+				</div>
 			
-			</section> <!--/wrapper-->
-		</section> <!--/MAIN CONTENT-->
+			</section>
+		</section>
 
 	<!-- main content end-->
 

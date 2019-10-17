@@ -33,13 +33,13 @@
                                         <label>Categoria:</label>
                                         <select name="tipoGasto" class="form-control">
                                             <option value="0" name="tipoGasto"> Selecione: </option>
+
                                             <?php
-
-                                            foreach ($listaTipoGastos as $tipo) {
-                                                echo '<option value=' . $tipo->id . ' name="tipo">' . $tipo->tipo . '</option>';
-                                            }
-
+                                                foreach ($listaTipoGastos as $tipo) {
+                                                    echo '<option value=' . $tipo->id . ' name="tipo">' . $tipo->tipo . '</option>';
+                                                }
                                             ?>
+
                                         </select>
                                     </div>
                                 </div>
@@ -65,66 +65,71 @@
                             $id = 0;
                             $totalGeral = 0;
 
-                            if (!empty($retornoDados)) {
+                            if (!empty($retornoDados)) 
+                            {
 
                                 //Preenche o efeito de accordion, para cada categoria
                                 echo '<div id="accordion">';
 
-                                foreach ($listaMeses as $mes => $nome) {
-
+                                foreach ($listaMeses as $mes => $nome) 
+                                {
                                     //Filtra os dados o mês atual do loop
                                     $dadosMes = $this->filterArrayByValue($retornoDados, $mes);
 
-                                    if ($dadosMes == null) {
+                                    if ($dadosMes == null) 
+                                    {
                                         continue;
                                     }
-
+                            
                                     $total = array_sum(array_column($dadosMes, 'total'));
+                            ?>
+                                    <h3> <?php echo $nome ?> (R$ <?php echo number_format($total, 2, ',', '.') ?> ) </h3>
+                                    
+                                    <div>
+                                    <p>
 
-                                    echo "<h3>" . $nome . " (R$    " . number_format($total, 2, ',', '.') . ") </h3>
-                                                    <div>
-                                                    <p>";
+                                    <!-- Inicio - Cabeçalho da table de detalhes -->
+                                    <table class="table table-bordered table-striped table-condensed cf table-hover">
+                                        <thead class="cf">
+                                            <tr>
+                                                <th>Categoria</th>
+                                                <th class="numeric">Valor (R$)</th>
+                                            </tr>
+                                        </thead>
+                                        
+                                        <tbody>
 
-                                    //Inicio - Cabeçalho da table de detalhes
-                                    echo '<table class="table table-bordered table-striped table-condensed cf table-hover">
-                                                                    <thead class="cf">
-                                                                    <tr>
-                                                                        <th>Categoria</th>
-                                                                        <th class="numeric">Valor (R$)</th>
-                                                                    </tr>
-                                                                    </thead>
-                                                                    <tbody>';
+                                                <!-- Imprimindo o detalhes de gastos -->
+                                                <?php foreach ($retornoDados as $row) 
+                                                {
 
-                                    //Imprimindo o detalhes de gastos
-                                    foreach ($retornoDados as $row) {
+                                                    if ($row['mes'] == $mes) 
+                                                    {
+                                                ?>
+                                                        <tr>                                                                        
+                                                            <td data-title="Company"> <?php echo $row["tipo"] ?> </td>
+                                                            <td class="numeric" data-title="Price"> <?php echo number_format($row['total'], 2, ',', '.') ?> </td>
+                                                        </tr>
+                                                <?php
+                                                    }
+                                                }                                                
+                                                ?>
 
-                                        if ($row['mes'] == $mes) {
-                                            echo '<tr>                                                                        
-                                                                        <td data-title="Company">' . $row["tipo"] . '</td>
-                                                                        <td class="numeric" data-title="Price">' . number_format($row['total'], 2, ',', '.') . '</td>
-                                                                  </tr>';
-                                        }
-                                    }
-
-                                    //Fim - Cabeçalho da table de detalhes
-                                    echo '</tbody>
-                                                        </table>';
-                                    echo "</p>
-                                                </div>";
-                                }
+                                        <!-- Fim - Cabeçalho da table de detalhes -->
+                                        </tbody>
+                                    </table>
+                                    </p>
+                                    </div>
+                            <?php
+                            }
                                 echo "</div>";
                             } else {
                                 echo '0 Registro(s)';
                             }
-
-                            echo "</tbody>";
-                            echo "</table>";
                             ?>
 
                         </div>
-
                         <!--/content-panel -->
-
                     </div>
                     <!--/col-md-12 -->
                 </div>

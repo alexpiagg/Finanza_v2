@@ -137,9 +137,6 @@
                             }  
                             ?>
 
-                        </tbody>
-                        </table>
-
                         </div>
                         <!--/content-panel -->
                     </div><!-- /col-md-12 -->

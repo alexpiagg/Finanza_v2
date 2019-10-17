@@ -19,7 +19,7 @@
                                 <select name="listaMes" class="form-control">
                                     <?php
                                         foreach ($listaMeses as $idx => $nome) {
-                                            echo '<option value=' . $idx . ' name="mes">' . $nome . '</option>';
+                                            echo '<option value=' .  $idx . ' name="mes">' . $nome . '</option>';
                                         }
                                     ?>
                                 </select>
@@ -74,32 +74,30 @@
                         if (isset($retornoTotais)) {
 
                             foreach ($retornoTotais as $valor) {
-                                $tipo =  substr($valor->tipo, 0, 4);
-                                $valorFormatado = number_format($valor->total, 2, ',', '.');
-                                $valor2 = floatval($valor->total);
-                                $percentual = intval(($valor2 / 2000) * 100);
+                                $tipo               = substr($valor->tipo, 0, 4);
+                                $valorFormatado     = number_format($valor->total, 2, ',', '.');
+                                $valor2             = floatval($valor->total);
+                                $percentual         = intval(($valor2 / 2000) * 100);
+                        
                         ?>
-                                
-                                        <div class='bar'>
-                                            <div class='title'> <?php echo $tipo ?> </div>
-                                            <div class='value tooltips' data-original-title=' $valorFormatado ' data-toggle='tooltip' data-placement='top'><?php echo $percentual ?>%</div>
-                                        </div> 
-                        <?php 
-                            } 
+                                <div class='bar'>
+                                    <div class='title'> <?php echo $tipo . "." ?> </div>
+                                    <div class='value tooltips' data-original-title=<?php echo $valorFormatado ?> data-toggle='tooltip' data-placement='top'><?php echo  $percentual ?>%</div>
+                                </div>
+                        <?php
+                            }
 
                         } 
-                        ?>
+                        ?>                        
                         
                     </div>
-                    <!--custom chart end-->
+                     <!--custom chart end-->
                 </div><!-- /row -->
             </form>
         </section>
-
     </section>
     <!--main content end-->
 </section>
 
 </body>
-
 </html>
