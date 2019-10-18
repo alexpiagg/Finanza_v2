@@ -43,3 +43,10 @@ $(document).ready(function() {
         }
     });
 });
+
+
+$(document).on('click', '#deletar', function (e) {
+    if(!confirm("Deseja deletar essa categoria?")){
+        e.preventDefault();
+    }
+})

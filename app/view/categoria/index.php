@@ -16,10 +16,8 @@
                     <section class="col-md-12">
                         <section class="wrapper">
                             <form class="form-horizontal style-form" action="<?php echo URL; ?>categoria" method="POST">
-                                <?php
-                                // echo getSession('MSG');
-                                // unset($_SESSION['MSG']);
-                                ?>
+                            
+                                <?php if (isset($_SESSION['MSG'])) { echo $_SESSION['MSG']; $_SESSION['MSG'] = null; } ?>
 
                                 <div class="form-group">
 
@@ -89,7 +87,7 @@
                                         
                                         <a title="Editar" class="btn btn-primary" href='<?php echo URL . 'categoria/edit/' .  $categ->id; ?>' role="button"><i class='fa fa-pencil'></i></a>
 
-                                        <a title="Excluir" class="btn btn-danger" href='<?php echo URL . 'categoria/delete/' .  $categ->id; ?>' role="button"><i class='fa fa-trash-o'></i></a>
+                                        <a title="Excluir" id="deletar" class="btn btn-danger" href='<?php echo URL . 'categoria/delete/' .  $categ->id; ?>' role="button"><i class='fa fa-trash-o'></i></a>
 
                                     </td>
                                 </tr>
@@ -117,6 +115,7 @@
         <!--MAIN CONTENT -->
 
     </section>
+
 </body>
 
 </html>

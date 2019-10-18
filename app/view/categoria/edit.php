@@ -19,7 +19,7 @@
                     <!--<section id="main-content">-->
                     <section class="col-md-12">
                         <section class="wrapper">
-                            <form class="form-horizontal style-form" action="<?php echo URL; ?>categoria/update/" method="POST">
+                            <form class="form-horizontal style-form" action="<?php echo URL . $acao; ?>" method="POST">
                                 <div class="form-group">
 
                                     <div class="form-group">
@@ -32,13 +32,13 @@
                                     <div class="form-group">
                                         <label class="col-sm-1 col-sm-1 control-label">Excluído?</label>
                                         <div class="col-sm-10">
-                                            <input class="new-checkbox" type="checkbox" name="excluido" <?php echo $checked ?> >
+                                            <input class="new-checkbox" type="checkbox" name="excluido" <?php if(isset($checked)) echo $checked ?> >
                                         </div>
                                     </div>
 
                                 </div>
                                 
-                                <input type='submit' value='Salvar' class='btn btn-success' name="submit_updatecategoria">
+                                <input type='submit' value='Salvar' class='btn btn-success' name="submit_editcategoria">
                                 <input type="button" onclick="location.href=' <?php echo URL .'categoria'; ?>' " class="btn btn-danger" value="Voltar" />
                                 <input type="hidden" name="id" value="<?php echo $retorno->id; ?>" />
 
@@ -55,6 +55,7 @@
         <!--MAIN CONTENT-->
 
     </section>
+    
 </body>
 
 </html>

@@ -99,4 +99,18 @@ class Utils {
 
         return $newarray;
     } 
+
+    /*
+    * Mensagem padronizadas
+    */
+    public static function getMessageSave($sucesso){
+        $message = "";
+
+        if ($sucesso){
+            return $message = "<div class='alert alert-success'> Salvo com sucesso! </div>";
+        }
+        else{
+            return $message = "<div class='alert alert-danger'> Erro ao salvar! </div>";
+        }
+    }
 }

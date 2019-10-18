@@ -2,6 +2,7 @@
 
 namespace Mini\Model;
 
+use Exception;
 use Mini\Core\Model;
 
 class TipoGasto extends Model
@@ -74,10 +75,46 @@ class TipoGasto extends Model
 
     public function update($id, $tipo, $excluido, $id_conta)
     {
-        $sql = "UPDATE tipo_gasto SET tipo = :tipo, excluido = :excluido, id_conta = :id_conta WHERE id = :id";
+        $sql = "UPDATE tipo_gasto SET tipo = :tipo, excluido = :excluido, id_conta = :id_conta WHERE id = :id ";
         $query = $this->db->prepare($sql);
-        $parameters = array('id' => $id, ':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
+        $parameters = array(':id' => $id, ':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
 
-        $query->execute($parameters);
+        if ($query->execute($parameters)){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
+
+    public function delete($id)
+    {
+        $sql = " DELETE FROM tipo_gasto  WHERE id = :id ";
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(':id' => $id);
+
+        if ($query->execute($parameters)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public function insert($tipo, $excluido, $id_conta)
+    {
+        $sql = " INSERT INTO tipo_gasto (tipo, excluido, id_conta)  VALUES (:tipo, :excluido, :id_conta) ";
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
+
+        if ($query->execute($parameters)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }
