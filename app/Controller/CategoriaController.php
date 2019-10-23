@@ -9,7 +9,7 @@ use Mini\Libs\Utils;
 class CategoriaController extends Controller
 {
 
-    private $msg;
+    public $msgTela;
 
     public function index()
     {
@@ -35,7 +35,7 @@ class CategoriaController extends Controller
     {
 
         if ($categoria_id > 0) {
-            
+
             $acao = "categoria/update/";
 
             $tipoGasto = new TipoGasto();
@@ -58,6 +58,7 @@ class CategoriaController extends Controller
 
                 require APP . 'view/_templates/footer.php';
             }
+            
         } else {
 
             $acao = "categoria/insert/";
@@ -71,7 +72,7 @@ class CategoriaController extends Controller
 
             // redirecionar o usuário para a página de índice de categoria (pois não temos um categoria_id)
             //header('location: ' . URL . 'categoria/index');
-        }
+        }                  
     }
 
     public function insert()
@@ -82,14 +83,15 @@ class CategoriaController extends Controller
             $tipoGasto = new TipoGasto();
 
             $excluido =  isset($_POST['excluido']) ? "1" : "0";
-            $insert = $tipoGasto->insert($_POST["tipo"],  $excluido, $_SESSION['LOGIN']->id_conta);
+            $salvo = $tipoGasto->insert($_POST["tipo"],  $excluido, $_SESSION['LOGIN']->id_conta);
 
-            $_SESSION['MSG'] = Utils::getMessageSave($insert);
+            $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
+
+            $this->msgTela = Utils::getMessageSave($salvo, $texto);
         }
 
         // redireciona para a pagina de listagem
-        header('location: ' . URL . 'categoria/index');
-        
+        $this->index();
     }
 
     public function update()
@@ -100,28 +102,31 @@ class CategoriaController extends Controller
             $tipoGasto = new TipoGasto();
 
             $excluido =  isset($_POST['excluido']) ? "1" : "0";
-            $update = $tipoGasto->update($_POST["id"], $_POST["tipo"],  $excluido, $_SESSION['LOGIN']->id_conta);
+            $salvo = $tipoGasto->update($_POST["id"], $_POST["tipo"],  $excluido, $_SESSION['LOGIN']->id_conta);
 
-            $_SESSION['MSG'] = Utils::getMessageSave($update);
+            $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
+
+            $this->msgTela = Utils::getMessageSave($salvo, $texto);
         }
 
-        // redireciona para a pagina de listagem
-        header('location: ' . URL . 'categoria/index');
+         // redireciona para a pagina de listagem
+         $this->index();
     }
 
     public function delete($categoria_id)
-    {        
+    {
         if (isset($categoria_id)) {
 
             $tipoGasto = new TipoGasto();
 
-            $delete = $tipoGasto->delete($categoria_id);
+            $salvo = $tipoGasto->delete($categoria_id);
 
-            $_SESSION['MSG'] = Utils::getMessageSave($delete);
+            $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar, categoria em uso! :(";
 
+            $this->msgTela = Utils::getMessageSave($salvo, $texto);
         }
 
-        // redireciona para a pagina de listagem
-        header('location: ' . URL . 'categoria/index');
+         // redireciona para a pagina de listagem
+         $this->index();
     }
 }

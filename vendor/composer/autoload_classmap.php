@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Mini\\Controller\\CategoriaController' => $baseDir . '/app/Controller/CategoriaController.php',
     'Mini\\Controller\\ClientesController' => $baseDir . '/app/Controller/ClientesController.php',
+    'Mini\\Controller\\ContaController' => $baseDir . '/app/Controller/ContaController.php',
     'Mini\\Controller\\ErrorController' => $baseDir . '/app/Controller/ErrorController.php',
     'Mini\\Controller\\FuncionariosController' => $baseDir . '/app/Controller/FuncionariosController.php',
     'Mini\\Controller\\HomeController' => $baseDir . '/app/Controller/HomeController.php',
@@ -22,6 +23,7 @@ return array(
     'Mini\\Libs\\Helper' => $baseDir . '/app/Libs/helper.php',
     'Mini\\Libs\\Utils' => $baseDir . '/app/Libs/utils.php',
     'Mini\\Model\\Cliente' => $baseDir . '/app/Model/Cliente.php',
+    'Mini\\Model\\Conta' => $baseDir . '/app/Model/Conta.php',
     'Mini\\Model\\Funcionario' => $baseDir . '/app/Model/Funcionario.php',
     'Mini\\Model\\Gasto' => $baseDir . '/app/Model/Gasto.php',
     'Mini\\Model\\Login' => $baseDir . '/app/Model/Login.php',

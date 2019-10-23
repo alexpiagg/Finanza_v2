@@ -103,14 +103,14 @@ class Utils {
     /*
     * Mensagem padronizadas
     */
-    public static function getMessageSave($sucesso){
-        $message = "";
-
-        if ($sucesso){
-            return $message = "<div class='alert alert-success'> Salvo com sucesso! </div>";
+    public static function getMessageSave($sucesso, $texto){        
+        if ($sucesso)
+        {
+            return $message = "<div class='alert alert-success'> $texto </div>";
         }
-        else{
-            return $message = "<div class='alert alert-danger'> Erro ao salvar! </div>";
+        else
+        {
+            return $message = "<div class='alert alert-danger'> $texto </div>";
         }
     }
 }

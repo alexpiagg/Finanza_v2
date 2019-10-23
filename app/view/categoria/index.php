@@ -17,7 +17,7 @@
                         <section class="wrapper">
                             <form class="form-horizontal style-form" action="<?php echo URL; ?>categoria" method="POST">
                             
-                                <?php if (isset($_SESSION['MSG'])) { echo $_SESSION['MSG']; $_SESSION['MSG'] = null; } ?>
+                                <?php if (isset($this->msgTela)) { echo $this->msgTela; } ?>
 
                                 <div class="form-group">
 
@@ -33,7 +33,7 @@
                                 <div class="form-group">
 
                                     <div class="col-sm-6">
-                                        <label> Excluído? </label>
+                                        <label> Ver Excluídos? </label>
                                         <input class="new-checkbox" type="checkbox" name="excluido">
                                     </div>
 

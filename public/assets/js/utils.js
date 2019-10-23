@@ -50,3 +50,11 @@ $(document).on('click', '#deletar', function (e) {
         e.preventDefault();
     }
 })
+
+
+$('#valor').priceFormat({
+    prefix: '',
+    centsSeparator: ',',
+    thousandsSeparator: '.',
+    allowNegative: true 
+});

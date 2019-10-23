@@ -23,5 +23,6 @@
 
 <script src="<?php echo URL; ?>assets/js/sparkline-chart.js" type="text/javascript"></script> 
 
-<script src="<?php echo URL; ?>assets/js/utils.js" type="text/javascript"></script> 
+<script src="<?php echo URL; ?>assets/js/price_format.2.0.min.js" type="text/javascript"></script>
 
+<script src="<?php echo URL; ?>assets/js/utils.js" type="text/javascript"></script> 
