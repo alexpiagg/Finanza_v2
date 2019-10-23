@@ -40,6 +40,8 @@ class ContaController extends Controller
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
+            $_SESSION['LOGIN']->valor = $valorConta;
+
             $this->msgTela = Utils::getMessageSave($salvo, $texto);
 
             $this->index();
