@@ -45,11 +45,11 @@
                         <li><a href="<?php echo URL; ?>conta">Conta</a></li>
                     </ul>                    
                     <ul class="sub">
-                        <li><a  href="frmListarGastos.php">Despesas</a></li>
+                        <li><a href="<?php echo URL; ?>despesa">Despesas</a></li>
                     </ul>
                     <ul class="sub">
                         <li><a  href="frmCadUsuarios.php">Perfil</a></li>
-                    </ul>                    
+                    </ul>
                     <ul class="sub">
                         <li><a  href="frmListarProjecaoGastos.php">Projeção Despesas</a></li>
                     </ul>

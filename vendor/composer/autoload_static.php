@@ -24,6 +24,7 @@ class ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416
         'Mini\\Controller\\CategoriaController' => __DIR__ . '/../..' . '/app/Controller/CategoriaController.php',
         'Mini\\Controller\\ClientesController' => __DIR__ . '/../..' . '/app/Controller/ClientesController.php',
         'Mini\\Controller\\ContaController' => __DIR__ . '/../..' . '/app/Controller/ContaController.php',
+        'Mini\\Controller\\DespesaController' => __DIR__ . '/../..' . '/app/Controller/DespesaController.php',
         'Mini\\Controller\\ErrorController' => __DIR__ . '/../..' . '/app/Controller/ErrorController.php',
         'Mini\\Controller\\FuncionariosController' => __DIR__ . '/../..' . '/app/Controller/FuncionariosController.php',
         'Mini\\Controller\\HomeController' => __DIR__ . '/../..' . '/app/Controller/HomeController.php',

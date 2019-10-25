@@ -142,7 +142,12 @@ class Gasto extends Model
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getAll($dataInicial, $dataFinal, $idConta)
+  public function getAll($dataInicial, 
+    $dataFinal,
+    $idConta, 
+    $idTipo = 0,
+    $descricao = null,
+    $isObject = false)
   {
 
     $sql = "SELECT
@@ -170,10 +175,23 @@ class Gasto extends Model
       $sql .= " AND g.id_conta >= :idConta ";
       $parameters[':idConta'] =  $idConta;
     }
+    
+    if ($idTipo > 0) {      
+      $sql .= " AND g.id_tipo_gasto = :id_tipo_gasto ";
+      $parameters[':id_tipo_gasto'] =  $idTipo;
+    }
+
+    if ($descricao != null) {
+      $sql .=  " AND g.local LIKE :local ";
+      $parameters[':local'] = '%' . $descricao . '%';
+    }
 
     $query = $this->db->prepare($sql);
     $query->execute($parameters);
 
+    if ($isObject){
+      return $query->fetchAll();
+    }
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
 }

@@ -121,7 +121,7 @@ class CategoriaController extends Controller
 
             $salvo = $tipoGasto->delete($categoria_id);
 
-            $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar, categoria em uso! :(";
+            $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao excluir, categoria em uso! :(";
 
             $this->msgTela = Utils::getMessageSave($salvo, $texto);
         }
