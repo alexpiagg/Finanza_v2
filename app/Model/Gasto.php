@@ -141,13 +141,8 @@ class Gasto extends Model
 
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
-
-  public function getAll($dataInicial, 
-    $dataFinal,
-    $idConta, 
-    $idTipo = 0,
-    $descricao = null,
-    $isObject = false)
+  
+  public function getAll($filtros, $isObject = false)
   {
 
     $sql = "SELECT
@@ -161,29 +156,39 @@ class Gasto extends Model
               WHERE 1 = 1 ";
 
 
-    if ($dataInicial != null) {
+    if (isset($filtros['data_inicial'])) {
+
       $sql .= " AND g.data >= :dataInicial ";
-      $parameters[':dataInicial'] =  $dataInicial;
+      $parameters[':dataInicial'] =  $filtros['data_inicial'];
+
     }
 
-    if ($dataFinal != null) {
+    if (isset($filtros['data_final'])) {
+
       $sql .= " AND g.data <= :dataFinal ";
-      $parameters[':dataFinal'] =  $dataFinal;
+      $parameters[':dataFinal'] =  $filtros['data_final'];
+
     }
 
-    if ($idConta > 0) {
+    if (isset($filtros['id_conta'])) {
+
       $sql .= " AND g.id_conta >= :idConta ";
-      $parameters[':idConta'] =  $idConta;
+      $parameters[':idConta'] = $filtros['id_conta'];
+
     }
-    
-    if ($idTipo > 0) {      
+     
+    if (isset($filtros['id_tipo_gasto']) && $filtros['id_tipo_gasto'] > 0) {
+
       $sql .= " AND g.id_tipo_gasto = :id_tipo_gasto ";
-      $parameters[':id_tipo_gasto'] =  $idTipo;
+      $parameters[':id_tipo_gasto'] =  $filtros['id_tipo_gasto'];
+
     }
 
-    if ($descricao != null) {
+    if (isset($filtros['local']) && $filtros['local'] != null) {
+
       $sql .=  " AND g.local LIKE :local ";
-      $parameters[':local'] = '%' . $descricao . '%';
+      $parameters[':local'] = '%' . $filtros['local'] . '%';
+
     }
 
     $query = $this->db->prepare($sql);
@@ -192,6 +197,7 @@ class Gasto extends Model
     if ($isObject){
       return $query->fetchAll();
     }
+    
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
 }

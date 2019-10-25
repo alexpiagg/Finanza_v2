@@ -117,14 +117,21 @@ class RelatoriosController extends Controller
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/sidebar.php';
 
-        $gasto = new Gasto();
-        $id_conta =  $_SESSION['LOGIN']->id_conta;
-
         //Total gasto mês Anterior
         $dataIni = date('Y-m-d', strtotime("first day of -1 month"));
         $dataFim = date('Y-m-d', strtotime("last day of -1 month"));
         
-        $retornoDados = $gasto->getAll($dataIni, $dataFim, $id_conta);
+        $id_conta = $_SESSION['LOGIN']->id_conta;
+
+        $parametros = array(
+            'data_inicial' => $dataIni,
+            'data_final' => $dataFim,
+            'id_conta' => $id_conta
+        );
+
+        $gasto = new Gasto();
+
+        $retornoDados = $gasto->getAll($parametros);
         $totalMesAnterior = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
 
         //--------------------------------------------------------------------------------------
@@ -133,7 +140,7 @@ class RelatoriosController extends Controller
         $dataIni = date('Y-m-d', strtotime('first day of this month'));
         $dataFim  = date('Y-m-d', strtotime('last day of this month'));
 
-        $retornoDados = $gasto->getAll($dataIni, $dataFim, $id_conta);
+        $retornoDados = $gasto->getAll($parametros);
         $totalMesAtual = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
         
         //--------------------------------------------------------------------------------------
@@ -142,7 +149,7 @@ class RelatoriosController extends Controller
         $dataIni = date('Y-01-01');;
         $dataFim  = date('Y-12-31');;
 
-        $retornoDados = $gasto->getAll($dataIni, $dataFim, $id_conta);
+        $retornoDados = $gasto->getAll($parametros);
         $totalAno = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
 
         //--------------------------------------------------------------------------------------

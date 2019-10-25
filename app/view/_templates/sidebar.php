@@ -45,7 +45,7 @@
                         <li><a href="<?php echo URL; ?>conta">Conta</a></li>
                     </ul>                    
                     <ul class="sub">
-                        <li><a href="<?php echo URL; ?>despesa">Despesas</a></li>
+                        <li><a href="<?php echo URL; ?>gasto">Gastos</a></li>
                     </ul>
                     <ul class="sub">
                         <li><a  href="frmCadUsuarios.php">Perfil</a></li>

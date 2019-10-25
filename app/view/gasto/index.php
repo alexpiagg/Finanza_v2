@@ -8,14 +8,14 @@
         <section id="main-content">
             <section class="wrapper">
 
-                <h3><i class="fa fa-angle-right"></i> Lista de Despesas </h3>
+                <h3><i class="fa fa-angle-right"></i> Lista de Gastos </h3>
                 <div class="row">
 
                     <!--main content start-->
                     <!--<section id="main-content">-->
                     <section class="col-md-12">
                         <section class="wrapper">
-                            <form class="form-horizontal style-form" method="post" action="despesa">
+                            <form class="form-horizontal style-form" method="post" action="gasto">
 
                                 <div class="form-group">
                                     <?php if (isset($this->msgTela)) {
@@ -57,7 +57,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="submit" class="btn btn-default" value="Buscar" name="submit_despesa">
+                                        <input type="submit" class="btn btn-default" value="Buscar" name="submit_gasto">
                                     </div>
                                 </div>
 
@@ -65,7 +65,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-2">
-                                        <input type="button" onclick="location.href=' <?php echo URL . 'despesa/edit'; ?>' " class="btn btn-success" value="Novo" />
+                                        <input type="button" onclick="location.href=' <?php echo URL . 'gasto/edit'; ?>' " class="btn btn-success" value="Novo" />
                                     </div>
                                 </div>
 
@@ -76,7 +76,7 @@
 
                     <div class="col-md-12">
                         <div class="content-panel">
-                            <h4><i class="fa fa-angle-right"></i> Despesas </h4>
+                            <h4><i class="fa fa-angle-right"></i> Gastos </h4>
                             <hr>
 
                             <div>
@@ -93,17 +93,17 @@
                                         </thead>
                                         <tbody>
 
-                                            <?php foreach ($listaDespesas as $desp) { ?>
+                                            <?php foreach ($listaGastos as $gasto) { ?>
 
                                                 <tr>
-                                                    <td data-title='Code'> <?php echo date_format(date_create($desp->data), 'd/m/Y') ?> </td>
-                                                    <td data-title='Company'> <?php echo $desp->local ?> </td>
-                                                    <td class='numeric' data-title='Price'> <?php echo number_format($desp->valor, 2, ',', '.') ?> </td>
-                                                    <td class='hidden-phone'> <?php echo ($desp->cartao_credito == 0 ? "Não" : "Sim") ?> </td>
+                                                    <td data-title='Code'> <?php echo date_format(date_create($gasto->data), 'd/m/Y') ?> </td>
+                                                    <td data-title='Company'> <?php echo $gasto->local ?> </td>
+                                                    <td class='numeric' data-title='Price'> <?php echo number_format($gasto->valor, 2, ',', '.') ?> </td>
+                                                    <td class='hidden-phone'> <?php echo ($gasto->cartao_credito == 0 ? "Não" : "Sim") ?> </td>
                                                     <td>
-                                                        <a title="Editar" class="btn btn-primary btn-xs" href='<?php echo URL . 'despesa/edit/' .  $desp->id; ?>' role="button"><i class='fa fa-pencil'></i></a>
+                                                        <a title="Editar" class="btn btn-primary btn-xs" href='<?php echo URL . 'gasto/edit/' .  $gasto->id; ?>' role="button"><i class='fa fa-pencil'></i></a>
 
-                                                        <a title="Excluir" id="deletar" class="btn btn-danger btn-xs" href='<?php echo URL . 'despesa/delete/' .  $desp->id; ?>' role="button"><i class='fa fa-trash-o'></i></a>
+                                                        <a title="Excluir" id="deletar" class="btn btn-danger btn-xs" href='<?php echo URL . 'gasto/delete/' .  $gasto->id; ?>' role="button"><i class='fa fa-trash-o'></i></a>
                                                     </td>
                                                 </tr>
                                             <?php } ?>
