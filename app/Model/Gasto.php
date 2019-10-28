@@ -142,6 +142,29 @@ class Gasto extends Model
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
   
+
+  public function getById($id, $id_conta) {
+
+    $sql = "SELECT
+              g.id,
+              g.local,
+              g.data,
+              g.valor,
+              g.id_tipo_gasto,
+              g.cartao_credito
+          FROM gasto g
+          WHERE g.id = :id 
+            AND g.id_conta = :id_conta ";
+
+    $parameters = array(':id' => $id, ':id_conta' => $id_conta);
+
+    $query = $this->db->prepare($sql);
+
+    $query->execute($parameters);
+
+    return $query->fetch();
+  }
+
   public function getAll($filtros, $isObject = false)
   {
 
@@ -200,4 +223,34 @@ class Gasto extends Model
     
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
+
+  public function update($id, $data, $local, $valor, $id_tipo_gasto, $id_conta, $cartao_credito)
+  {
+      $sql = "UPDATE gasto SET  data = :data, 
+                                local = :local, 
+                                valor = :valor, 
+                                id_tipo_gasto = :id_tipo_gasto, 
+                                id_conta = :id_conta, 
+                                cartao_credito = :cartao_credito 
+              WHERE id = :id ";
+
+      $query = $this->db->prepare($sql);
+      
+      $parameters = array(':id' => $id, 
+                          ':data' => $data,
+                          ':local' => $local,
+                          ':valor' => $valor,
+                          ':id_tipo_gasto' => $id_tipo_gasto,
+                          ':id_conta' => $id_conta,
+                          ':cartao_credito' => $cartao_credito                        
+      );
+
+      if ($query->execute($parameters)){
+          return true;
+      }
+      else{
+          return false;
+      }
+  }
+
 }
