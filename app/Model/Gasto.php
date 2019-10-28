@@ -253,4 +253,58 @@ class Gasto extends Model
       }
   }
 
+  public function insert($data, $local, $valor, $id_tipo_gasto, $id_conta, $cartao_credito)
+  {
+      $sql = " INSERT INTO gasto 
+                (
+                  data,
+                  local,
+                  valor,
+                  id_tipo_gasto,
+                  id_conta,
+                  cartao_credito
+                )  
+                VALUES 
+                (
+                  :data, 
+                  :local, 
+                  :valor, 
+                  :id_tipo_gasto, 
+                  :id_conta, 
+                  :cartao_credito 
+                ) ";
+
+      $query = $this->db->prepare($sql);
+      
+      $parameters = array(':data' => $data,
+                          ':local' => $local,
+                          ':valor' => $valor,
+                          ':id_tipo_gasto' => $id_tipo_gasto,
+                          ':id_conta' => $id_conta,
+                          ':cartao_credito' => $cartao_credito                        
+      );
+      
+      if ($query->execute($parameters)){
+          return true;
+      }
+      else{
+          return false;
+      }
+  }
+
+  public function delete($id)
+    {
+      
+        $sql = " DELETE FROM gasto WHERE id = :id ";
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(':id' => $id);
+
+        if ($query->execute($parameters)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
 }

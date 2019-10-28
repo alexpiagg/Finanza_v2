@@ -43,6 +43,8 @@ class GastoController extends Controller
 
     public function edit($gasto_id = 0)
     {
+        $tipoGasto = new TipoGasto();
+        $listaTipoGastos = $tipoGasto->getAll();
 
         if ($gasto_id > 0) {
 
@@ -117,5 +119,52 @@ class GastoController extends Controller
 
          // redireciona para a pagina de listagem
          $this->index();
+    }
+
+    public function delete($gasto_id)
+    {
+        if (isset($gasto_id)) {
+
+            $gasto = new Gasto();
+
+            $salvo = $gasto->delete($gasto_id);
+
+            $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao excluir, categoria em uso! :(";
+
+            $this->msgTela = Utils::getMessageSave($salvo, $texto);
+        }
+
+         // redireciona para a pagina de listagem
+         $this->index();
+    }
+
+    public function insert()
+    {
+        // se tivermos dados POST para criar uma nova entrada do cliente
+        if (isset($_POST["submit_editgasto"])) {
+
+            $gasto = new Gasto();
+
+            $cartaoCredito =  isset($_POST['cartao_credito']) ? "1" : "0";
+
+            //Removendo os pontos
+            $valorGasto = trim($_POST['valor']);
+            $valorGasto = str_replace(".", "", $valorGasto);
+            $valorGasto = str_replace(",", ".", $valorGasto);
+            
+            $salvo = $gasto->insert($_POST["data"],
+                                    $_POST['local'],
+                                    $valorGasto,
+                                    $_POST['tipoGasto'],
+                                    $_SESSION['LOGIN']->id_conta,
+                                    $cartaoCredito);
+
+            $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
+
+            $this->msgTela = Utils::getMessageSave($salvo, $texto);
+        }
+
+        // redireciona para a pagina de listagem
+        $this->index();
     }
 }
