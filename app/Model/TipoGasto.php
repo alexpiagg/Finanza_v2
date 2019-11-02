@@ -7,7 +7,8 @@ use Mini\Core\Model;
 
 class TipoGasto extends Model
 {
-    public function getAll() {
+    public function getAll()
+    {
 
         $sql = "SELECT 
                     T.id, 
@@ -15,7 +16,7 @@ class TipoGasto extends Model
                     IFNULL(T.excluido, 0) excluido,
                     T.id_conta 
                 FROM tipo_gasto T ";
-       
+
         $query = $this->db->prepare($sql);
 
         $query->execute();
@@ -23,7 +24,8 @@ class TipoGasto extends Model
         return $query->fetchAll();
     }
 
-    public function getByFilter($tipo, $excluido, $id_conta) {
+    public function getByFilter($tipo, $excluido, $id_conta)
+    {
 
         $sql = "SELECT 
                     T.id, 
@@ -32,17 +34,17 @@ class TipoGasto extends Model
                     T.id_conta 
                 FROM tipo_gasto T 
                 WHERE T.id_conta = :idConta";
-       
-       $parameters = array(':idConta' => $id_conta);
-                   
-       if ($tipo != '') {
+
+        $parameters = array(':idConta' => $id_conta);
+
+        if ($tipo != '') {
             $sql .=  " AND T.tipo LIKE :tipo ";
             $parameters[':tipo'] = '%' . $tipo . '%';
         }
 
         if (isset($excluido)) {
             $sql .=  " AND IFNULL(T.excluido, 0) = :excluido ";
-            
+
             $parameters[':excluido'] = $excluido;
         }
 
@@ -53,7 +55,8 @@ class TipoGasto extends Model
         return $query->fetchAll();
     }
 
-    public function getById($id, $id_conta) {
+    public function getById($id, $id_conta)
+    {
 
         $sql = "SELECT 
                     T.id, 
@@ -63,9 +66,9 @@ class TipoGasto extends Model
                 FROM tipo_gasto T 
                 WHERE T.id = :id
                   AND T.id_conta = :idConta";
-       
+
         $parameters = array(':id' => $id, ':idConta' => $id_conta);
-                   
+
         $query = $this->db->prepare($sql);
 
         $query->execute($parameters);
@@ -79,10 +82,9 @@ class TipoGasto extends Model
         $query = $this->db->prepare($sql);
         $parameters = array(':id' => $id, ':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
 
-        if ($query->execute($parameters)){
+        if ($query->execute($parameters)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -94,10 +96,9 @@ class TipoGasto extends Model
 
         $parameters = array(':id' => $id);
 
-        if ($query->execute($parameters)){
+        if ($query->execute($parameters)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -109,12 +110,10 @@ class TipoGasto extends Model
 
         $parameters = array(':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
 
-        if ($query->execute($parameters)){
+        if ($query->execute($parameters)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
-
 }

@@ -51,7 +51,7 @@
                         <li><a href="<?php echo URL; ?>usuario">Usuário</a></li>
                     </ul>
                     <ul class="sub">
-                        <li><a  href="frmListarProjecaoGastos.php">Projeção Despesas</a></li>
+                        <li><a href="<?php echo URL; ?>projecaoGasto">Projeção Gastos</a></li>
                     </ul>
                     <ul class="sub">
                         <li><a  href="frmListarReceitas.php">Receitas</a></li>

@@ -61,8 +61,6 @@
                                     </div>
                                 </div>
 
-                                <legend></legend>
-
                                 <div class="form-group">
                                     <div class="col-sm-2">
                                         <input type="button" onclick="location.href=' <?php echo URL . 'gasto/edit'; ?>' " class="btn btn-success" value="Novo" />

@@ -21,7 +21,6 @@
 
                                     <div class="form-group">
                                         
-                                        <legend>  </legend>
                                         <div class="form-group">
                                             <label class="col-sm-1 control-label">Nro. Conta:</label>
                                             <div class="col-sm-4">                                            
