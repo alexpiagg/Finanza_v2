@@ -18,6 +18,7 @@ return array(
     'Mini\\Controller\\RelatoriosController' => $baseDir . '/app/Controller/RelatoriosController.php',
     'Mini\\Controller\\SobreController' => $baseDir . '/app/Controller/SobreController.php',
     'Mini\\Controller\\TimelineController' => $baseDir . '/app/Controller/TimelineController.php',
+    'Mini\\Controller\\UsuarioController' => $baseDir . '/app/Controller/UsuarioController.php',
     'Mini\\Core\\Application' => $baseDir . '/app/Core/Application.php',
     'Mini\\Core\\Controller' => $baseDir . '/app/Core/Controller.php',
     'Mini\\Core\\Model' => $baseDir . '/app/Core/Model.php',
@@ -31,4 +32,5 @@ return array(
     'Mini\\Model\\Produto' => $baseDir . '/app/Model/Produto.php',
     'Mini\\Model\\Receita' => $baseDir . '/app/Model/Receita.php',
     'Mini\\Model\\TipoGasto' => $baseDir . '/app/Model/TipoGasto.php',
+    'Mini\\Model\\Usuario' => $baseDir . '/app/Model/Usuario.php',
 );

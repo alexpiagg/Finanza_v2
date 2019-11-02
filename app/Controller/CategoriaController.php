@@ -70,8 +70,6 @@ class CategoriaController extends Controller
             require APP . 'view/categoria/edit.php';
             require APP . 'view/_templates/footer.php';
 
-            // redirecionar o usuário para a página de índice de categoria (pois não temos um categoria_id)
-            //header('location: ' . URL . 'categoria/index');
         }                  
     }
 

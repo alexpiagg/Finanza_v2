@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Class Clientes
- */
-
 namespace Mini\Model;
 
 use Mini\Core\Model;

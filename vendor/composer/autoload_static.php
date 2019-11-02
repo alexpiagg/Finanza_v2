@@ -33,6 +33,7 @@ class ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416
         'Mini\\Controller\\RelatoriosController' => __DIR__ . '/../..' . '/app/Controller/RelatoriosController.php',
         'Mini\\Controller\\SobreController' => __DIR__ . '/../..' . '/app/Controller/SobreController.php',
         'Mini\\Controller\\TimelineController' => __DIR__ . '/../..' . '/app/Controller/TimelineController.php',
+        'Mini\\Controller\\UsuarioController' => __DIR__ . '/../..' . '/app/Controller/UsuarioController.php',
         'Mini\\Core\\Application' => __DIR__ . '/../..' . '/app/Core/Application.php',
         'Mini\\Core\\Controller' => __DIR__ . '/../..' . '/app/Core/Controller.php',
         'Mini\\Core\\Model' => __DIR__ . '/../..' . '/app/Core/Model.php',
@@ -46,6 +47,7 @@ class ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416
         'Mini\\Model\\Produto' => __DIR__ . '/../..' . '/app/Model/Produto.php',
         'Mini\\Model\\Receita' => __DIR__ . '/../..' . '/app/Model/Receita.php',
         'Mini\\Model\\TipoGasto' => __DIR__ . '/../..' . '/app/Model/TipoGasto.php',
+        'Mini\\Model\\Usuario' => __DIR__ . '/../..' . '/app/Model/Usuario.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

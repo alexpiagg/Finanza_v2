@@ -51,6 +51,19 @@ $(document).on('click', '#deletar', function (e) {
     }
 })
 
+$(document).ready(function(){
+    $('#form_usuario').on('submit', function(e){
+
+        var senhaA = $('#senha').val();
+        var senhaB = $('#senhaConfirma').val();
+
+        if (senhaA != senhaB){
+            alert("Senhas não são idênticas!");
+
+            e.preventDefault();
+        }
+    });
+});
 
 $('#valor').priceFormat({
     prefix: '',
