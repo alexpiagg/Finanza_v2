@@ -40,7 +40,6 @@ CREATE TABLE projecao_gasto (
   descricao varchar(100) DEFAULT NULL,
   valor decimal(15,4) DEFAULT NULL,
   quantidade int(11) DEFAULT NULL,
-  excluido int(1) DEFAULT NULL,
   id_conta int(11) DEFAULT NULL,
   data_vencto date NULL,
   PRIMARY KEY (id),

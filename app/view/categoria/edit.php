@@ -11,10 +11,6 @@
                 <h3><i class="fa fa-angle-right"></i> Cadastro de Categorias </h3>
                 <div class="row">
 
-                    <?php
-                      //echo $aviso 
-                    ?>
-
                     <!--main content start-->
                     <!--<section id="main-content">-->
                     <section class="col-md-12">
@@ -40,7 +36,7 @@
                                 
                                 <input type='submit' value='Salvar' class='btn btn-success' name="submit_editcategoria">
                                 <input type="button" onclick="location.href=' <?php echo URL .'categoria'; ?>' " class="btn btn-danger" value="Voltar" />
-                                <input type="hidden" name="id" value="<?php echo $retorno->id; ?>" />
+                                <input type="hidden" name="id" value="<?php if (isset($retorno)) {echo $retorno->id;}  ?>" />
 
                             </form>
                         </section>

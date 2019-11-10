@@ -21,7 +21,7 @@
 
                                 <div class="form-group">
 
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <label>Nome Completo:</label>
                                         <input type="text" value="<?php echo $retorno->nome_completo ?>" class="form-control" name="nome_completo" required>
                                     </div>
@@ -30,7 +30,7 @@
 
                                 <div class="form-group">
 
-                                    <div class="col-sm-12">
+                                    <div class="col-sm-6">
                                         <label>e-mail:</label>
                                         <input type="email" value="<?php echo $retorno->email ?>" name="email" class="form-control" required>
                                     </div>

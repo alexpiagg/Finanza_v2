@@ -22,21 +22,21 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 col-sm-1 control-label">Data:</label>
                                             <div class="col-sm-2">
-                                                <input type="date" value="<?php if(isset($retorno->data)) echo $retorno->data ?>" class="form-control" name="data" required>                                            
+                                                <input type="date" value="<?php if(isset($retorno)) echo $retorno->data ?>" class="form-control" name="data" required>                                            
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 col-sm-1 control-label">Local:</label>
                                             <div class="col-sm-7">                                            
-                                                <input type="text" maxlength="100" value="<?php if(isset($retorno->local)) echo  $retorno->local ?>" name="local" class="form-control" required>
+                                                <input type="text" maxlength="100" value="<?php if(isset($retorno)) echo  $retorno->local ?>" name="local" class="form-control" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group">
                                             <label class="col-sm-2 col-sm-1 control-label">Valor (R$):</label>
                                             <div class="col-sm-2">
-                                                <input type="text" id="valor" value="<?php if(isset($retorno->valor)) echo number_format($retorno->valor, 2, ',', '.') ?>" name="valor" class="form-control" required>
+                                                <input type="text" id="valor" value="<?php if(isset($retorno)) echo number_format($retorno->valor, 2, ',', '.') ?>" name="valor" class="form-control" required>
                                             </div>
                                         </div>
 
