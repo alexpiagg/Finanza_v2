@@ -3,6 +3,7 @@
 namespace Mini\Controller;
 
 use Mini\Core\Controller;
+use Mini\Model\Conta;
 use Mini\Model\Gasto;
 use Mini\Model\TipoGasto;
 use Mini\Libs\Utils;
@@ -83,9 +84,6 @@ class GastoController extends Controller
 
             require APP . 'view/gasto/edit.php';
             require APP . 'view/_templates/footer.php';
-
-            // redirecionar o usuário para a página de índice de categoria (pois não temos um categoria_id)
-            //header('location: ' . URL . 'categoria/index');
         }                  
     }
 
@@ -158,6 +156,11 @@ class GastoController extends Controller
                                     $_POST['tipoGasto'],
                                     $_SESSION['LOGIN']->id_conta,
                                     $cartaoCredito);
+
+            $conta = new  Conta();
+            $valorConta = $_SESSION['LOGIN']->valor - $valorGasto;            
+            $conta->update($_SESSION['LOGIN']->id_conta, $valorConta, $_SESSION['LOGIN']->id_usuario);
+            $_SESSION['LOGIN']->valor = $valorConta;
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 

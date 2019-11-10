@@ -15,7 +15,7 @@
                         <!--<section id="main-content">-->
                         <section class="col-md-12">
                             <section class="wrapper">
-                                <form class="form-horizontal style-form" action="<?php echo URL; ?>conta/edit" method="POST">
+                                <form class="form-horizontal style-form" action="<?php echo URL; ?>conta/update" method="POST">
                                 
                                     <?php if (isset($this->msgTela)) { echo $this->msgTela; } ?>
 
@@ -46,7 +46,7 @@
                                     <input type="hidden" name="id" value= "<?php echo $retorno->id ?>" >
                                     
                                     <input type="submit" class="btn btn-success" value="Salvar" name="submit_conta" />
-                                    <input type="button" onclick="location.href=' <?php echo URL .'home'; ?>' " class="btn btn-danger" value="Voltar" />
+
                                 </form>
                             </section>
                         </section>

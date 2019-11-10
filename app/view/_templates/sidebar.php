@@ -53,8 +53,8 @@
                     <ul class="sub">
                         <li><a href="<?php echo URL; ?>projecaoGasto">Projeção Gastos</a></li>
                     </ul>
-                    <ul class="sub">
-                        <li><a  href="frmListarReceitas.php">Receitas</a></li>
+                    <ul class="sub">                        
+                        <li><a href="<?php echo URL; ?>receita">Receitas</a></li>
                     </ul>                    
             </li>
 

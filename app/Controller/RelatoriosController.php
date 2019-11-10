@@ -158,18 +158,30 @@ class RelatoriosController extends Controller
         $receita = new Receita();
         $dataIni = date('Y-m-d', strtotime('first day of this month'));
         $dataFim  = date('Y-m-d', strtotime('last day of this month'));
+
+        $parametros = array(
+            'data_inicial' => $dataIni,
+            'data_final' => $dataFim,
+            'id_conta' => $id_conta
+        );
         
-        $retornoDados = $receita->getAll($dataIni, $dataFim, $id_conta);
+        $retornoDados = $receita->getByFilter($parametros);
         $totalReceitaMesAtual = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
 
         //--------------------------------------------------------------------------------------
 
         //Total receita ano
         $receita = new Receita();
-        $dataIni = date('Y-01-01');;
-        $dataFim  = date('Y-12-31');;
+        $dataIni = date('Y-01-01');
+        $dataFim  = date('Y-12-31');
 
-        $retornoDados = $receita->getAll($dataIni, $dataFim, $id_conta);
+        $parametros = array(
+            'data_inicial' => $dataIni,
+            'data_final' => $dataFim,
+            'id_conta' => $id_conta
+        );
+
+        $retornoDados = $receita->getByFilter($parametros);
         $totalReceitaAno = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
         
         //--------------------------------------------------------------------------------------

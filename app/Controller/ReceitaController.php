@@ -3,6 +3,8 @@
 namespace Mini\Controller;
 
 use Mini\Core\Controller;
+use Mini\Model\Receita;
+use Mini\Model\Conta;
 use Mini\Libs\Utils;
 
 class ReceitaController extends Controller
@@ -16,57 +18,62 @@ class ReceitaController extends Controller
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/sidebar.php';
 
-        // $listaCategorias = array();
-        // if (isset($_POST["submit_categoria"])) {
+        $retorno = array();
+        
+        if (isset($_POST["submit_receita"])) {
 
-        //     $tipoGasto = new TipoGasto();
+            $receita = new Receita();
 
-        //     $excluido = isset($_POST['excluido']) ? "1" : "0";
+            $parametros = array(
+                'data_inicial'  => $_POST["dataIni"],
+                'data_final'    => $_POST["dataFim"],
+                'descricao'     => $_POST["descricao"],
+                'id_conta'      => $_SESSION['LOGIN']->id_conta
+            );
 
-        //     $listaCategorias = $tipoGasto->getByFilter($_POST['tipo'], $excluido, $_SESSION['LOGIN']->id_conta);
-        // }
+            $retorno = $receita->getByFilter($parametros);
+            
+        }
 
         require APP . 'view/receita/index.php';
         require APP . 'view/_templates/footer.php';
     }
-/*
-    public function edit($categoria_id = 0)
-    {
 
-        if ($categoria_id > 0) {
+    public function edit($receita_id = 0)
+    {        
+        if ($receita_id > 0) {
 
-            $acao = "categoria/update/";
+            $acao = "receita/update/";
 
-            $tipoGasto = new TipoGasto();
-
-            $retorno = $tipoGasto->getById($categoria_id, $_SESSION['LOGIN']->id_conta);
+            $receita = new Receita();
+            $retorno = $receita->getById($receita_id);
 
             // Se a categoria não for encontrada, então ele teria retornado falso, e precisamos exibir a página de erro
             if ($retorno === false) {
                 $page = new \Mini\Controller\ErrorController();
                 $page->index();
+
             } else {
 
                 require APP . 'view/_templates/heade.php';
                 require APP . 'view/_templates/header.php';
                 require APP . 'view/_templates/sidebar.php';
 
-                $checked = $retorno->excluido == 1 ? "checked" : "";
-
-                require APP . 'view/categoria/edit.php';
+                require APP . 'view/receita/edit.php';
 
                 require APP . 'view/_templates/footer.php';
             }
             
         } else {
 
-            $acao = "categoria/insert/";
+            $acao = "receita/insert/";
 
             require APP . 'view/_templates/heade.php';
             require APP . 'view/_templates/header.php';
             require APP . 'view/_templates/sidebar.php';
 
-            require APP . 'view/categoria/edit.php';
+            require APP . 'view/receita/edit.php';
+
             require APP . 'view/_templates/footer.php';
 
         }                  
@@ -75,13 +82,29 @@ class ReceitaController extends Controller
     public function insert()
     {
         // se tivermos dados POST para criar uma nova entrada do cliente
-        if (isset($_POST["submit_editcategoria"])) {
+        if (isset($_POST["submit_editreceita"])) {
 
-            $tipoGasto = new TipoGasto();
+            $receita = new Receita();
 
-            $excluido =  isset($_POST['excluido']) ? "1" : "0";
-            $salvo = $tipoGasto->insert($_POST["tipo"],  $excluido, $_SESSION['LOGIN']->id_conta);
+            //Removendo os pontos
+            $valorRecebido = trim($_POST['valor']);
+            $valorRecebido = str_replace(".", "", $valorRecebido);
+            $valorRecebido = str_replace(",", ".", $valorRecebido);
 
+            $parametros = array(
+                'data'          => $_POST["data"],
+                'valor'         => $valorRecebido,
+                'descricao'     => $_POST["descricao"],
+                'id_conta'      => $_SESSION['LOGIN']->id_conta
+            );
+
+            $salvo = $receita->insert($parametros);
+
+            $conta = new  Conta();
+            $valorConta = $_SESSION['LOGIN']->valor + $valorRecebido;            
+            $conta->update($_SESSION['LOGIN']->id_conta, $valorConta, $_SESSION['LOGIN']->id_usuario);
+            $_SESSION['LOGIN']->valor = $valorConta;
+            
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
             $this->msgTela = Utils::getMessageSave($salvo, $texto);
@@ -94,12 +117,19 @@ class ReceitaController extends Controller
     public function update()
     {
         // se tivermos dados POST para criar uma nova entrada do cliente
-        if (isset($_POST["submit_editcategoria"])) {
+        if (isset($_POST["submit_editreceita"])) {
 
-            $tipoGasto = new TipoGasto();
+            $receita = new Receita();
 
-            $excluido =  isset($_POST['excluido']) ? "1" : "0";
-            $salvo = $tipoGasto->update($_POST["id"], $_POST["tipo"],  $excluido, $_SESSION['LOGIN']->id_conta);
+            $parametros = array(
+                'id'            => $_POST["id"],
+                'data'          => $_POST["data"],
+                'valor'         => $_POST["valor"],
+                'descricao'     => $_POST["descricao"],
+                'id_conta'      => $_SESSION['LOGIN']->id_conta
+            );
+
+            $salvo = $receita->update($parametros);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -110,13 +140,13 @@ class ReceitaController extends Controller
          $this->index();
     }
 
-    public function delete($categoria_id)
+    public function delete($receita_id)
     {
-        if (isset($categoria_id)) {
+        if (isset($receita_id)) {
 
-            $tipoGasto = new TipoGasto();
+            $receita = new Receita();
 
-            $salvo = $tipoGasto->delete($categoria_id);
+            $salvo = $receita->delete($receita_id);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao excluir, categoria em uso! :(";
 
@@ -126,5 +156,5 @@ class ReceitaController extends Controller
          // redireciona para a pagina de listagem
          $this->index();
     }
-    */
+
 }

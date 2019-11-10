@@ -24,7 +24,7 @@ class ContaController extends Controller
         require APP . 'view/_templates/footer.php';
     }
 
-    public function edit()
+    public function update()
     {
 
         if (isset($_POST["submit_conta"])) {
@@ -44,9 +44,14 @@ class ContaController extends Controller
 
             $this->msgTela = Utils::getMessageSave($salvo, $texto);
 
-            $this->index();
-            require APP . 'view/_templates/footer.php';
+            $this->index();            
         }      
+    }
+
+    public function contabilizar($valor)
+    {
+        $conta = new Conta();
+        $conta->update($_SESSION['LOGIN']->id_conta, $valor, $_SESSION['LOGIN']->id_usuario);
     }
 
 }

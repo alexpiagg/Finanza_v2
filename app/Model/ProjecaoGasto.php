@@ -61,37 +61,37 @@ class ProjecaoGasto extends Model
         return $query->fetch();
     }
 
-    
-  public function update($id, $descricao, $valor, $quantidade, $data_vencto, $id_conta)
-  {
-      $sql = "UPDATE projecao_gasto SET descricao = :descricao,
+
+    public function update($id, $descricao, $valor, $quantidade, $data_vencto, $id_conta)
+    {
+        $sql = "UPDATE projecao_gasto SET descricao = :descricao,
                                         valor = :valor,
                                         quantidade = :quantidade,
                                         data_vencto = :data_vencto,
                                         id_conta = :id_conta
               WHERE id = :id ";
 
-      $query = $this->db->prepare($sql);
-      
-      $parameters = array(':id' => $id, 
-                          ':descricao' => $descricao,
-                          ':valor' => $valor,
-                          ':quantidade' => $quantidade,
-                          ':data_vencto' => $data_vencto,
-                          ':id_conta' => $id_conta
-      );
+        $query = $this->db->prepare($sql);
 
-      if ($query->execute($parameters)){
-          return true;
-      }
-      else{
-          return false;
-      }
-  }
+        $parameters = array(
+            ':id' => $id,
+            ':descricao' => $descricao,
+            ':valor' => $valor,
+            ':quantidade' => $quantidade,
+            ':data_vencto' => $data_vencto,
+            ':id_conta' => $id_conta
+        );
 
-  public function insert($descricao, $valor, $quantidade, $data_vencto, $id_conta)
-  {
-      $sql = " INSERT INTO projecao_gasto 
+        if ($query->execute($parameters)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function insert($descricao, $valor, $quantidade, $data_vencto, $id_conta)
+    {
+        $sql = " INSERT INTO projecao_gasto 
                 (
                   descricao,
                   valor,
@@ -108,35 +108,34 @@ class ProjecaoGasto extends Model
                   :id_conta
                 ) ";
 
-      $query = $this->db->prepare($sql);
-      
-      $parameters = array(':descricao' => $descricao,
-                          ':valor' => $valor,
-                          ':quantidade' => $quantidade,
-                          ':data_vencto' => $data_vencto,
-                          ':id_conta' => $id_conta,
-      );
-      
-      if ($query->execute($parameters)){
-          return true;
-      }
-      else{
-          return false;
-      }
-  }
+        $query = $this->db->prepare($sql);
 
-  public function delete($id)
+        $parameters = array(
+            ':descricao' => $descricao,
+            ':valor' => $valor,
+            ':quantidade' => $quantidade,
+            ':data_vencto' => $data_vencto,
+            ':id_conta' => $id_conta,
+        );
+
+        if ($query->execute($parameters)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function delete($id)
     {
-      
+
         $sql = " DELETE FROM projecao_gasto WHERE id = :id ";
         $query = $this->db->prepare($sql);
 
         $parameters = array(':id' => $id);
 
-        if ($query->execute($parameters)){
+        if ($query->execute($parameters)) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }

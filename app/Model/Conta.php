@@ -38,7 +38,8 @@ class Conta extends Model
         if ($query->execute($parameters)){
             return true;
         }
-        else{
+        else
+        {
             return false;
         }
     }

@@ -15,7 +15,7 @@
                     <!--<section id="main-content">-->
                     <section class="col-md-12">
                         <section class="wrapper">
-                            <form class="form-horizontal style-form" method="post" action="gasto">
+                            <form class="form-horizontal style-form" action="<?php echo URL; ?>gasto" method="POST">
 
                                 <div class="form-group">
                                     <?php if (isset($this->msgTela)) {

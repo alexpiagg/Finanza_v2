@@ -39,7 +39,7 @@ class Receita extends Model
         return $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function getAll($dataInicial, $dataFinal, $idConta)
+    public function getByFilter($filtros)
     {
 
         $sql = "SELECT 
@@ -52,29 +52,42 @@ class Receita extends Model
             WHERE 1 = 1 ";
 
 
-        if ($dataInicial != null) {
-            $sql .= " AND r.data >= :dataInicial ";
-            $parameters[':dataInicial'] =  $dataInicial;
+        if (isset($filtros['data_inicial'])) {
+
+            $sql .= " AND r.data >= :data_inicial ";
+            $parameters[':data_inicial'] =  $filtros['data_inicial'];
+
         }
 
-        if ($dataFinal != null) {
-            $sql .= " AND r.data <= :dataFinal ";
-            $parameters[':dataFinal'] =  $dataFinal;
+        if (isset($filtros['data_final'])) {
+
+            $sql .= " AND r.data <= :data_final ";
+            $parameters[':data_final'] =  $filtros['data_final'];
+
         }
 
-        if ($idConta > 0) {
-            $sql .= " AND r.id_conta >= :idConta ";
-            $parameters[':idConta'] =  $idConta;
+        if (isset($filtros['id_conta'])) {
+
+            $sql .= " AND r.id_conta = :id_conta ";
+            $parameters[':id_conta'] =  $filtros['id_conta'];
+
+        }
+
+        if (isset($filtros['descricao']) && $filtros['descricao'] != null) {
+
+            $sql .= " AND r.descricao LIKE :descricao ";
+            $parameters[':descricao'] = '%' . $filtros['descricao'] . '%';
+
         }
 
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
 
-        return $query->fetchAll(PDO::FETCH_ASSOC);
+        return $query->fetchAll();
     }
 
 
-    public function getById($id, $id_conta)
+    public function getById($id)
     {
 
         $sql = "SELECT 
@@ -84,19 +97,18 @@ class Receita extends Model
                 r.valor,
                 r.id_conta
             FROM receita r 
-            WHERE r.id = :id
-              AND r.id_conta = :id_conta ";
+            WHERE r.id = :id ";
 
-        $parameters = array(':id' => $id, ':id_conta' => $id_conta);
+        $parameters = array(':id' => $id);
 
         $query = $this->db->prepare($sql);
         $query->execute($parameters);
 
-        return $query->fetchAll();
+        return $query->fetch();
     }
 
 
-    public function update($id, $descricao, $valor, $data, $id_conta)
+    public function update($filtros)
     {
         $sql = "UPDATE receita SET  descricao = :descricao,
                                     valor = :valor,
@@ -107,11 +119,11 @@ class Receita extends Model
         $query = $this->db->prepare($sql);
 
         $parameters = array(
-            ':id'           => $id,
-            ':descricao'    => $descricao,
-            ':valor'        => $valor,
-            ':data'         => $data,
-            ':id_conta'     => $id_conta
+            ':id'           =>  $filtros['id'],
+            ':descricao'    =>  $filtros['descricao'],
+            ':valor'        =>  $filtros['valor'],
+            ':data'         =>  $filtros['data'],
+            ':id_conta'     =>  $filtros['id_conta']
         );
 
         if ($query->execute($parameters)) {
@@ -121,8 +133,8 @@ class Receita extends Model
         }
     }
 
-    public function insert($descricao, $valor, $data, $id_conta)
-    {
+    public function insert($filtros)
+    {        
         $sql = " INSERT INTO receita 
                 (
                   descricao,
@@ -141,10 +153,10 @@ class Receita extends Model
         $query = $this->db->prepare($sql);
 
         $parameters = array(
-            ':descricao' => $descricao,
-            ':valor' => $valor,
-            ':data' => $data,
-            ':id_conta' => $id_conta,
+            ':descricao'    => $filtros['descricao'],
+            ':valor'        => $filtros['valor'],
+            ':data'         => $filtros['data'],
+            ':id_conta'     => $filtros['id_conta'],
         );
 
         if ($query->execute($parameters)) {
