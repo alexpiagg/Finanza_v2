@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-    <body>
         <section id="container" >
 
             <!--main content start-->
@@ -55,7 +51,3 @@
 
 
         </section> 
-    </body>
-    <script type="text/javascript" src="assets/js/price_format.2.0.min.js"></script>
-    
-</html>

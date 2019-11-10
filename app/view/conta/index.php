@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-    <body>
         <section id="container" >
 
             <!--main content start-->
@@ -57,6 +53,3 @@
             </section><!--MAIN CONTENT-->
 
         </section> 
-    </body>    
-    
-</html>

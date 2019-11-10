@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+         
 <head>
     
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -28,6 +31,6 @@
 
     <link src="<?php echo URL; ?>assets/js/chart-master/Chart.js" rel="shortcut icon" type="image/x-icon">
 
-    
-    
 </head>
+
+<body>

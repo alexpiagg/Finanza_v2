@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<body>
-	
 	<section id="container" >
 	
 		<!--main content start-->
@@ -63,8 +59,4 @@
 		</section>
 
 	<!-- main content end-->
-
 	</section>
-	</body>
-
-</html>
