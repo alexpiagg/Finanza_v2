@@ -46,7 +46,8 @@ class Receita extends Model
                 r.id,
                 r.descricao,
                 r.data,
-                r.valor
+                r.valor,
+                r.id_conta
             FROM receita r 
             WHERE 1 = 1 ";
 
@@ -70,5 +71,101 @@ class Receita extends Model
         $query->execute($parameters);
 
         return $query->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function getById($id, $id_conta)
+    {
+
+        $sql = "SELECT 
+                r.id,
+                r.descricao,
+                r.data,
+                r.valor,
+                r.id_conta
+            FROM receita r 
+            WHERE r.id = :id
+              AND r.id_conta = :id_conta ";
+
+        $parameters = array(':id' => $id, ':id_conta' => $id_conta);
+
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+
+        return $query->fetchAll();
+    }
+
+
+    public function update($id, $descricao, $valor, $data, $id_conta)
+    {
+        $sql = "UPDATE receita SET  descricao = :descricao,
+                                    valor = :valor,
+                                    data = :data,
+                                    id_conta = :id_conta
+              WHERE id = :id ";
+
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(
+            ':id'           => $id,
+            ':descricao'    => $descricao,
+            ':valor'        => $valor,
+            ':data'         => $data,
+            ':id_conta'     => $id_conta
+        );
+
+        if ($query->execute($parameters)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function insert($descricao, $valor, $data, $id_conta)
+    {
+        $sql = " INSERT INTO receita 
+                (
+                  descricao,
+                  valor,
+                  data,
+                  id_conta
+                )  
+                VALUES 
+                (
+                  :descricao,
+                  :valor,
+                  :data,
+                  :id_conta
+                ) ";
+
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(
+            ':descricao' => $descricao,
+            ':valor' => $valor,
+            ':data' => $data,
+            ':id_conta' => $id_conta,
+        );
+
+        if ($query->execute($parameters)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function delete($id)
+    {
+
+        $sql = " DELETE FROM receita WHERE id = :id ";
+        $query = $this->db->prepare($sql);
+
+        $parameters = array(':id' => $id);
+
+        if ($query->execute($parameters)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

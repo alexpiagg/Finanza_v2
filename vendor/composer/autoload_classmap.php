@@ -16,6 +16,7 @@ return array(
     'Mini\\Controller\\LoginController' => $baseDir . '/app/Controller/LoginController.php',
     'Mini\\Controller\\ProdutosController' => $baseDir . '/app/Controller/ProdutosController.php',
     'Mini\\Controller\\ProjecaoGastoController' => $baseDir . '/app/Controller/ProjecaoGastoController.php',
+    'Mini\\Controller\\ReceitaController' => $baseDir . '/app/Controller/ReceitaController.php',
     'Mini\\Controller\\RelatoriosController' => $baseDir . '/app/Controller/RelatoriosController.php',
     'Mini\\Controller\\SobreController' => $baseDir . '/app/Controller/SobreController.php',
     'Mini\\Controller\\TimelineController' => $baseDir . '/app/Controller/TimelineController.php',
