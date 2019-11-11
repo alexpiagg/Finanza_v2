@@ -100,10 +100,7 @@ class ReceitaController extends Controller
 
             $salvo = $receita->insert($parametros);
 
-            $conta = new  Conta();
-            $valorConta = $_SESSION['LOGIN']->valor + $valorRecebido;            
-            $conta->update($_SESSION['LOGIN']->id_conta, $valorConta, $_SESSION['LOGIN']->id_usuario);
-            $_SESSION['LOGIN']->valor = $valorConta;
+            $this->ajustarSaldo("I", $valorRecebido);
             
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -157,4 +154,26 @@ class ReceitaController extends Controller
          $this->index();
     }
 
+    private function ajustarSaldo($tipo, $valor)
+    {
+        $conta = new  Conta();
+        $valorConta = $_SESSION['LOGIN']->valor;
+        $valorNovo = 0;
+
+        if ($tipo == "I")
+        {
+            $valorNovo = $valorConta + $valor;
+        }
+        else if ($tipo == "U")
+        {
+            
+        }
+        else if ($tipo == "D")
+        {
+
+        }
+        
+        $conta->update($_SESSION['LOGIN']->id_conta, $valorNovo, $_SESSION['LOGIN']->id_usuario);
+        $_SESSION['LOGIN']->valor = $valorNovo;
+    }
 }

@@ -132,8 +132,8 @@ class GastoController extends Controller
             $this->msgTela = Utils::getMessageSave($salvo, $texto);
         }
 
-         // redireciona para a pagina de listagem
-         $this->index();
+        // redireciona para a pagina de listagem
+        $this->index();
     }
 
     public function insert()
@@ -156,11 +156,8 @@ class GastoController extends Controller
                                     $_POST['tipoGasto'],
                                     $_SESSION['LOGIN']->id_conta,
                                     $cartaoCredito);
-
-            $conta = new  Conta();
-            $valorConta = $_SESSION['LOGIN']->valor - $valorGasto;            
-            $conta->update($_SESSION['LOGIN']->id_conta, $valorConta, $_SESSION['LOGIN']->id_usuario);
-            $_SESSION['LOGIN']->valor = $valorConta;
+            
+            $this->ajustarSaldo("I", $valorGasto);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -169,5 +166,28 @@ class GastoController extends Controller
 
         // redireciona para a pagina de listagem
         $this->index();
+    }
+
+    private function ajustarSaldo($tipo, $valor)
+    {
+        $conta = new  Conta();
+        $valorConta = $_SESSION['LOGIN']->valor;
+        $valorNovo = 0;
+
+        if ($tipo == "I")
+        {
+            $valorNovo = $valorConta - $valor;
+        }
+        else if ($tipo == "U")
+        {
+            
+        }
+        else if ($tipo == "D")
+        {
+
+        }
+        
+        $conta->update($_SESSION['LOGIN']->id_conta, $valorNovo, $_SESSION['LOGIN']->id_usuario);
+        $_SESSION['LOGIN']->valor = $valorNovo;
     }
 }

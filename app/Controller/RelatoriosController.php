@@ -140,6 +140,12 @@ class RelatoriosController extends Controller
         $dataIni = date('Y-m-d', strtotime('first day of this month'));
         $dataFim  = date('Y-m-d', strtotime('last day of this month'));
 
+        $parametros = array(
+            'data_inicial' => $dataIni,
+            'data_final' => $dataFim,
+            'id_conta' => $id_conta
+        );
+
         $retornoDados = $gasto->getAll($parametros);
         $totalMesAtual = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
         
@@ -148,6 +154,12 @@ class RelatoriosController extends Controller
         //Total gasto ano
         $dataIni = date('Y-01-01');;
         $dataFim  = date('Y-12-31');;
+
+        $parametros = array(
+            'data_inicial' => $dataIni,
+            'data_final' => $dataFim,
+            'id_conta' => $id_conta
+        );
 
         $retornoDados = $gasto->getAll($parametros);
         $totalAno = Utils::formatarMoeda(array_sum(array_column($retornoDados, 'valor')));
