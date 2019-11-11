@@ -59,6 +59,8 @@ class ReceitaController extends Controller
                 require APP . 'view/_templates/header.php';
                 require APP . 'view/_templates/sidebar.php';
 
+                $_SESSION['ValorAnterior'] = $retorno->valor;
+
                 require APP . 'view/receita/edit.php';
 
                 require APP . 'view/_templates/footer.php';
@@ -100,7 +102,7 @@ class ReceitaController extends Controller
 
             $salvo = $receita->insert($parametros);
 
-            $this->ajustarSaldo("I", $valorRecebido);
+            $this->ajustarSaldo("I", 0, $valorRecebido);
             
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -118,15 +120,25 @@ class ReceitaController extends Controller
 
             $receita = new Receita();
 
+            //Pegando o valor anterior, para contabilizar o saldo
+            $objAjusteSaldo = $receita->getById($_POST["id"]);
+
+            //Removendo os pontos
+            $valorRecebido = trim($_POST['valor']);
+            $valorRecebido = str_replace(".", "", $valorRecebido);
+            $valorRecebido = str_replace(",", ".", $valorRecebido);
+
             $parametros = array(
                 'id'            => $_POST["id"],
                 'data'          => $_POST["data"],
-                'valor'         => $_POST["valor"],
+                'valor'         => $valorRecebido,
                 'descricao'     => $_POST["descricao"],
                 'id_conta'      => $_SESSION['LOGIN']->id_conta
             );
 
             $salvo = $receita->update($parametros);
+
+            $this->ajustarSaldo("U", $objAjusteSaldo->valor, $valorRecebido);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -142,8 +154,13 @@ class ReceitaController extends Controller
         if (isset($receita_id)) {
 
             $receita = new Receita();
+            
+            //Pegando o valor anterior, para contabilizar o saldo
+            $objAjusteSaldo = $receita->getById($receita_id);
 
             $salvo = $receita->delete($receita_id);
+
+            $this->ajustarSaldo("D", $objAjusteSaldo->valor, 0);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao excluir, categoria em uso! :(";
 
@@ -154,26 +171,26 @@ class ReceitaController extends Controller
          $this->index();
     }
 
-    private function ajustarSaldo($tipo, $valor)
+    private function ajustarSaldo($tipo, $valorAnterior, $valorNovo)
     {
         $conta = new  Conta();
         $valorConta = $_SESSION['LOGIN']->valor;
-        $valorNovo = 0;
+        $valorNovoSaldo = 0;
 
         if ($tipo == "I")
         {
-            $valorNovo = $valorConta + $valor;
+            $valorNovoSaldo = $valorConta + $valorNovo;
         }
         else if ($tipo == "U")
-        {
-            
+        {            
+            $valorNovoSaldo = ($valorConta - $valorAnterior) + $valorNovo;
         }
         else if ($tipo == "D")
         {
-
+            $valorNovoSaldo = ($valorConta - $valorAnterior);
         }
         
-        $conta->update($_SESSION['LOGIN']->id_conta, $valorNovo, $_SESSION['LOGIN']->id_usuario);
-        $_SESSION['LOGIN']->valor = $valorNovo;
+        $conta->update($_SESSION['LOGIN']->id_conta, $valorNovoSaldo, $_SESSION['LOGIN']->id_usuario);
+        $_SESSION['LOGIN']->valor = $valorNovoSaldo;
     }
 }

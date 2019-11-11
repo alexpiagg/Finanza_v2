@@ -53,7 +53,7 @@ class ProjecaoGastoController extends Controller
 
             $projecao = new ProjecaoGasto();
 
-            $retorno = $projecao->getById($projecaoId, $_SESSION['LOGIN']->id_conta);
+            $retorno = $projecao->getById($projecaoId);
 
             // Se a categoria não for encontrada, então ele teria retornado falso, e precisamos exibir a página de erro
             if ($retorno === false) {

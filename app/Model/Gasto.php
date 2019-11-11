@@ -143,7 +143,7 @@ class Gasto extends Model
   }
   
 
-  public function getById($id, $id_conta) {
+  public function getById($id) {
 
     $sql = "SELECT
               g.id,
@@ -153,10 +153,9 @@ class Gasto extends Model
               g.id_tipo_gasto,
               g.cartao_credito
           FROM gasto g
-          WHERE g.id = :id 
-            AND g.id_conta = :id_conta ";
+          WHERE g.id = :id ";
 
-    $parameters = array(':id' => $id, ':id_conta' => $id_conta);
+    $parameters = array(':id' => $id);
 
     $query = $this->db->prepare($sql);
 

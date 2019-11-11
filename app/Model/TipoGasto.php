@@ -55,7 +55,7 @@ class TipoGasto extends Model
         return $query->fetchAll();
     }
 
-    public function getById($id, $id_conta)
+    public function getById($id)
     {
 
         $sql = "SELECT 
@@ -64,10 +64,9 @@ class TipoGasto extends Model
                     T.excluido,
                     T.id_conta 
                 FROM tipo_gasto T 
-                WHERE T.id = :id
-                  AND T.id_conta = :idConta";
+                WHERE T.id = :id ";
 
-        $parameters = array(':id' => $id, ':idConta' => $id_conta);
+        $parameters = array(':id' => $id);
 
         $query = $this->db->prepare($sql);
 

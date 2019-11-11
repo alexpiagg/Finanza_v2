@@ -114,7 +114,7 @@ class Receita extends Model
                                     valor = :valor,
                                     data = :data,
                                     id_conta = :id_conta
-              WHERE id = :id ";
+                WHERE id = :id ";
 
         $query = $this->db->prepare($sql);
 

@@ -40,7 +40,7 @@ class CategoriaController extends Controller
 
             $tipoGasto = new TipoGasto();
 
-            $retorno = $tipoGasto->getById($categoria_id, $_SESSION['LOGIN']->id_conta);
+            $retorno = $tipoGasto->getById($categoria_id);
 
             // Se a categoria não for encontrada, então ele teria retornado falso, e precisamos exibir a página de erro
             if ($retorno === false) {

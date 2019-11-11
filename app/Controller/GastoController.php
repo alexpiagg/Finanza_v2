@@ -55,7 +55,7 @@ class GastoController extends Controller
             $listaTipoGastos = $tipoGasto->getAll();
             
             $gasto = new Gasto();
-            $retorno = $gasto->getById($gasto_id, $_SESSION['LOGIN']->id_conta);
+            $retorno = $gasto->getById($gasto_id);
 
             // Se a categoria não for encontrada, então ele teria retornado falso, e precisamos exibir a página de erro
             if ($retorno === false) {
@@ -70,7 +70,6 @@ class GastoController extends Controller
                 $checked = $retorno->cartao_credito == 1 ? "checked" : "";
 
                 require APP . 'view/gasto/edit.php';
-
                 require APP . 'view/_templates/footer.php';
             }
             
@@ -94,6 +93,9 @@ class GastoController extends Controller
 
             $gasto = new Gasto();
 
+            //Pegando o valor anterior, para contabilizar o saldo
+            $objAjusteSaldo = $gasto->getById($_POST["id"]);
+
             $cartaoCredito =  isset($_POST['cartao_credito']) ? "1" : "0";
 
             //Removendo os pontos
@@ -101,7 +103,6 @@ class GastoController extends Controller
             $valorGasto = str_replace(".", "", $valorGasto);
             $valorGasto = str_replace(",", ".", $valorGasto);
             
-
             $salvo = $gasto->update($_POST["id"], 
                                     $_POST["data"], 
                                     $_POST['local'], 
@@ -109,6 +110,8 @@ class GastoController extends Controller
                                     $_POST['tipoGasto'], 
                                     $_SESSION['LOGIN']->id_conta, 
                                     $cartaoCredito);
+
+            $this->ajustarSaldo("U", $objAjusteSaldo->valor, $valorGasto);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -125,7 +128,12 @@ class GastoController extends Controller
 
             $gasto = new Gasto();
 
+            //Pegando o valor anterior, para contabilizar o saldo
+            $objAjusteSaldo = $gasto->getById($gasto_id);
+
             $salvo = $gasto->delete($gasto_id);
+
+            $this->ajustarSaldo("D", $objAjusteSaldo->valor, 0);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao excluir, categoria em uso! :(";
 
@@ -157,7 +165,7 @@ class GastoController extends Controller
                                     $_SESSION['LOGIN']->id_conta,
                                     $cartaoCredito);
             
-            $this->ajustarSaldo("I", $valorGasto);
+            $this->ajustarSaldo("I", 0, $valorGasto);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -168,26 +176,26 @@ class GastoController extends Controller
         $this->index();
     }
 
-    private function ajustarSaldo($tipo, $valor)
+    private function ajustarSaldo($tipo, $valorAnterior, $valorNovo)
     {
         $conta = new  Conta();
         $valorConta = $_SESSION['LOGIN']->valor;
-        $valorNovo = 0;
+        $valorNovoSaldo = 0;
 
         if ($tipo == "I")
         {
-            $valorNovo = $valorConta - $valor;
+            $valorNovoSaldo = $valorConta - $valorNovo;
         }
         else if ($tipo == "U")
-        {
-            
+        {            
+            $valorNovoSaldo = ($valorConta + $valorAnterior) - $valorNovo;
         }
         else if ($tipo == "D")
         {
-
+            $valorNovoSaldo = ($valorConta + $valorAnterior);
         }
         
-        $conta->update($_SESSION['LOGIN']->id_conta, $valorNovo, $_SESSION['LOGIN']->id_usuario);
-        $_SESSION['LOGIN']->valor = $valorNovo;
+        $conta->update($_SESSION['LOGIN']->id_conta, $valorNovoSaldo, $_SESSION['LOGIN']->id_usuario);
+        $_SESSION['LOGIN']->valor = $valorNovoSaldo;
     }
 }

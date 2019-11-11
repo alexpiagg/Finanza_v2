@@ -38,7 +38,7 @@ class ProjecaoGasto extends Model
         return $query->fetchAll();
     }
 
-    public function getById($idProjecao, $id_conta)
+    public function getById($idProjecao)
     {
 
         $sql = "SELECT 
@@ -49,10 +49,9 @@ class ProjecaoGasto extends Model
                     pg.id_conta,
                     pg.data_vencto
                 FROM projecao_gasto pg 
-                WHERE pg.id = :id_projecao
-                AND pg.id_conta = :id_conta ";
+                WHERE pg.id = :id_projecao ";
 
-        $parameters = array(':id_projecao' => $idProjecao, ':id_conta' => $id_conta);
+        $parameters = array(':id_projecao' => $idProjecao);
 
         $query = $this->db->prepare($sql);
 
