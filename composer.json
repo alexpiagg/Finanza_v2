@@ -1,5 +1,5 @@
 {
-    "name": "ribafs/mini-mvc",
+    "name": "alexpiagg/mini-mvc",
     "description": "MINI-MVC - An application created with mini3 mvc",
     "type": "project",
     "license": "MIT",
@@ -9,8 +9,7 @@
             "email": "panique@firemail.de"
         },
         {
-            "name": "John Dias",
-            "email": "joaodias@noctus.org"
+            "name": "Alex Delapiagg"            
         },
         {
             "name": "Ribamar FS",
