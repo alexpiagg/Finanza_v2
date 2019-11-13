@@ -4,7 +4,7 @@ namespace Mini\Model;
 
 use Mini\Core\Model;
 
-class ProjecaoGasto extends Model
+class ContaPagar extends Model
 {
 
 
@@ -18,7 +18,7 @@ class ProjecaoGasto extends Model
                     pg.quantidade,
                     pg.id_conta,
                     pg.data_vencto
-                FROM projecao_gasto pg
+                FROM conta_pagar pg
                 WHERE pg.id_conta = :id_conta";
 
         $parameters = array(':id_conta' => $id_conta);
@@ -48,7 +48,7 @@ class ProjecaoGasto extends Model
                     pg.quantidade,                    
                     pg.id_conta,
                     pg.data_vencto
-                FROM projecao_gasto pg 
+                FROM conta_pagar pg 
                 WHERE pg.id = :id_projecao ";
 
         $parameters = array(':id_projecao' => $idProjecao);
@@ -63,7 +63,7 @@ class ProjecaoGasto extends Model
 
     public function update($id, $descricao, $valor, $quantidade, $data_vencto, $id_conta)
     {
-        $sql = "UPDATE projecao_gasto SET descricao = :descricao,
+        $sql = "UPDATE conta_pagar SET  descricao = :descricao,
                                         valor = :valor,
                                         quantidade = :quantidade,
                                         data_vencto = :data_vencto,
@@ -86,7 +86,7 @@ class ProjecaoGasto extends Model
 
     public function insert($descricao, $valor, $quantidade, $data_vencto, $id_conta)
     {
-        $sql = " INSERT INTO projecao_gasto 
+        $sql = " INSERT INTO conta_pagar 
                 (
                   descricao,
                   valor,
@@ -119,7 +119,7 @@ class ProjecaoGasto extends Model
     public function delete($id)
     {
 
-        $sql = " DELETE FROM projecao_gasto WHERE id = :id ";
+        $sql = " DELETE FROM conta_pagar WHERE id = :id ";
         $query = $this->db->prepare($sql);
 
         $parameters = array(':id' => $id);

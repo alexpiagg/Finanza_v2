@@ -4,14 +4,14 @@
         <section id="main-content">
             <section class="wrapper">
 
-                <h3><i class="fa fa-angle-right"></i> Lista de Projeção de Gasto </h3>
+                <h3><i class="fa fa-angle-right"></i> Lista de Contas a Pagar </h3>
                 <div class="row">
 
                     <!--main content start-->
                     <!--<section id="main-content">-->
                     <section class="col-md-12">
                         <section class="wrapper">
-                            <form class="form-horizontal style-form" action="<?php echo URL; ?>projecaoGasto" method="POST">
+                            <form class="form-horizontal style-form" action="<?php echo URL; ?>contaPagar" method="POST">
 
                                 <?php if (isset($this->msgTela)) {
                                     echo $this->msgTela;
@@ -30,20 +30,20 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="submit" class="btn btn-default" value="Buscar" name="submit_projecaogasto">
+                                        <input type="submit" class="btn btn-default" value="Buscar" name="submit_contapagar">
                                     </div>
                                 </div>
                                 <input type="hidden" name="buscar" value="buscar">
                             </form>
 
-                            <input type="button" onclick="location.href=' <?php echo URL .'projecaoGasto/edit'; ?>' " class="btn btn-success" value="Novo" />
+                            <input type="button" onclick="location.href=' <?php echo URL .'contaPagar/edit'; ?>' " class="btn btn-success" value="Novo" />
 
                         </section>
                     </section>
 
                     <div class="col-md-12">
                         <div class="content-panel">
-                            <h4><i class="fa fa-angle-right"></i> Projeção de Despesas </h4>
+                            <h4><i class="fa fa-angle-right"></i> Resultados </h4>
                             <hr>
 
 
@@ -75,9 +75,9 @@
                                                 <td data-title='numeric'> <?php echo number_format($retorno->valor * $retorno->quantidade, 2, ',', '.') ?> </td>
                                                 <td>
 
-                                                    <a title="Editar" class="btn btn-primary btn-xs" href='<?php echo URL . 'projecaoGasto/edit/' .  $retorno->id; ?>' role="button"><i class='fa fa-pencil'></i></a>
+                                                    <a title="Editar" class="btn btn-primary btn-xs" href='<?php echo URL . 'contaPagar/edit/' .  $retorno->id; ?>' role="button"><i class='fa fa-pencil'></i></a>
 
-                                                    <a title="Excluir" id="deletar" class="btn btn-danger btn-xs" href='<?php echo URL . 'projecaoGasto/delete/' .  $retorno->id; ?>' role="button"><i class='fa fa-trash-o'></i></a>
+                                                    <a title="Excluir" id="deletar" class="btn btn-danger btn-xs" href='<?php echo URL . 'contaPagar/delete/' .  $retorno->id; ?>' role="button"><i class='fa fa-trash-o'></i></a>
 
                                                 </td>
                                             </tr>

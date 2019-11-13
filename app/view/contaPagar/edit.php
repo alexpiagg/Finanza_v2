@@ -4,7 +4,7 @@
             <section id="main-content">
                 <section class="wrapper">
 
-                    <h3><i class="fa fa-angle-right"></i> Cadastro de Projeção de Despesa </h3>
+                    <h3><i class="fa fa-angle-right"></i> Cadastro de Conta a Pagar </h3>
                     <div class="row">
 
                         <!--main content start-->
@@ -45,8 +45,8 @@
 
                                     </div>
 
-                                    <input type='submit' value='Salvar' class='btn btn-success' name="submit_editprojecao">
-                                    <input type="button" onclick="location.href=' <?php echo URL .'projecaoGasto'; ?>' " class="btn btn-danger" value="Voltar" />
+                                    <input type='submit' value='Salvar' class='btn btn-success' name="submit_editcontapagar">
+                                    <input type="button" onclick="location.href=' <?php echo URL .'contaPagar'; ?>' " class="btn btn-danger" value="Voltar" />
                                     <input type="hidden" name="id" value="<?php if(isset($retorno)) echo $retorno->id; ?>" />
                                                               
                                 </form>

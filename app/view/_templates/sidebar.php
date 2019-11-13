@@ -45,17 +45,17 @@
                         <li><a href="<?php echo URL; ?>conta">Conta</a></li>
                     </ul>                    
                     <ul class="sub">
-                        <li><a href="<?php echo URL; ?>gasto">Gastos</a></li>
-                    </ul>
-                    <ul class="sub">                        
-                        <li><a href="<?php echo URL; ?>usuario">Usuário</a></li>
+                        <li><a href="<?php echo URL; ?>contaPagar">Contas a Pagar</a></li>
                     </ul>
                     <ul class="sub">
-                        <li><a href="<?php echo URL; ?>projecaoGasto">Projeção Gastos</a></li>
+                        <li><a href="<?php echo URL; ?>gasto">Gastos</a></li>
                     </ul>
                     <ul class="sub">                        
                         <li><a href="<?php echo URL; ?>receita">Receitas</a></li>
                     </ul>                    
+                    <ul class="sub">                        
+                        <li><a href="<?php echo URL; ?>usuario">Usuário</a></li>
+                    </ul>
             </li>
 
             <!--Sobre-->

@@ -4,10 +4,10 @@ namespace Mini\Controller;
 
 
 use Mini\Core\Controller;
-use Mini\Model\ProjecaoGasto;
+use Mini\Model\ContaPagar;
 use Mini\Libs\Utils;
 
-class ProjecaoGastoController extends Controller
+class ContaPagarController extends Controller
 {
 
     public $msgTela;
@@ -24,11 +24,11 @@ class ProjecaoGastoController extends Controller
         $saldo = 0;
 
         $retornoProjecaoGasto = array();
-        if (isset($_POST["submit_projecaogasto"])) {
+        if (isset($_POST["submit_contapagar"])) {
 
-            $projecaoGasto = new ProjecaoGasto();
+            $contaPagar = new ContaPagar();
 
-            $retornoProjecaoGasto = $projecaoGasto->getByFilter($_POST['descricao'], $_SESSION['LOGIN']->id_conta);
+            $retornoProjecaoGasto = $contaPagar->getByFilter($_POST['descricao'], $_SESSION['LOGIN']->id_conta);
 
             foreach($retornoProjecaoGasto as $row){
                 $despesas += $row->valor * $row->quantidade;
@@ -40,20 +40,20 @@ class ProjecaoGastoController extends Controller
 
         $saldo = $totalConta - $totalDespesas;
 
-        require APP . 'view/projecaoGasto/index.php';
+        require APP . 'view/contaPagar/index.php';
         require APP . 'view/_templates/footer.php';
     }
 
-    public function edit($projecaoId = 0)
+    public function edit($contaPagarId = 0)
     {
 
-        if ($projecaoId > 0) {
+        if ($contaPagarId > 0) {
 
-            $acao = "projecaoGasto/update/";
+            $acao = "contaPagar/update/";
 
-            $projecao = new ProjecaoGasto();
+            $contaPagar = new ContaPagar();
 
-            $retorno = $projecao->getById($projecaoId);
+            $retorno = $contaPagar->getById($contaPagarId);
 
             // Se a categoria não for encontrada, então ele teria retornado falso, e precisamos exibir a página de erro
             if ($retorno === false) {
@@ -65,20 +65,20 @@ class ProjecaoGastoController extends Controller
                 require APP . 'view/_templates/header.php';
                 require APP . 'view/_templates/sidebar.php';
 
-                require APP . 'view/projecaoGasto/edit.php';
+                require APP . 'view/contaPagar/edit.php';
 
                 require APP . 'view/_templates/footer.php';
             }
             
         } else {
 
-            $acao = "projecaoGasto/insert/";
+            $acao = "contaPagar/insert/";
 
             require APP . 'view/_templates/heade.php';
             require APP . 'view/_templates/header.php';
             require APP . 'view/_templates/sidebar.php';
 
-            require APP . 'view/projecaoGasto/edit.php';
+            require APP . 'view/contaPagar/edit.php';
             require APP . 'view/_templates/footer.php';
 
         }                  
@@ -88,9 +88,9 @@ class ProjecaoGastoController extends Controller
     public function insert()
     {
         // se tivermos dados POST para criar uma nova entrada do cliente
-        if (isset($_POST["submit_editprojecao"])) {
+        if (isset($_POST["submit_editcontapagar"])) {
 
-            $projecao = new ProjecaoGasto();
+            $contaPagar = new ContaPagar();
 
             //Removendo os pontos
             $valor = trim($_POST['valor']);
@@ -99,7 +99,7 @@ class ProjecaoGastoController extends Controller
             
             $dataVencto = $_POST['data_vencto'] != '' ? $_POST['data_vencto'] : null;
 
-            $salvo = $projecao->insert($_POST['descricao'], $valor, $_POST['quantidade'], $dataVencto,  $_SESSION['LOGIN']->id_conta);
+            $salvo = $contaPagar->insert($_POST['descricao'], $valor, $_POST['quantidade'], $dataVencto,  $_SESSION['LOGIN']->id_conta);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -113,9 +113,9 @@ class ProjecaoGastoController extends Controller
     public function update()
     {
         // se tivermos dados POST para criar uma nova entrada do cliente
-        if (isset($_POST["submit_editprojecao"])) {
+        if (isset($_POST["submit_editcontapagar"])) {
 
-            $projecao = new ProjecaoGasto();            
+            $contaPagar = new ContaPagar();            
 
             //Removendo os pontos
             $valor = trim($_POST['valor']);
@@ -124,7 +124,7 @@ class ProjecaoGastoController extends Controller
 
             $dataVencto = $_POST['data_vencto'] != '' ? $_POST['data_vencto'] : null;
             
-            $salvo = $projecao->update($_POST['id'], $_POST['descricao'], $valor, $_POST['quantidade'], $dataVencto,  $_SESSION['LOGIN']->id_conta);
+            $salvo = $contaPagar->update($_POST['id'], $_POST['descricao'], $valor, $_POST['quantidade'], $dataVencto,  $_SESSION['LOGIN']->id_conta);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -135,13 +135,13 @@ class ProjecaoGastoController extends Controller
          $this->index();
     }
 
-    public function delete($projecao_id)
+    public function delete($contaPagar_id)
     {
-        if (isset($projecao_id)) {
+        if (isset($contaPagar_id)) {
 
-            $projecao = new ProjecaoGasto();
+            $contaPagar = new ContaPagar();
 
-            $salvo = $projecao->delete($projecao_id);
+            $salvo = $contaPagar->delete($contaPagar_id);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao excluir! :(";
 
