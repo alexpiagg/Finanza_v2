@@ -81,11 +81,7 @@ class ProjecaoGasto extends Model
             ':id_conta' => $id_conta
         );
 
-        if ($query->execute($parameters)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 
     public function insert($descricao, $valor, $quantidade, $data_vencto, $id_conta)
@@ -117,11 +113,7 @@ class ProjecaoGasto extends Model
             ':id_conta' => $id_conta,
         );
 
-        if ($query->execute($parameters)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 
     public function delete($id)
@@ -132,10 +124,6 @@ class ProjecaoGasto extends Model
 
         $parameters = array(':id' => $id);
 
-        if ($query->execute($parameters)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 }

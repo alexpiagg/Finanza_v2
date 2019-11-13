@@ -81,11 +81,7 @@ class TipoGasto extends Model
         $query = $this->db->prepare($sql);
         $parameters = array(':id' => $id, ':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
 
-        if ($query->execute($parameters)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 
     public function delete($id)
@@ -95,11 +91,7 @@ class TipoGasto extends Model
 
         $parameters = array(':id' => $id);
 
-        if ($query->execute($parameters)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 
     public function insert($tipo, $excluido, $id_conta)
@@ -109,10 +101,6 @@ class TipoGasto extends Model
 
         $parameters = array(':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
 
-        if ($query->execute($parameters)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 }

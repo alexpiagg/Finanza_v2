@@ -244,12 +244,7 @@ class Gasto extends Model
                           ':cartao_credito' => $cartao_credito                        
       );
 
-      if ($query->execute($parameters)){
-          return true;
-      }
-      else{
-          return false;
-      }
+      return $this->save($query, $parameters);
   }
 
   public function insert($data, $local, $valor, $id_tipo_gasto, $id_conta, $cartao_credito)
@@ -283,12 +278,7 @@ class Gasto extends Model
                           ':cartao_credito' => $cartao_credito                        
       );
       
-      if ($query->execute($parameters)){
-          return true;
-      }
-      else{
-          return false;
-      }
+      return $this->save($query, $parameters);
   }
 
   public function delete($id)
@@ -299,11 +289,6 @@ class Gasto extends Model
 
         $parameters = array(':id' => $id);
 
-        if ($query->execute($parameters)){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 }

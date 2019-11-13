@@ -35,12 +35,6 @@ class Conta extends Model
         $query = $this->db->prepare($sql);
         $parameters = array(':id' => $id, ':valorConta' => $valorConta, ':id_usuario' => $idUsuario);
 
-        if ($query->execute($parameters)){
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 }

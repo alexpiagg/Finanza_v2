@@ -126,11 +126,7 @@ class Receita extends Model
             ':id_conta'     =>  $filtros['id_conta']
         );
 
-        if ($query->execute($parameters)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 
     public function insert($filtros)
@@ -159,11 +155,7 @@ class Receita extends Model
             ':id_conta'     => $filtros['id_conta'],
         );
 
-        if ($query->execute($parameters)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 
     public function delete($id)
@@ -174,10 +166,6 @@ class Receita extends Model
 
         $parameters = array(':id' => $id);
 
-        if ($query->execute($parameters)) {
-            return true;
-        } else {
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
 }

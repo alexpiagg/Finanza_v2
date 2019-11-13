@@ -33,12 +33,7 @@ class Usuario extends Model {
         $query = $this->db->prepare($sql);
         $parameters = array(':id' => $id, ':nome_completo' => $nome_completo, ':email' => $email, ':excluido' => $excluido, ':senha' => $senha);
 
-        if ($query->execute($parameters)){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return $this->save($query, $parameters);
     }
   
 }
