@@ -31,7 +31,7 @@ class Gasto extends Model
                     t.tipo,
                     g.id
                 FROM gasto g
-                JOIN tipo_gasto t ON t.id = g.id_tipo_gasto
+                JOIN categoria_gasto t ON t.id = g.id_tipo_gasto
                 WHERE g.data >= :dataInicial
                   AND g.data <= :dataFinal
                   AND g.id_conta = :idConta
@@ -87,7 +87,7 @@ class Gasto extends Model
                   tg.id,
                   SUM(g.valor) total
               FROM gasto g
-              JOIN tipo_gasto tg ON tg.id = g.id_tipo_gasto
+              JOIN categoria_gasto tg ON tg.id = g.id_tipo_gasto
               WHERE g.data >= :dataInicial
                     AND g.data <= :dataFinal
                     AND g.id_conta = :idConta
@@ -120,7 +120,7 @@ class Gasto extends Model
                   TG.tipo,
                   SUM(valor) total
               FROM gasto G
-              JOIN tipo_gasto TG ON TG.id = G.id_tipo_gasto
+              JOIN categoria_gasto TG ON TG.id = G.id_tipo_gasto
               WHERE DATA >= :dataInicial
                 AND DATA <= :dataFinal
                 AND G.id_conta = :idConta ";

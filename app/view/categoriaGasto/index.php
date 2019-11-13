@@ -4,14 +4,14 @@
         <section id="main-content">
             <section class="wrapper">
 
-                <h3><i class="fa fa-angle-right"></i> Lista de Categorias </h3>
+                <h3><i class="fa fa-angle-right"></i> Lista de Categorias de Gastos </h3>
                 <div class="row">
 
                     <!--main content start-->
                     <!--<section id="main-content">-->
                     <section class="col-md-12">
                         <section class="wrapper">
-                            <form class="form-horizontal style-form" action="<?php echo URL; ?>categoria" method="POST">
+                            <form class="form-horizontal style-form" action="<?php echo URL; ?>categoriaGasto" method="POST">
                             
                                 <?php if (isset($this->msgTela)) { echo $this->msgTela; } ?>
 
@@ -37,12 +37,12 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="submit" class="btn btn-default" value="Buscar" name="submit_categoria">
+                                        <input type="submit" class="btn btn-default" value="Buscar" name="submit_categoriagasto">
                                     </div>
                                 </div>
                             </form>
                             
-                            <input type="button" onclick="location.href=' <?php echo URL .'categoria/edit'; ?>' " class="btn btn-success" value="Novo" />
+                            <input type="button" onclick="location.href=' <?php echo URL .'categoriaGasto/edit'; ?>' " class="btn btn-success" value="Novo" />
 
                         </section>
                     </section>
@@ -81,9 +81,9 @@
 
                                     <td>
                                         
-                                        <a title="Editar" class="btn btn-primary" href='<?php echo URL . 'categoria/edit/' .  $categ->id; ?>' role="button"><i class='fa fa-pencil'></i></a>
+                                        <a title="Editar" class="btn btn-primary" href='<?php echo URL . 'categoriaGasto/edit/' .  $categ->id; ?>' role="button"><i class='fa fa-pencil'></i></a>
 
-                                        <a title="Excluir" id="deletar" class="btn btn-danger" href='<?php echo URL . 'categoria/delete/' .  $categ->id; ?>' role="button"><i class='fa fa-trash-o'></i></a>
+                                        <a title="Excluir" id="deletar" class="btn btn-danger" href='<?php echo URL . 'categoriaGasto/delete/' .  $categ->id; ?>' role="button"><i class='fa fa-trash-o'></i></a>
 
                                     </td>
                                 </tr>

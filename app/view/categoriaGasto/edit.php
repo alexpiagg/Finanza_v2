@@ -30,8 +30,8 @@
 
                                 </div>
                                 
-                                <input type='submit' value='Salvar' class='btn btn-success' name="submit_editcategoria">
-                                <input type="button" onclick="location.href=' <?php echo URL .'categoria'; ?>' " class="btn btn-danger" value="Voltar" />
+                                <input type='submit' value='Salvar' class='btn btn-success' name="submit_editcategoriagasto">
+                                <input type="button" onclick="location.href=' <?php echo URL .'categoriaGasto'; ?>' " class="btn btn-danger" value="Voltar" />
                                 <input type="hidden" name="id" value="<?php if (isset($retorno)) {echo $retorno->id;}  ?>" />
 
                             </form>

@@ -5,7 +5,7 @@ namespace Mini\Controller;
 use Mini\Core\Controller;
 use Mini\Model\Conta;
 use Mini\Model\Gasto;
-use Mini\Model\TipoGasto;
+use Mini\Model\CategoriaGasto;
 use Mini\Libs\Utils;
 
 class GastoController extends Controller
@@ -19,7 +19,7 @@ class GastoController extends Controller
         require APP . 'view/_templates/header.php';
         require APP . 'view/_templates/sidebar.php';
 
-        $tipoGasto = new TipoGasto();
+        $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
         $listaGastos = array();
@@ -44,14 +44,14 @@ class GastoController extends Controller
 
     public function edit($gasto_id = 0)
     {
-        $tipoGasto = new TipoGasto();
+        $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
         if ($gasto_id > 0) {
 
             $acao = "gasto/update/";
 
-            $tipoGasto = new TipoGasto();
+            $tipoGasto = new CategoriaGasto();
             $listaTipoGastos = $tipoGasto->getAll();
             
             $gasto = new Gasto();

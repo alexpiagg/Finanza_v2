@@ -8,7 +8,7 @@
 namespace Mini\Controller;
 
 use Mini\Model\Gasto;
-use Mini\Model\TipoGasto;
+use Mini\Model\CategoriaGasto;
 use Mini\Model\Receita;
 use Mini\Libs\Utils;
 use Mini\Core\Controller;
@@ -21,7 +21,7 @@ class RelatoriosController extends Controller
 
     public function porCategoria()
     {
-        $tipoGasto = new TipoGasto();
+        $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
         require APP . 'view/_templates/heade.php';
@@ -64,7 +64,7 @@ class RelatoriosController extends Controller
 
     public function porMes()
     {
-        $tipoGasto = new TipoGasto();
+        $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
         require APP . 'view/_templates/heade.php';
@@ -86,7 +86,7 @@ class RelatoriosController extends Controller
 
     public function porReceita()
     {
-        $tipoGasto = new TipoGasto();
+        $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
         require APP . 'view/_templates/heade.php';

@@ -39,8 +39,8 @@
                     <span>Cadastros</span>
                 </a>
                     <ul class="sub">
-                        <li><a href="<?php echo URL; ?>categoria">Categorias</a></li>
-                    </ul>
+                        <li><a href="<?php echo URL; ?>categoriaGasto">Categorias de Gastos</a></li>
+                    </ul>                    
                     <ul class="sub">
                         <li><a href="<?php echo URL; ?>conta">Conta</a></li>
                     </ul>                    
