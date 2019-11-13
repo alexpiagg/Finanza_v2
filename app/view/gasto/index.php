@@ -70,7 +70,7 @@
 
                     <div class="col-md-12">
                         <div class="content-panel">
-                            <h4><i class="fa fa-angle-right"></i> Gastos </h4>
+                            <h4><i class="fa fa-angle-right"></i> Resultados </h4>
                             <hr>
 
                             <div>

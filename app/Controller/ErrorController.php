@@ -16,7 +16,6 @@ class ErrorController
     public function index()
     {
         // Carregar a view error
-        require APP . 'view/_templates/header.php';
         require APP . 'view/error/index.php';
         require APP . 'view/_templates/footer.php';
     }

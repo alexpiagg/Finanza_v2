@@ -23,6 +23,7 @@ class ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416
     public static $classMap = array (
         'Mini\\Controller\\CategoriaController' => __DIR__ . '/../..' . '/app/Controller/CategoriaController.php',
         'Mini\\Controller\\ContaController' => __DIR__ . '/../..' . '/app/Controller/ContaController.php',
+        'Mini\\Controller\\ContaPagarController' => __DIR__ . '/../..' . '/app/Controller/ContaPagarController.php',
         'Mini\\Controller\\ErrorController' => __DIR__ . '/../..' . '/app/Controller/ErrorController.php',
         'Mini\\Controller\\GastoController' => __DIR__ . '/../..' . '/app/Controller/GastoController.php',
         'Mini\\Controller\\HomeController' => __DIR__ . '/../..' . '/app/Controller/HomeController.php',
@@ -39,6 +40,7 @@ class ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416
         'Mini\\Libs\\Helper' => __DIR__ . '/../..' . '/app/Libs/helper.php',
         'Mini\\Libs\\Utils' => __DIR__ . '/../..' . '/app/Libs/utils.php',
         'Mini\\Model\\Conta' => __DIR__ . '/../..' . '/app/Model/Conta.php',
+        'Mini\\Model\\ContaPagar' => __DIR__ . '/../..' . '/app/Model/ContaPagar.php',
         'Mini\\Model\\Gasto' => __DIR__ . '/../..' . '/app/Model/Gasto.php',
         'Mini\\Model\\Login' => __DIR__ . '/../..' . '/app/Model/Login.php',
         'Mini\\Model\\ProjecaoGasto' => __DIR__ . '/../..' . '/app/Model/ProjecaoGasto.php',

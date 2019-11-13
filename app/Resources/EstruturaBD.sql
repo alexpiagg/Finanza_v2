@@ -31,11 +31,11 @@ CREATE TABLE gasto (
   CONSTRAINT fk_gasto_tipo_gasto FOREIGN KEY (id_tipo_gasto) REFERENCES tipo_gasto (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=8956 DEFAULT CHARSET=utf8;
 
-/*Table structure for table projecao_gasto */
+/*Table structure for table conta_pagar */
 
-DROP TABLE IF EXISTS projecao_gasto;
+DROP TABLE IF EXISTS conta_pagar;
 
-CREATE TABLE projecao_gasto (
+CREATE TABLE conta_pagar (
   id int(11) NOT NULL AUTO_INCREMENT,
   descricao varchar(100) DEFAULT NULL,
   valor decimal(15,4) DEFAULT NULL,
@@ -43,8 +43,8 @@ CREATE TABLE projecao_gasto (
   id_conta int(11) DEFAULT NULL,
   data_vencto date NULL,
   PRIMARY KEY (id),
-  KEY fk_projecao_gasto_conta (id_conta),
-  CONSTRAINT fk_projecao_gasto_conta FOREIGN KEY (id_conta) REFERENCES conta (id)
+  KEY fk_conta_pagar_conta (id_conta),
+  CONSTRAINT fk_conta_pagar_conta FOREIGN KEY (id_conta) REFERENCES conta (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 
 /*Table structure for table receita */
