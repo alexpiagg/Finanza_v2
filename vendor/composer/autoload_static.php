@@ -21,14 +21,13 @@ class ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416
     );
 
     public static $classMap = array (
-        'Mini\\Controller\\CategoriaController' => __DIR__ . '/../..' . '/app/Controller/CategoriaController.php',
+        'Mini\\Controller\\CategoriaGastoController' => __DIR__ . '/../..' . '/app/Controller/CategoriaGastoController.php',
         'Mini\\Controller\\ContaController' => __DIR__ . '/../..' . '/app/Controller/ContaController.php',
         'Mini\\Controller\\ContaPagarController' => __DIR__ . '/../..' . '/app/Controller/ContaPagarController.php',
         'Mini\\Controller\\ErrorController' => __DIR__ . '/../..' . '/app/Controller/ErrorController.php',
         'Mini\\Controller\\GastoController' => __DIR__ . '/../..' . '/app/Controller/GastoController.php',
         'Mini\\Controller\\HomeController' => __DIR__ . '/../..' . '/app/Controller/HomeController.php',
         'Mini\\Controller\\LoginController' => __DIR__ . '/../..' . '/app/Controller/LoginController.php',
-        'Mini\\Controller\\ProjecaoGastoController' => __DIR__ . '/../..' . '/app/Controller/ProjecaoGastoController.php',
         'Mini\\Controller\\ReceitaController' => __DIR__ . '/../..' . '/app/Controller/ReceitaController.php',
         'Mini\\Controller\\RelatoriosController' => __DIR__ . '/../..' . '/app/Controller/RelatoriosController.php',
         'Mini\\Controller\\SobreController' => __DIR__ . '/../..' . '/app/Controller/SobreController.php',
@@ -39,13 +38,12 @@ class ComposerStaticInit2847e8ead9f2a445cf29cd5bf8bc4416
         'Mini\\Core\\Model' => __DIR__ . '/../..' . '/app/Core/Model.php',
         'Mini\\Libs\\Helper' => __DIR__ . '/../..' . '/app/Libs/helper.php',
         'Mini\\Libs\\Utils' => __DIR__ . '/../..' . '/app/Libs/utils.php',
+        'Mini\\Model\\CategoriaGasto' => __DIR__ . '/../..' . '/app/Model/CategoriaGasto.php',
         'Mini\\Model\\Conta' => __DIR__ . '/../..' . '/app/Model/Conta.php',
         'Mini\\Model\\ContaPagar' => __DIR__ . '/../..' . '/app/Model/ContaPagar.php',
         'Mini\\Model\\Gasto' => __DIR__ . '/../..' . '/app/Model/Gasto.php',
         'Mini\\Model\\Login' => __DIR__ . '/../..' . '/app/Model/Login.php',
-        'Mini\\Model\\ProjecaoGasto' => __DIR__ . '/../..' . '/app/Model/ProjecaoGasto.php',
         'Mini\\Model\\Receita' => __DIR__ . '/../..' . '/app/Model/Receita.php',
-        'Mini\\Model\\TipoGasto' => __DIR__ . '/../..' . '/app/Model/TipoGasto.php',
         'Mini\\Model\\Usuario' => __DIR__ . '/../..' . '/app/Model/Usuario.php',
     );
 

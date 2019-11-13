@@ -4,7 +4,7 @@
         <section id="main-content">
             <section class="wrapper">
 
-                <h3><i class="fa fa-angle-right"></i> Relatórios > Por Categoria </h3>
+                <h3><i class="fa fa-angle-right"></i> Relatórios > Por Categoria de Gastos</h3>
                 <div class="row">
 
                     <!--main content start-->

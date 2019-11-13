@@ -6,14 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Mini\\Controller\\CategoriaController' => $baseDir . '/app/Controller/CategoriaController.php',
+    'Mini\\Controller\\CategoriaGastoController' => $baseDir . '/app/Controller/CategoriaGastoController.php',
     'Mini\\Controller\\ContaController' => $baseDir . '/app/Controller/ContaController.php',
     'Mini\\Controller\\ContaPagarController' => $baseDir . '/app/Controller/ContaPagarController.php',
     'Mini\\Controller\\ErrorController' => $baseDir . '/app/Controller/ErrorController.php',
     'Mini\\Controller\\GastoController' => $baseDir . '/app/Controller/GastoController.php',
     'Mini\\Controller\\HomeController' => $baseDir . '/app/Controller/HomeController.php',
     'Mini\\Controller\\LoginController' => $baseDir . '/app/Controller/LoginController.php',
-    'Mini\\Controller\\ProjecaoGastoController' => $baseDir . '/app/Controller/ProjecaoGastoController.php',
     'Mini\\Controller\\ReceitaController' => $baseDir . '/app/Controller/ReceitaController.php',
     'Mini\\Controller\\RelatoriosController' => $baseDir . '/app/Controller/RelatoriosController.php',
     'Mini\\Controller\\SobreController' => $baseDir . '/app/Controller/SobreController.php',
@@ -24,12 +23,11 @@ return array(
     'Mini\\Core\\Model' => $baseDir . '/app/Core/Model.php',
     'Mini\\Libs\\Helper' => $baseDir . '/app/Libs/helper.php',
     'Mini\\Libs\\Utils' => $baseDir . '/app/Libs/utils.php',
+    'Mini\\Model\\CategoriaGasto' => $baseDir . '/app/Model/CategoriaGasto.php',
     'Mini\\Model\\Conta' => $baseDir . '/app/Model/Conta.php',
     'Mini\\Model\\ContaPagar' => $baseDir . '/app/Model/ContaPagar.php',
     'Mini\\Model\\Gasto' => $baseDir . '/app/Model/Gasto.php',
     'Mini\\Model\\Login' => $baseDir . '/app/Model/Login.php',
-    'Mini\\Model\\ProjecaoGasto' => $baseDir . '/app/Model/ProjecaoGasto.php',
     'Mini\\Model\\Receita' => $baseDir . '/app/Model/Receita.php',
-    'Mini\\Model\\TipoGasto' => $baseDir . '/app/Model/TipoGasto.php',
     'Mini\\Model\\Usuario' => $baseDir . '/app/Model/Usuario.php',
 );

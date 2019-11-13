@@ -5,7 +5,7 @@ namespace Mini\Model;
 use Exception;
 use Mini\Core\Model;
 
-class TipoGasto extends Model
+class CategoriaGasto extends Model
 {
     public function getAll()
     {
@@ -15,7 +15,7 @@ class TipoGasto extends Model
                     T.tipo,
                     IFNULL(T.excluido, 0) excluido,
                     T.id_conta 
-                FROM tipo_gasto T ";
+                FROM categoria_gasto T ";
 
         $query = $this->db->prepare($sql);
 
@@ -32,7 +32,7 @@ class TipoGasto extends Model
                     T.tipo,
                     IFNULL(T.excluido, 0) excluido,
                     T.id_conta 
-                FROM tipo_gasto T 
+                FROM categoria_gasto T 
                 WHERE T.id_conta = :idConta";
 
         $parameters = array(':idConta' => $id_conta);
@@ -63,7 +63,7 @@ class TipoGasto extends Model
                     T.tipo,
                     T.excluido,
                     T.id_conta 
-                FROM tipo_gasto T 
+                FROM categoria_gasto T 
                 WHERE T.id = :id ";
 
         $parameters = array(':id' => $id);
@@ -77,7 +77,7 @@ class TipoGasto extends Model
 
     public function update($id, $tipo, $excluido, $id_conta)
     {
-        $sql = "UPDATE tipo_gasto SET tipo = :tipo, excluido = :excluido, id_conta = :id_conta WHERE id = :id ";
+        $sql = "UPDATE categoria_gasto SET tipo = :tipo, excluido = :excluido, id_conta = :id_conta WHERE id = :id ";
         $query = $this->db->prepare($sql);
         $parameters = array(':id' => $id, ':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
 
@@ -86,7 +86,7 @@ class TipoGasto extends Model
 
     public function delete($id)
     {
-        $sql = " DELETE FROM tipo_gasto  WHERE id = :id ";
+        $sql = " DELETE FROM categoria_gasto  WHERE id = :id ";
         $query = $this->db->prepare($sql);
 
         $parameters = array(':id' => $id);
@@ -96,7 +96,7 @@ class TipoGasto extends Model
 
     public function insert($tipo, $excluido, $id_conta)
     {
-        $sql = " INSERT INTO tipo_gasto (tipo, excluido, id_conta)  VALUES (:tipo, :excluido, :id_conta) ";
+        $sql = " INSERT INTO categoria_gasto (tipo, excluido, id_conta)  VALUES (:tipo, :excluido, :id_conta) ";
         $query = $this->db->prepare($sql);
 
         $parameters = array(':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);

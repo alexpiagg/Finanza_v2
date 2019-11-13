@@ -2,11 +2,11 @@
 
 namespace Mini\Controller;
 
-use Mini\Model\TipoGasto;
+use Mini\Model\CategoriaGasto;
 use Mini\Core\Controller;
 use Mini\Libs\Utils;
 
-class CategoriaController extends Controller
+class CategoriaGastoController extends Controller
 {
 
     public $msgTela;
@@ -18,16 +18,16 @@ class CategoriaController extends Controller
         require APP . 'view/_templates/sidebar.php';
 
         $listaCategorias = array();
-        if (isset($_POST["submit_categoria"])) {
+        if (isset($_POST["submit_categoriagasto"])) {
 
-            $tipoGasto = new TipoGasto();
+            $categGasto = new CategoriaGasto();
 
             $excluido = isset($_POST['excluido']) ? "1" : "0";
 
-            $listaCategorias = $tipoGasto->getByFilter($_POST['tipo'], $excluido, $_SESSION['LOGIN']->id_conta);
+            $listaCategorias = $categGasto->getByFilter($_POST['tipo'], $excluido, $_SESSION['LOGIN']->id_conta);
         }
 
-        require APP . 'view/categoria/index.php';
+        require APP . 'view/categoriaGasto/index.php';
         require APP . 'view/_templates/footer.php';
     }
 
@@ -36,11 +36,11 @@ class CategoriaController extends Controller
 
         if ($categoria_id > 0) {
 
-            $acao = "categoria/update/";
+            $acao = "categoriaGasto/update/";
 
-            $tipoGasto = new TipoGasto();
+            $categGasto = new CategoriaGasto();
 
-            $retorno = $tipoGasto->getById($categoria_id);
+            $retorno = $categGasto->getById($categoria_id);
 
             // Se a categoria não for encontrada, então ele teria retornado falso, e precisamos exibir a página de erro
             if ($retorno === false) {
@@ -54,20 +54,20 @@ class CategoriaController extends Controller
 
                 $checked = $retorno->excluido == 1 ? "checked" : "";
 
-                require APP . 'view/categoria/edit.php';
+                require APP . 'view/categoriaGasto/edit.php';
 
                 require APP . 'view/_templates/footer.php';
             }
             
         } else {
 
-            $acao = "categoria/insert/";
+            $acao = "categoriaGasto/insert/";
 
             require APP . 'view/_templates/heade.php';
             require APP . 'view/_templates/header.php';
             require APP . 'view/_templates/sidebar.php';
 
-            require APP . 'view/categoria/edit.php';
+            require APP . 'view/categoriaGasto/edit.php';
             require APP . 'view/_templates/footer.php';
 
         }                  
@@ -76,12 +76,12 @@ class CategoriaController extends Controller
     public function insert()
     {
         // se tivermos dados POST para criar uma nova entrada do cliente
-        if (isset($_POST["submit_editcategoria"])) {
+        if (isset($_POST["submit_editcategoriagasto"])) {
 
-            $tipoGasto = new TipoGasto();
+            $categGasto = new CategoriaGasto();
 
             $excluido =  isset($_POST['excluido']) ? "1" : "0";
-            $salvo = $tipoGasto->insert($_POST["tipo"],  $excluido, $_SESSION['LOGIN']->id_conta);
+            $salvo = $categGasto->insert($_POST["tipo"],  $excluido, $_SESSION['LOGIN']->id_conta);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -95,12 +95,12 @@ class CategoriaController extends Controller
     public function update()
     {
         // se tivermos dados POST para criar uma nova entrada do cliente
-        if (isset($_POST["submit_editcategoria"])) {
+        if (isset($_POST["submit_editcategoriagasto"])) {
 
-            $tipoGasto = new TipoGasto();
+            $categGasto = new CategoriaGasto();
 
             $excluido =  isset($_POST['excluido']) ? "1" : "0";
-            $salvo = $tipoGasto->update($_POST["id"], $_POST["tipo"],  $excluido, $_SESSION['LOGIN']->id_conta);
+            $salvo = $categGasto->update($_POST["id"], $_POST["tipo"],  $excluido, $_SESSION['LOGIN']->id_conta);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao salvar! :(";
 
@@ -115,9 +115,9 @@ class CategoriaController extends Controller
     {
         if (isset($categoria_id)) {
 
-            $tipoGasto = new TipoGasto();
+            $categGasto = new CategoriaGasto();
 
-            $salvo = $tipoGasto->delete($categoria_id);
+            $salvo = $categGasto->delete($categoria_id);
 
             $texto = $salvo ? "Salvo com sucesso :)" : "Ocorreu um erro ao excluir, categoria em uso! :(";
 
