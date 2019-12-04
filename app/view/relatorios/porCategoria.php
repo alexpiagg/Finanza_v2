@@ -93,7 +93,7 @@
                                         
                                         <?php foreach ($retornoDetalhe as $row) 
                                         {
-                                                if ($row->id_tipo_gasto == $valor->id) 
+                                                if ($row->id_categoria_gasto == $valor->id) 
                                                 {
                                         ?>
                                                     <tr>

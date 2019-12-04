@@ -31,7 +31,7 @@ class GastoController extends Controller
                 'data_inicial' => $_POST['dataIni'],
                 'data_final' => $_POST['dataFim'],
                 'id_conta' => $_SESSION['LOGIN']->id_conta,
-                'id_tipo_gasto' => $_POST['tipoGasto'],
+                'id_categoria_gasto' => $_POST['tipoGasto'],
                 'local' => $_POST['local']
             );
 

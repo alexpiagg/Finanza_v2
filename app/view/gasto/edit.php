@@ -47,7 +47,7 @@
                                                             foreach ($listaTipoGastos as $tipo) {
                                                                 $sel = "";
 
-                                                                if (isset($retorno) && $tipo->id == $retorno->id_tipo_gasto)
+                                                                if (isset($retorno) && $tipo->id == $retorno->id_categoria_gasto)
                                                                     $sel = "selected";
                                                         ?>
 

@@ -31,7 +31,7 @@ class Gasto extends Model
                     t.tipo,
                     g.id
                 FROM gasto g
-                JOIN categoria_gasto t ON t.id = g.id_tipo_gasto
+                JOIN categoria_gasto t ON t.id = g.id_categoria_gasto
                 WHERE g.data >= :dataInicial
                   AND g.data <= :dataFinal
                   AND g.id_conta = :idConta
@@ -55,7 +55,7 @@ class Gasto extends Model
                     g.local,
                     g.data,
                     g.valor,
-                    g.id_tipo_gasto,
+                    g.id_categoria_gasto,
                     g.cartao_credito
                 FROM gasto g 
                 WHERE g.data >= :dataInicial  
@@ -66,7 +66,7 @@ class Gasto extends Model
     $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
 
     if ($tipoGasto > 0) {
-      $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
+      $sql .= " AND g.id_categoria_gasto = :idTipoGasto ";
       $parameters[':idTipoGasto'] =  $tipoGasto;
     }
 
@@ -87,7 +87,7 @@ class Gasto extends Model
                   tg.id,
                   SUM(g.valor) total
               FROM gasto g
-              JOIN categoria_gasto tg ON tg.id = g.id_tipo_gasto
+              JOIN categoria_gasto tg ON tg.id = g.id_categoria_gasto
               WHERE g.data >= :dataInicial
                     AND g.data <= :dataFinal
                     AND g.id_conta = :idConta
@@ -97,7 +97,7 @@ class Gasto extends Model
     $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
 
     if ($tipoGasto > 0) {
-      $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
+      $sql .= " AND g.id_categoria_gasto = :idTipoGasto ";
       $parameters[':idTipoGasto'] =  $tipoGasto;
     }
 
@@ -120,7 +120,7 @@ class Gasto extends Model
                   TG.tipo,
                   SUM(valor) total
               FROM gasto G
-              JOIN categoria_gasto TG ON TG.id = G.id_tipo_gasto
+              JOIN categoria_gasto TG ON TG.id = G.id_categoria_gasto
               WHERE DATA >= :dataInicial
                 AND DATA <= :dataFinal
                 AND G.id_conta = :idConta ";
@@ -128,7 +128,7 @@ class Gasto extends Model
     $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
 
     if ($tipoGasto > 0) {
-      $sql .= " AND g.id_tipo_gasto = :idTipoGasto ";
+      $sql .= " AND g.id_categoria_gasto = :idTipoGasto ";
       $parameters[':idTipoGasto'] =  $tipoGasto;
     }
 
@@ -150,7 +150,7 @@ class Gasto extends Model
               g.local,
               g.data,
               g.valor,
-              g.id_tipo_gasto,
+              g.id_categoria_gasto,
               g.cartao_credito
           FROM gasto g
           WHERE g.id = :id ";
@@ -172,7 +172,7 @@ class Gasto extends Model
                   g.local,
                   g.data,
                   g.valor,
-                  g.id_tipo_gasto,
+                  g.id_categoria_gasto,
                   g.cartao_credito
               FROM gasto g
               WHERE 1 = 1 ";
@@ -199,10 +199,10 @@ class Gasto extends Model
 
     }
      
-    if (isset($filtros['id_tipo_gasto']) && $filtros['id_tipo_gasto'] > 0) {
+    if (isset($filtros['id_categoria_gasto']) && $filtros['id_categoria_gasto'] > 0) {
 
-      $sql .= " AND g.id_tipo_gasto = :id_tipo_gasto ";
-      $parameters[':id_tipo_gasto'] =  $filtros['id_tipo_gasto'];
+      $sql .= " AND g.id_categoria_gasto = :id_categoria_gasto ";
+      $parameters[':id_categoria_gasto'] =  $filtros['id_categoria_gasto'];
 
     }
 
@@ -223,12 +223,12 @@ class Gasto extends Model
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function update($id, $data, $local, $valor, $id_tipo_gasto, $id_conta, $cartao_credito)
+  public function update($id, $data, $local, $valor, $id_categoria_gasto, $id_conta, $cartao_credito)
   {
       $sql = "UPDATE gasto SET  data = :data, 
                                 local = :local, 
                                 valor = :valor, 
-                                id_tipo_gasto = :id_tipo_gasto, 
+                                id_categoria_gasto = :id_categoria_gasto, 
                                 id_conta = :id_conta, 
                                 cartao_credito = :cartao_credito 
               WHERE id = :id ";
@@ -239,7 +239,7 @@ class Gasto extends Model
                           ':data' => $data,
                           ':local' => $local,
                           ':valor' => $valor,
-                          ':id_tipo_gasto' => $id_tipo_gasto,
+                          ':id_categoria_gasto' => $id_categoria_gasto,
                           ':id_conta' => $id_conta,
                           ':cartao_credito' => $cartao_credito                        
       );
@@ -247,14 +247,14 @@ class Gasto extends Model
       return $this->save($query, $parameters);
   }
 
-  public function insert($data, $local, $valor, $id_tipo_gasto, $id_conta, $cartao_credito)
+  public function insert($data, $local, $valor, $id_categoria_gasto, $id_conta, $cartao_credito)
   {
       $sql = " INSERT INTO gasto 
                 (
                   data,
                   local,
                   valor,
-                  id_tipo_gasto,
+                  id_categoria_gasto,
                   id_conta,
                   cartao_credito
                 )  
@@ -263,7 +263,7 @@ class Gasto extends Model
                   :data, 
                   :local, 
                   :valor, 
-                  :id_tipo_gasto, 
+                  :id_categoria_gasto, 
                   :id_conta, 
                   :cartao_credito 
                 ) ";
@@ -273,7 +273,7 @@ class Gasto extends Model
       $parameters = array(':data' => $data,
                           ':local' => $local,
                           ':valor' => $valor,
-                          ':id_tipo_gasto' => $id_tipo_gasto,
+                          ':id_categoria_gasto' => $id_categoria_gasto,
                           ':id_conta' => $id_conta,
                           ':cartao_credito' => $cartao_credito                        
       );
