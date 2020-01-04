@@ -38,8 +38,8 @@
 
                                         <div class="form-group">
                                             <label class="col-sm-2 col-sm-1 control-label">Data Vencto.:</label>
-                                            <div class="col-sm-2">
-                                                <input type="date" value="<?php if(isset($retorno)) echo number_format($retorno->data_vencto, 2, ',', '.'); ?>" class="form-control" name="data_vencto">                                            
+                                            <div class="col-sm-2">                                              
+                                                <input type="date" value="<?php if(isset($retorno)) echo $retorno->data_vencto; ?>" class="form-control" name="data_vencto">                                            
                                             </div>
                                         </div>
 
