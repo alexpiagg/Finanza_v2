@@ -128,7 +128,7 @@ class Gasto extends Model
     $parameters = array(':dataInicial' => $dataInicial, ':dataFinal' => $dataFinal, ':idConta' => $idConta);
 
     if ($tipoGasto > 0) {
-      $sql .= " AND g.id_categoria_gasto = :idTipoGasto ";
+      $sql .= " AND G.id_categoria_gasto = :idTipoGasto ";
       $parameters[':idTipoGasto'] =  $tipoGasto;
     }
 
