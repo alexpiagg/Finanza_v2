@@ -24,7 +24,7 @@ class CategoriaGastoController extends Controller
 
             $excluido = isset($_POST['excluido']) ? "1" : "0";
 
-            $listaCategorias = $categGasto->getByFilter($_POST['tipo'], $excluido, $_SESSION['LOGIN']->id_conta);
+            $listaCategorias = $categGasto->getByFilter($_POST['tipo'], $excluido, $_SESSION['LOGIN']->id_usuario);
         }
 
         require APP . 'view/categoriaGasto/index.php';

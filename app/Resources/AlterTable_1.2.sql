@@ -3,3 +3,4 @@ ALTER TABLE gasto
 
 ALTER TABLE categoria_gasto
   CHANGE tipo tipo VARCHAR(40) NOT NULL;
+

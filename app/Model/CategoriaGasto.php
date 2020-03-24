@@ -14,7 +14,7 @@ class CategoriaGasto extends Model
                     T.id, 
                     T.tipo,
                     IFNULL(T.excluido, 0) excluido,
-                    T.id_conta 
+                    T.id_usuario 
                 FROM categoria_gasto T ";
 
         $query = $this->db->prepare($sql);
@@ -24,18 +24,18 @@ class CategoriaGasto extends Model
         return $query->fetchAll();
     }
 
-    public function getByFilter($tipo, $excluido, $id_conta)
+    public function getByFilter($tipo, $excluido, $id_usuario)
     {
 
         $sql = "SELECT 
                     T.id, 
                     T.tipo,
                     IFNULL(T.excluido, 0) excluido,
-                    T.id_conta 
+                    T.id_usuario 
                 FROM categoria_gasto T 
-                WHERE T.id_conta = :idConta";
+                WHERE T.id_usuario = :id_usuario";
 
-        $parameters = array(':idConta' => $id_conta);
+        $parameters = array(':id_usuario' => $id_usuario);
 
         if ($tipo != '') {
             $sql .=  " AND T.tipo LIKE :tipo ";
@@ -62,7 +62,7 @@ class CategoriaGasto extends Model
                     T.id, 
                     T.tipo,
                     T.excluido,
-                    T.id_conta 
+                    T.id_usuario 
                 FROM categoria_gasto T 
                 WHERE T.id = :id ";
 
@@ -75,11 +75,11 @@ class CategoriaGasto extends Model
         return $query->fetch();
     }
 
-    public function update($id, $tipo, $excluido, $id_conta)
+    public function update($id, $tipo, $excluido, $id_usuario)
     {
-        $sql = "UPDATE categoria_gasto SET tipo = :tipo, excluido = :excluido, id_conta = :id_conta WHERE id = :id ";
+        $sql = "UPDATE categoria_gasto SET tipo = :tipo, excluido = :excluido, id_usuario = :id_usuario WHERE id = :id ";
         $query = $this->db->prepare($sql);
-        $parameters = array(':id' => $id, ':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
+        $parameters = array(':id' => $id, ':tipo' => $tipo, ':excluido' => $excluido, ':id_usuario' => $id_usuario);
 
         return $this->save($query, $parameters);
     }
@@ -94,12 +94,12 @@ class CategoriaGasto extends Model
         return $this->save($query, $parameters);
     }
 
-    public function insert($tipo, $excluido, $id_conta)
+    public function insert($tipo, $excluido, $id_usuario)
     {
-        $sql = " INSERT INTO categoria_gasto (tipo, excluido, id_conta)  VALUES (:tipo, :excluido, :id_conta) ";
+        $sql = " INSERT INTO categoria_gasto (tipo, excluido, id_usuario)  VALUES (:tipo, :excluido, :id_usuario) ";
         $query = $this->db->prepare($sql);
 
-        $parameters = array(':tipo' => $tipo, ':excluido' => $excluido, ':id_conta' => $id_conta);
+        $parameters = array(':tipo' => $tipo, ':excluido' => $excluido, ':id_usuario' => $id_usuario);
 
         return $this->save($query, $parameters);
     }
