@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS conta;
 CREATE TABLE conta (
   id int(11) NOT NULL AUTO_INCREMENT,
   conta varchar(30) NOT NULL,
-  id_usuario int(1) NOT NULL,
+  id_usuario int(11) NOT NULL,
   valor decimal(15,4) DEFAULT NULL,
   PRIMARY KEY (id),
   KEY fk_conta_usuario (id_usuario),
