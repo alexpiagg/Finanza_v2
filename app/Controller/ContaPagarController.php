@@ -23,11 +23,13 @@ class ContaPagarController extends Controller
         $totalDespesas = 0;
         $saldo = 0;
 
+        $contaPagar = new ContaPagar();
         $retornoProjecaoGasto = array();
-        if (isset($_POST["submit_contapagar"])) {
 
-            $contaPagar = new ContaPagar();
+        //Primeira entrada, já carrega os dados na tela.
+        $retornoProjecaoGasto = $contaPagar->getByFilter(null, $_SESSION['LOGIN']->id_conta);
 
+        if (isset($_POST["submit_contapagar"])) {          
             $retornoProjecaoGasto = $contaPagar->getByFilter($_POST['descricao'], $_SESSION['LOGIN']->id_conta);
 
             foreach($retornoProjecaoGasto as $row){
