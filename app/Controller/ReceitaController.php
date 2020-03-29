@@ -14,9 +14,7 @@ class ReceitaController extends Controller
 
     public function index()
     {
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         $retorno = array();
         
@@ -36,7 +34,8 @@ class ReceitaController extends Controller
         }
 
         require APP . 'view/receita/index.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function edit($receita_id = 0)
@@ -55,28 +54,24 @@ class ReceitaController extends Controller
 
             } else {
 
-                require APP . 'view/_templates/heade.php';
-                require APP . 'view/_templates/header.php';
-                require APP . 'view/_templates/sidebar.php';
+                Utils::writerHeader();
 
                 $_SESSION['ValorAnterior'] = $retorno->valor;
 
                 require APP . 'view/receita/edit.php';
 
-                require APP . 'view/_templates/footer.php';
+                Utils::writerFooter();
             }
             
         } else {
 
             $acao = "receita/insert/";
 
-            require APP . 'view/_templates/heade.php';
-            require APP . 'view/_templates/header.php';
-            require APP . 'view/_templates/sidebar.php';
+            Utils::writerHeader();
 
             require APP . 'view/receita/edit.php';
 
-            require APP . 'view/_templates/footer.php';
+            Utils::writerFooter();
 
         }                  
     }

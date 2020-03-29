@@ -15,9 +15,7 @@ class GastoController extends Controller
 
     public function index()
     {
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
@@ -39,7 +37,8 @@ class GastoController extends Controller
         }
 
         require APP . 'view/gasto/index.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function edit($gasto_id = 0)
@@ -63,9 +62,7 @@ class GastoController extends Controller
                 $page->index();
             } else {
 
-                require APP . 'view/_templates/heade.php';
-                require APP . 'view/_templates/header.php';
-                require APP . 'view/_templates/sidebar.php';
+                Utils::writerHeader();
 
                 $checked = $retorno->cartao_credito == 1 ? "checked" : "";
 

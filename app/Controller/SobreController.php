@@ -8,6 +8,7 @@
 namespace Mini\Controller;
 
 use Mini\Core\Controller;
+use Mini\Libs\Utils;
 
 class SobreController extends Controller
 {
@@ -17,9 +18,7 @@ class SobreController extends Controller
     public function index()
     {
         // Carregar a view home
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';                       
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
         
         require APP . 'view/sobre/index.php';
         

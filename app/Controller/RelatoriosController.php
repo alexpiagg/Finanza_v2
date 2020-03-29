@@ -24,9 +24,7 @@ class RelatoriosController extends Controller
         $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         if (isset($_POST["submit_porcategoria"])) {
 
@@ -37,7 +35,8 @@ class RelatoriosController extends Controller
         }
 
         require APP . 'view/relatorios/porCategoria.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function porCategoriaGrafico()
@@ -45,9 +44,7 @@ class RelatoriosController extends Controller
         $listaAnos = Utils::listarAnos();
         $listaMeses = Utils::listarMeses();
 
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         if (isset($_POST["submit_porcategoriagrafico"])) {
             $gasto = new Gasto();
@@ -59,7 +56,8 @@ class RelatoriosController extends Controller
         }
 
         require APP . 'view/relatorios/porCategoriaGrafico.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function porMes()
@@ -67,9 +65,7 @@ class RelatoriosController extends Controller
         $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         $listaMeses = Utils::listarMeses();
 
@@ -81,7 +77,8 @@ class RelatoriosController extends Controller
         }
 
         require APP . 'view/relatorios/porMes.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function porReceita()
@@ -89,9 +86,7 @@ class RelatoriosController extends Controller
         $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         $listaMeses = Utils::listarMeses();
 
@@ -103,7 +98,8 @@ class RelatoriosController extends Controller
         }
 
         require APP . 'view/relatorios/porReceita.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function filterArrayByValue($dados, $mes)
@@ -113,9 +109,7 @@ class RelatoriosController extends Controller
 
     public function porTotais()
     {
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         //Total gasto mês Anterior
         $dataIni = date('Y-m-d', strtotime("first day of -1 month"));
@@ -204,6 +198,7 @@ class RelatoriosController extends Controller
         //--------------------------------------------------------------------------------------
 
         require APP . 'view/relatorios/porTotais.php';
-        require APP . 'view/_templates/footer.php';
+      
+        Utils::writerFooter();
     }
 }
