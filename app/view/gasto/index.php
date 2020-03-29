@@ -58,11 +58,9 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
-                                    <div class="col-sm-2">
-                                        <input type="button" onclick="location.href=' <?php echo URL . 'gasto/edit'; ?>' " class="btn btn-success" value="Novo" />
-                                    </div>
-                                </div>
+                                <a href='<?php echo URL .'gasto/edit'; ?>' class='botao-flutuante'>
+                                    <i style="margin-top:16px" class="fa fa-plus"></i>
+                                </a>
 
                             </form>
 

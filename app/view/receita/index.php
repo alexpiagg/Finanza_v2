@@ -47,8 +47,11 @@
                                         <input type="button" onclick="location.href=' <?php echo URL .'receita/limpar'; ?>' " class="btn btn-primary" value="Limpar" />
                                     </div>
                                 </div>
+                                                            
+                                <a href='<?php echo URL .'receita/edit'; ?>' class='botao-flutuante'>
+                                    <i style="margin-top:16px" class="fa fa-plus"></i>
+                                </a>
 
-                                <input type="button" onclick="location.href=' <?php echo URL .'receita/edit'; ?>' " class="btn btn-success" value="Novo" />
                             </form>
                         </section>
                     </section>
