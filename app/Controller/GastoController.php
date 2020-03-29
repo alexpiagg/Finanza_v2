@@ -22,6 +22,8 @@ class GastoController extends Controller
 
         $listaGastos = array();
         if (isset($_POST["submit_gasto"])) {
+            
+            $this->manterFiltros($_POST['dataIni'], $_POST['dataFim']);
 
             $gasto = new Gasto();
 
@@ -194,5 +196,17 @@ class GastoController extends Controller
         
         $conta->update($_SESSION['LOGIN']->id_conta, $valorNovoSaldo, $_SESSION['LOGIN']->id_usuario);
         $_SESSION['LOGIN']->valor = $valorNovoSaldo;
+    }
+
+    public function limpar()
+    {
+        $_SESSION['filtro_data_ini'] = null;
+        $_SESSION['filtro_data_fim'] = null;
+        $this->index();
+    }
+
+    private function manterFiltros($dtInicio, $dtFim){
+        $_SESSION["filtro_data_ini"] = $dtInicio;
+        $_SESSION["filtro_data_fim"] = $dtFim;
     }
 }

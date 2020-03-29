@@ -18,13 +18,13 @@
                                     
                                     <div class="col-sm-4">
                                         <label>Data Início: </label>
-                                        <input type="date" class="form-control" value=<?php echo date("Y-m-d") ?> name="dataIni" required>
+                                        <input type="date" class="form-control" value=<?php echo isset($_SESSION["filtro_data_ini"]) ? $_SESSION["filtro_data_ini"] : date('Y-m-d'); ?> name="dataIni" required>
 
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label>Data Fim:</label>
-                                        <input type="date" class="form-control" value=<?php echo date("Y-m-d") ?> name="dataFim">
+                                        <input type="date" class="form-control" value=<?php echo isset($_SESSION["filtro_data_fim"]) ? $_SESSION["filtro_data_fim"] : date('Y-m-d'); ?> name="dataFim">
                                     </div>
 
                                     <div class="col-sm-4">
@@ -43,6 +43,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="submit" class="btn btn-default" value="Buscar" name="submit_porcategoria" >
+                                        <input type="button" onclick="location.href=' <?php echo URL .'relatorios/limpar/1'; ?>' " class="btn btn-primary" value="Limpar" />
                                     </div>
                                 </div>
 

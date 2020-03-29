@@ -22,6 +22,8 @@ class ReceitaController extends Controller
 
             $receita = new Receita();
 
+            $this->manterFiltros($_POST['dataIni'], $_POST['dataFim']);
+            
             $parametros = array(
                 'data_inicial'  => $_POST["dataIni"],
                 'data_final'    => $_POST["dataFim"],
@@ -187,5 +189,17 @@ class ReceitaController extends Controller
         
         $conta->update($_SESSION['LOGIN']->id_conta, $valorNovoSaldo, $_SESSION['LOGIN']->id_usuario);
         $_SESSION['LOGIN']->valor = $valorNovoSaldo;
+    }
+
+    public function limpar()
+    {
+        $_SESSION['filtro_data_ini'] = null;
+        $_SESSION['filtro_data_fim'] = null;
+        $this->index();
+    }
+
+    private function manterFiltros($dtInicio, $dtFim){
+        $_SESSION["filtro_data_ini"] = $dtInicio;
+        $_SESSION["filtro_data_fim"] = $dtFim;
     }
 }

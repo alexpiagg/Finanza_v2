@@ -7,6 +7,7 @@
 
 namespace Mini\Controller;
 
+use DateTime;
 use Mini\Model\Gasto;
 use Mini\Model\CategoriaGasto;
 use Mini\Model\Receita;
@@ -28,8 +29,9 @@ class RelatoriosController extends Controller
 
         if (isset($_POST["submit_porcategoria"])) {
 
+            $this->manterFiltros($_POST['dataIni'], $_POST['dataFim']);
+            
             $gasto = new Gasto();
-
             $retornoDetalhe = $gasto->getRelPorCategoria($_POST['dataIni'], $_POST['dataFim'], $_POST['tipoGasto'], $_SESSION['LOGIN']->id_conta);
             $retornoTotais = $gasto->getGastosAgrupados($_POST['dataIni'], $_POST['dataFim'],  $_POST['tipoGasto'], $_SESSION['LOGIN']->id_conta);
         }
@@ -71,6 +73,8 @@ class RelatoriosController extends Controller
 
         if (isset($_POST["submit_pormes"])) {
 
+            $this->manterFiltros($_POST['dataIni'], $_POST['dataFim']);
+
             $gasto = new Gasto();
 
             $retornoDados = $gasto->getGastosPorMeses($_POST['dataIni'], $_POST['dataFim'], $_POST['tipoGasto'], $_SESSION['LOGIN']->id_conta);
@@ -91,6 +95,8 @@ class RelatoriosController extends Controller
         $listaMeses = Utils::listarMeses();
 
         if (isset($_POST["submit_porreceita"])) {
+
+            $this->manterFiltros($_POST['dataIni'], $_POST['dataFim']);
 
             $receita = new Receita();
 
@@ -200,5 +206,29 @@ class RelatoriosController extends Controller
         require APP . 'view/relatorios/porTotais.php';
       
         Utils::writerFooter();
+    }
+
+    public function limpar($tipo)
+    {
+        $_SESSION['filtro_data_ini'] = null;
+        $_SESSION['filtro_data_fim'] = null;       
+
+        switch ($tipo) {
+            case 1:
+                $this->porCategoria();
+                break;
+            case 2:
+                $this->porMes();
+                break;
+            case 3:
+                $this->porReceita();
+                break;
+        }
+        
+    }
+
+    private function manterFiltros($dtInicio, $dtFim){
+        $_SESSION["filtro_data_ini"] = $dtInicio;
+        $_SESSION["filtro_data_fim"] = $dtFim;
     }
 }
