@@ -42,7 +42,10 @@
                                 </div>
                             </form>
                             
-                            <input type="button" onclick="location.href=' <?php echo URL .'categoriaGasto/edit'; ?>' " class="btn btn-success" value="Novo" />
+                            <a href='<?php echo URL .'categoriaGasto/edit'; ?>' class='botao-flutuante'>
+                                <i style="margin-top:16px" class="fa fa-plus"></i>
+                            </a>
+
 
                         </section>
                     </section>

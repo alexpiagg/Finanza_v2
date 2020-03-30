@@ -13,16 +13,15 @@ class UsuarioController extends Controller
 
     public function index()
     {
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
-
+        Utils::writerHeader();
+        
         $usuario = new Usuario();
         $retorno = $usuario->getId($_SESSION['LOGIN']->id_usuario);
         $checked = $retorno->excluido == 1 ? "checked" : "";
 
         require APP . 'view/usuario/index.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function update()

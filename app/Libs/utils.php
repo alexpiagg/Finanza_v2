@@ -46,32 +46,12 @@ class Utils {
     }
 
     public static function listarAnos(){
-        $listaMeses = array(
-            '1999',
-            '2000',
-            '2001',
-            '2002',
-            '2003',
-            '2004',
-            '2005',
-            '2006',
-            '2007',
-            '2008',
-            '2009',
-            '2010',
-            '2011',
-            '2012',
-            '2013',
-            '2014',
-            '2015',
-            '2016',
-            '2017',
-            '2018',
-            '2019',
-            '2020',
-            '2021',
-            '2022'
-        );
+
+        $listaMeses = array();
+        for ($ano = 1999; $ano <= 2025; $ano++ )
+        {
+            array_push($listaMeses, $ano);
+        }
 
         return $listaMeses;
     }
@@ -112,5 +92,15 @@ class Utils {
         {
             return $message = "<div class='alert alert-danger'> $texto </div>";
         }
+    }
+
+    public static function writerHeader(){
+        require APP . 'view/_templates/heade.php';
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/_templates/sidebar.php';
+    }
+
+    public static function writerFooter(){
+        require APP . 'view/_templates/footer.php';
     }
 }

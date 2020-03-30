@@ -13,15 +13,14 @@ class ContaController extends Controller
 
     public function index()
     {
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         $conta = new Conta();
         $retorno = $conta->getId($_SESSION['LOGIN']->id_conta);
 
         require APP . 'view/conta/index.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function update()

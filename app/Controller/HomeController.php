@@ -8,6 +8,7 @@
 namespace Mini\Controller;
 
 use Mini\Core\Controller;
+use Mini\Libs\Utils;
 
 class HomeController extends Controller
 {
@@ -18,16 +19,14 @@ class HomeController extends Controller
     public function index()
     {
         // Carregar a view home
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
         
         require APP . 'view/home/index.php';
 
         $timeline = new \Mini\Controller\TimelineController();
         $timeline->index();
 
-        require APP . 'view/_templates/footer.php';
+        Utils::writerFooter();
     }
 
     

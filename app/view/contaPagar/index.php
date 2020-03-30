@@ -36,7 +36,9 @@
                                 <input type="hidden" name="buscar" value="buscar">
                             </form>
 
-                            <input type="button" onclick="location.href=' <?php echo URL .'contaPagar/edit'; ?>' " class="btn btn-success" value="Novo" />
+                            <a href='<?php echo URL .'contaPagar/edit'; ?>' class='botao-flutuante'>
+                                <i style="margin-top:16px" class="fa fa-plus"></i>
+                            </a>
 
                         </section>
                     </section>

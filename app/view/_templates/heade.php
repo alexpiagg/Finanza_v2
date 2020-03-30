@@ -31,6 +31,8 @@
 
     <link src="<?php echo URL; ?>assets/js/chart-master/Chart.js" rel="shortcut icon" type="image/x-icon">
 
+    <link href="<?php echo URL; ?>assets/css/botao-flutuante.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>

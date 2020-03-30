@@ -13,9 +13,7 @@ class CategoriaGastoController extends Controller
 
     public function index()
     {
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         $listaCategorias = array();
         if (isset($_POST["submit_categoriagasto"])) {
@@ -28,7 +26,8 @@ class CategoriaGastoController extends Controller
         }
 
         require APP . 'view/categoriaGasto/index.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function edit($categoria_id = 0)
@@ -48,28 +47,24 @@ class CategoriaGastoController extends Controller
                 $page->index();
             } else {
 
-                require APP . 'view/_templates/heade.php';
-                require APP . 'view/_templates/header.php';
-                require APP . 'view/_templates/sidebar.php';
+                Utils::writerHeader();
 
                 $checked = $retorno->excluido == 1 ? "checked" : "";
 
                 require APP . 'view/categoriaGasto/edit.php';
 
-                require APP . 'view/_templates/footer.php';
+                Utils::writerFooter();
             }
             
         } else {
 
             $acao = "categoriaGasto/insert/";
 
-            require APP . 'view/_templates/heade.php';
-            require APP . 'view/_templates/header.php';
-            require APP . 'view/_templates/sidebar.php';
+            Utils::writerHeader();
 
             require APP . 'view/categoriaGasto/edit.php';
-            require APP . 'view/_templates/footer.php';
-
+            
+            Utils::writerFooter();
         }                  
     }
 

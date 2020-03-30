@@ -14,9 +14,7 @@ class ContaPagarController extends Controller
 
     public function index()
     {
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         $totalConta = 0;
         $despesas = 0;
@@ -41,7 +39,8 @@ class ContaPagarController extends Controller
         $saldo = $totalConta - $totalDespesas;
 
         require APP . 'view/contaPagar/index.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function edit($contaPagarId = 0)
@@ -61,9 +60,7 @@ class ContaPagarController extends Controller
                 $page->index();
             } else {
 
-                require APP . 'view/_templates/heade.php';
-                require APP . 'view/_templates/header.php';
-                require APP . 'view/_templates/sidebar.php';
+                Utils::writerHeader();
 
                 require APP . 'view/contaPagar/edit.php';
 
@@ -74,12 +71,11 @@ class ContaPagarController extends Controller
 
             $acao = "contaPagar/insert/";
 
-            require APP . 'view/_templates/heade.php';
-            require APP . 'view/_templates/header.php';
-            require APP . 'view/_templates/sidebar.php';
+            Utils::writerHeader();
 
             require APP . 'view/contaPagar/edit.php';
-            require APP . 'view/_templates/footer.php';
+            
+            Utils::writerFooter();
 
         }                  
     }

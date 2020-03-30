@@ -23,13 +23,13 @@
 
                                     <div class="col-sm-3">
                                         <label>Data Início:
-                                            <input type="date" class="form-control" value=<?php echo date("Y-m-d") ?> name="dataIni" required>
+                                            <input type="date" class="form-control" value=<?php echo isset($_SESSION['filtro_data_ini']) ? $_SESSION['filtro_data_ini'] : date('Y-m-d'); ?> name="dataIni" required>
                                         </label>
                                     </div>
 
                                     <div class="col-sm-3">
                                         <label>Data Fim:
-                                            <input type="date" class="form-control" value=<?php echo date("Y-m-d") ?> name="dataFim" required>
+                                            <input type="date" class="form-control" value=<?php echo isset($_SESSION["filtro_data_fim"]) ? $_SESSION["filtro_data_fim"] : date('Y-m-d'); ?> name="dataFim" required>
                                         </label>
                                     </div>
                                 </div>
@@ -44,10 +44,14 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">                                        
                                         <input type="submit" class="btn btn-default" value="Buscar" name="submit_receita">
+                                        <input type="button" onclick="location.href=' <?php echo URL .'receita/limpar'; ?>' " class="btn btn-primary" value="Limpar" />
                                     </div>
                                 </div>
+                                                            
+                                <a href='<?php echo URL .'receita/edit'; ?>' class='botao-flutuante'>
+                                    <i style="margin-top:16px" class="fa fa-plus"></i>
+                                </a>
 
-                                <input type="button" onclick="location.href=' <?php echo URL .'receita/edit'; ?>' " class="btn btn-success" value="Novo" />
                             </form>
                         </section>
                     </section>

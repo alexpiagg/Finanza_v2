@@ -16,12 +16,12 @@
                                     <legend> Filtros: </legend>
                                     <div class="col-sm-4">
                                         <label>Data Início:</label>
-                                        <input type="date" class="form-control" value=<?php echo date("Y-m-d") ?> name="dataIni" included>
+                                        <input type="date" class="form-control" value=<?php echo isset($_SESSION["filtro_data_ini"]) ? $_SESSION["filtro_data_ini"] : date('Y-m-d'); ?> name="dataIni" included>
                                     </div>
 
                                     <div class="col-sm-4">
                                         <label>Data Fim:</label>
-                                        <input type="date" class="form-control" value=<?php echo date("Y-m-d") ?> name="dataFim">
+                                        <input type="date" class="form-control" value=<?php echo isset($_SESSION["filtro_data_fim"]) ? $_SESSION["filtro_data_fim"] : date('Y-m-d'); ?> name="dataFim">
 
                                     </div>
 
@@ -43,6 +43,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <input type="submit" class="btn btn-default" value="Buscar" name="submit_pormes">
+                                        <input type="button" onclick="location.href=' <?php echo URL .'relatorios/limpar/2'; ?>' " class="btn btn-primary" value="Limpar" />
                                     </div>
                                 </div>
 

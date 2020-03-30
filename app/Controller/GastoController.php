@@ -15,15 +15,15 @@ class GastoController extends Controller
 
     public function index()
     {
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
         $listaGastos = array();
         if (isset($_POST["submit_gasto"])) {
+            
+            $this->manterFiltros($_POST['dataIni'], $_POST['dataFim']);
 
             $gasto = new Gasto();
 
@@ -39,7 +39,8 @@ class GastoController extends Controller
         }
 
         require APP . 'view/gasto/index.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function edit($gasto_id = 0)
@@ -63,9 +64,7 @@ class GastoController extends Controller
                 $page->index();
             } else {
 
-                require APP . 'view/_templates/heade.php';
-                require APP . 'view/_templates/header.php';
-                require APP . 'view/_templates/sidebar.php';
+                Utils::writerHeader();
 
                 $checked = $retorno->cartao_credito == 1 ? "checked" : "";
 
@@ -197,5 +196,17 @@ class GastoController extends Controller
         
         $conta->update($_SESSION['LOGIN']->id_conta, $valorNovoSaldo, $_SESSION['LOGIN']->id_usuario);
         $_SESSION['LOGIN']->valor = $valorNovoSaldo;
+    }
+
+    public function limpar()
+    {
+        $_SESSION['filtro_data_ini'] = null;
+        $_SESSION['filtro_data_fim'] = null;
+        $this->index();
+    }
+
+    private function manterFiltros($dtInicio, $dtFim){
+        $_SESSION["filtro_data_ini"] = $dtInicio;
+        $_SESSION["filtro_data_fim"] = $dtFim;
     }
 }

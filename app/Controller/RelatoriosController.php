@@ -7,6 +7,7 @@
 
 namespace Mini\Controller;
 
+use DateTime;
 use Mini\Model\Gasto;
 use Mini\Model\CategoriaGasto;
 use Mini\Model\Receita;
@@ -24,20 +25,20 @@ class RelatoriosController extends Controller
         $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         if (isset($_POST["submit_porcategoria"])) {
 
+            $this->manterFiltros($_POST['dataIni'], $_POST['dataFim']);
+            
             $gasto = new Gasto();
-
             $retornoDetalhe = $gasto->getRelPorCategoria($_POST['dataIni'], $_POST['dataFim'], $_POST['tipoGasto'], $_SESSION['LOGIN']->id_conta);
             $retornoTotais = $gasto->getGastosAgrupados($_POST['dataIni'], $_POST['dataFim'],  $_POST['tipoGasto'], $_SESSION['LOGIN']->id_conta);
         }
 
         require APP . 'view/relatorios/porCategoria.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function porCategoriaGrafico()
@@ -45,9 +46,7 @@ class RelatoriosController extends Controller
         $listaAnos = Utils::listarAnos();
         $listaMeses = Utils::listarMeses();
 
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         if (isset($_POST["submit_porcategoriagrafico"])) {
             $gasto = new Gasto();
@@ -59,7 +58,8 @@ class RelatoriosController extends Controller
         }
 
         require APP . 'view/relatorios/porCategoriaGrafico.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function porMes()
@@ -67,13 +67,13 @@ class RelatoriosController extends Controller
         $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         $listaMeses = Utils::listarMeses();
 
         if (isset($_POST["submit_pormes"])) {
+
+            $this->manterFiltros($_POST['dataIni'], $_POST['dataFim']);
 
             $gasto = new Gasto();
 
@@ -81,7 +81,8 @@ class RelatoriosController extends Controller
         }
 
         require APP . 'view/relatorios/porMes.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function porReceita()
@@ -89,13 +90,13 @@ class RelatoriosController extends Controller
         $tipoGasto = new CategoriaGasto();
         $listaTipoGastos = $tipoGasto->getAll();
 
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         $listaMeses = Utils::listarMeses();
 
         if (isset($_POST["submit_porreceita"])) {
+
+            $this->manterFiltros($_POST['dataIni'], $_POST['dataFim']);
 
             $receita = new Receita();
 
@@ -103,7 +104,8 @@ class RelatoriosController extends Controller
         }
 
         require APP . 'view/relatorios/porReceita.php';
-        require APP . 'view/_templates/footer.php';
+        
+        Utils::writerFooter();
     }
 
     public function filterArrayByValue($dados, $mes)
@@ -113,9 +115,7 @@ class RelatoriosController extends Controller
 
     public function porTotais()
     {
-        require APP . 'view/_templates/heade.php';
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/sidebar.php';
+        Utils::writerHeader();
 
         //Total gasto mês Anterior
         $dataIni = date('Y-m-d', strtotime("first day of -1 month"));
@@ -204,6 +204,31 @@ class RelatoriosController extends Controller
         //--------------------------------------------------------------------------------------
 
         require APP . 'view/relatorios/porTotais.php';
-        require APP . 'view/_templates/footer.php';
+      
+        Utils::writerFooter();
+    }
+
+    public function limpar($tipo)
+    {
+        $_SESSION['filtro_data_ini'] = null;
+        $_SESSION['filtro_data_fim'] = null;       
+
+        switch ($tipo) {
+            case 1:
+                $this->porCategoria();
+                break;
+            case 2:
+                $this->porMes();
+                break;
+            case 3:
+                $this->porReceita();
+                break;
+        }
+        
+    }
+
+    private function manterFiltros($dtInicio, $dtFim){
+        $_SESSION["filtro_data_ini"] = $dtInicio;
+        $_SESSION["filtro_data_fim"] = $dtFim;
     }
 }
