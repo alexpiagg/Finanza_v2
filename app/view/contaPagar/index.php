@@ -36,8 +36,10 @@
                                 <input type="hidden" name="buscar" value="buscar">
                             </form>
 
-                            <a href='<?php echo URL .'contaPagar/edit'; ?>' class='botao-flutuante'>
-                                <i style="margin-top:16px" class="fa fa-plus"></i>
+                            <a href='<?php echo URL .'contaPagar/edit'; ?>'>     
+                                <div title="Novo" class='botao-flutuante'>
+                                    <i style="margin-top:16px;" class="fa fa-plus"></i>
+                                </div>
                             </a>
 
                         </section>

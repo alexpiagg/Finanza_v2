@@ -42,10 +42,11 @@
                                 </div>
                             </form>
                             
-                            <a href='<?php echo URL .'categoriaGasto/edit'; ?>' class='botao-flutuante'>
-                                <i style="margin-top:16px" class="fa fa-plus"></i>
+                            <a href='<?php echo URL .'categoriaGasto/edit'; ?>'>     
+                                <div title="Novo" class='botao-flutuante'>
+                                    <i style="margin-top:16px;" class="fa fa-plus"></i>
+                                </div>
                             </a>
-
 
                         </section>
                     </section>
