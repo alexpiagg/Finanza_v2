@@ -39,9 +39,9 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 col-sm-1 control-label">Categoria:</label>
                                             <div class="col-sm-2">
-                                                <select name="tipoGasto" class="form-control">
+                                                <select name="tipoGasto" class="form-control" required>
 
-                                                    <option value="0" name="tipoGasto"> Selecione: </option>
+                                                    <option value="" name="tipoGasto"> Selecione: </option>
 
                                                         <?php
                                                             foreach ($listaTipoGastos as $tipo) {
