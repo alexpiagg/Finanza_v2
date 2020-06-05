@@ -7,13 +7,11 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="assets/css/timeline.css" rel="stylesheet">
-
 
 <h4>
 <?php 
 
-    echo "Seu Saldo em ". date('d-m-Y') . ": <b> R$ ". $saldoConta ."</b>"; 
+    echo "Hoje é: ". date('d-m-Y'); 
 
 ?>
 </h4>
@@ -23,7 +21,7 @@
 
 <?php
 
-    $this->geraTimeline($retornoView);
+    $this->geraHome();
     
 ?>
     
@@ -35,3 +33,4 @@
     </section>
     <!--main content end-->
 </section>
+
