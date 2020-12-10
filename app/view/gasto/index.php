@@ -46,10 +46,19 @@
                                 <div class="form-group">
 
                                     <div class="col-sm-12">
-                                        <label class="">Descrição:</label>
+                                        <label class="">Local:</label>
                                         <input type="text" class="form-control" name="local">
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+
+                                    <div class="col-sm-12">
+                                        <label class="">Produto Adquirido:</label>
+                                        <input type="text" class="form-control" name="produto_adquirido">
+                                    </div>
+                                </div>
+
 
                                 <div class="form-group">
                                     <div class="col-sm-12">

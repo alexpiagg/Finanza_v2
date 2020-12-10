@@ -32,7 +32,8 @@ class GastoController extends Controller
                 'data_final' => $_POST['dataFim'],
                 'id_conta' => $_SESSION['LOGIN']->id_conta,
                 'id_categoria_gasto' => $_POST['tipoGasto'],
-                'local' => $_POST['local']
+                'local' => $_POST['local'],
+                'produto_adquirido' => $_POST['produto_adquirido']
             );
 
             $listaGastos = $gasto->getAll($parametros, true);
@@ -108,7 +109,8 @@ class GastoController extends Controller
                                     $valorGasto, 
                                     $_POST['tipoGasto'], 
                                     $_SESSION['LOGIN']->id_conta, 
-                                    $cartaoCredito);
+                                    $cartaoCredito,
+                                    nl2br($_POST['produto_adquirido']));
 
             $this->ajustarSaldo("U", $objAjusteSaldo->valor, $valorGasto);
 
@@ -162,7 +164,8 @@ class GastoController extends Controller
                                     $valorGasto,
                                     $_POST['tipoGasto'],
                                     $_SESSION['LOGIN']->id_conta,
-                                    $cartaoCredito);
+                                    $cartaoCredito,
+                                    nl2br($_POST['produto_adquirido']));
             
             $this->ajustarSaldo("I", 0, $valorGasto);
 

@@ -30,6 +30,13 @@
                                         </div>
 
                                         <div class="form-group">
+                                        <label class="col-sm-1 col-sm-1 control-label">Produto Adquirido:</label>
+                                            <div class="col-sm-7">                                                
+                                                <textarea name="produto_adquirido" class="form-control" maxlength="300" rows="3"><?php if(isset($retorno)) echo strip_tags($retorno->produto_adquirido) ?></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
                                             <label class="col-sm-2 col-sm-1 control-label">Valor (R$):</label>
                                             <div class="col-sm-2">
                                                 <input type="text" id="valor" value="<?php if(isset($retorno)) echo number_format($retorno->valor, 2, ',', '.') ?>" name="valor" class="form-control" required>
