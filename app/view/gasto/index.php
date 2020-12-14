@@ -46,10 +46,19 @@
                                 <div class="form-group">
 
                                     <div class="col-sm-12">
-                                        <label class="">Descrição:</label>
+                                        <label class="">Local:</label>
                                         <input type="text" class="form-control" name="local">
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+
+                                    <div class="col-sm-12">
+                                        <label class="">Produto Adquirido:</label>
+                                        <input type="text" class="form-control" name="produto_adquirido">
+                                    </div>
+                                </div>
+
 
                                 <div class="form-group">
                                     <div class="col-sm-12">
@@ -81,6 +90,7 @@
                                             <tr>
                                                 <th>Data</th>
                                                 <th>Local</th>
+                                                <th>Produto</th>
                                                 <th class="numeric">Valor (R$)</th>
                                                 <th class="hidden-phone">C. Crédito?</th>
                                                 <th class="numeric">#</th>
@@ -93,6 +103,7 @@
                                                 <tr>
                                                     <td data-title='Code'> <?php echo date_format(date_create($gasto->data), 'd/m/Y') ?> </td>
                                                     <td data-title='Company'> <?php echo $gasto->local ?> </td>
+                                                    <td data-title='Company'> <?php echo $gasto->produto_adquirido ?> </td>
                                                     <td class='numeric' data-title='Price'> <?php echo number_format($gasto->valor, 2, ',', '.') ?> </td>
                                                     <td class='hidden-phone'> <?php echo ($gasto->cartao_credito == 0 ? "Não" : "Sim") ?> </td>
                                                     <td>

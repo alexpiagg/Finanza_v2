@@ -133,10 +133,10 @@ class TimelineController
                     </div>';
                    
             echo '<div class="details"> '
+                            .  '<b>' . $detalhe->descricao . '</b> <br/>'
                             . '<p>' .  date( 'd-m-Y' , strtotime( $detalhe->data ) ) . '<br/>'
                             . '<a href="#"></a> R$ ' . Utils::formatarMoeda($detalhe->valor) . '<br/>'
-                            .  $detalhe->tipo . ' - '
-                            .  $detalhe->descricao . '<br/>'
+                            
                         . '</p>
                     </div>
                 </div>  ';

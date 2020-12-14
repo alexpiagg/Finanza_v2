@@ -17,3 +17,6 @@ ALTER TABLE categoria_gasto
   ADD CONSTRAINT fk_categoria_gasto_usuario 
   FOREIGN KEY (id_usuario) 
   REFERENCES usuario(id);
+
+ALTER TABLE gasto
+	ADD produto_adquirido VARCHAR(300) NULL;

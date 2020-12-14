@@ -9,7 +9,7 @@
                     <p>
                         FINANZA - É um Sistema Web desenvolvido pela Piagg Software - &copy para controle de despesas e fluxo financeiro pessoal.</br>
                         Seu objeto é ser acessível, simples e multi-plataforma.</br>
-                        <a href="https://twitter.com/alexpiagg" target="_blank">Visite</a>
+                        <a href="#" target="_blank">Visite</a>
                     </p>
                 </div>
             </div>

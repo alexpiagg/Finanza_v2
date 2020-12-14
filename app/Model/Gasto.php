@@ -16,7 +16,7 @@ class Gasto extends Model
                     r.descricao,
                     r.valor,
                     'RECEITA' tipo,
-                    r.id
+                    r.id                    
                 FROM receita r
                 WHERE r.data >= :dataInicial
                   AND r.data <= :dataFinal
@@ -151,7 +151,8 @@ class Gasto extends Model
               g.data,
               g.valor,
               g.id_categoria_gasto,
-              g.cartao_credito
+              g.cartao_credito,
+              g.produto_adquirido
           FROM gasto g
           WHERE g.id = :id ";
 
@@ -173,7 +174,8 @@ class Gasto extends Model
                   g.data,
                   g.valor,
                   g.id_categoria_gasto,
-                  g.cartao_credito
+                  g.cartao_credito,
+                  g.produto_adquirido
               FROM gasto g
               WHERE 1 = 1 ";
 
@@ -213,6 +215,13 @@ class Gasto extends Model
 
     }
 
+    if (isset($filtros['produto_adquirido']) && $filtros['produto_adquirido'] != null) {
+
+      $sql .=  " AND g.produto_adquirido LIKE :produto_adquirido ";
+      $parameters[':produto_adquirido'] = '%' . $filtros['produto_adquirido'] . '%';
+
+    }
+
     $query = $this->db->prepare($sql);
     $query->execute($parameters);
 
@@ -223,13 +232,14 @@ class Gasto extends Model
     return $query->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function update($id, $data, $local, $valor, $id_categoria_gasto, $id_conta, $cartao_credito)
+  public function update($id, $data, $local, $valor, $id_categoria_gasto, $id_conta, $cartao_credito, $produto_adquirido)
   {
       $sql = "UPDATE gasto SET  data = :data, 
                                 local = :local, 
                                 valor = :valor, 
                                 id_categoria_gasto = :id_categoria_gasto, 
                                 id_conta = :id_conta, 
+                                produto_adquirido = :produto_adquirido,
                                 cartao_credito = :cartao_credito 
               WHERE id = :id ";
 
@@ -241,13 +251,14 @@ class Gasto extends Model
                           ':valor' => $valor,
                           ':id_categoria_gasto' => $id_categoria_gasto,
                           ':id_conta' => $id_conta,
-                          ':cartao_credito' => $cartao_credito                        
+                          ':cartao_credito' => $cartao_credito,
+                          ':produto_adquirido' => $produto_adquirido,                          
       );
 
       return $this->save($query, $parameters);
   }
 
-  public function insert($data, $local, $valor, $id_categoria_gasto, $id_conta, $cartao_credito)
+  public function insert($data, $local, $valor, $id_categoria_gasto, $id_conta, $cartao_credito, $produto_adquirido)
   {
       $sql = " INSERT INTO gasto 
                 (
@@ -256,7 +267,8 @@ class Gasto extends Model
                   valor,
                   id_categoria_gasto,
                   id_conta,
-                  cartao_credito
+                  cartao_credito,
+                  produto_adquirido
                 )  
                 VALUES 
                 (
@@ -265,7 +277,8 @@ class Gasto extends Model
                   :valor, 
                   :id_categoria_gasto, 
                   :id_conta, 
-                  :cartao_credito 
+                  :cartao_credito,
+                  :produto_adquirido
                 ) ";
 
       $query = $this->db->prepare($sql);
@@ -275,7 +288,8 @@ class Gasto extends Model
                           ':valor' => $valor,
                           ':id_categoria_gasto' => $id_categoria_gasto,
                           ':id_conta' => $id_conta,
-                          ':cartao_credito' => $cartao_credito                        
+                          ':cartao_credito' => $cartao_credito,
+                          ':produto_adquirido' => $produto_adquirido
       );
       
       return $this->save($query, $parameters);
