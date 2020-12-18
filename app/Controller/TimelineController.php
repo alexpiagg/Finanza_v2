@@ -122,8 +122,10 @@ class TimelineController
         foreach ($this->listaTimeline as $detalhe){
 
             $icon = " fa fa-minus";
+            $fontColor = "";
             if ($detalhe->tipo == "RECEITA") {
                 $icon = " fa fa-plus";
+                $fontColor = "style = 'color: #4CAF50'";
             }
 
             echo '                                
@@ -132,8 +134,9 @@ class TimelineController
                         <span class="badge bg-theme"><i class="' .$icon. '"></i></span>
                     </div>';
                    
-            echo '<div class="details"> '
-                            .  '<b>' . $detalhe->descricao . '</b> <br/>'
+            echo '<div class="details" '. $fontColor . '> '
+                            
+                            . '<b>' . $detalhe->descricao . '</b> <br/>'
                             . '<p>' .  date( 'd-m-Y' , strtotime( $detalhe->data ) ) . '<br/>'
                             . '<a href="#"></a> R$ ' . Utils::formatarMoeda($detalhe->valor) . '<br/>'
                             

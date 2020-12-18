@@ -103,7 +103,7 @@
                                                 <tr>
                                                     <td data-title='Code'> <?php echo date_format(date_create($gasto->data), 'd/m/Y') ?> </td>
                                                     <td data-title='Company'> <?php echo $gasto->local ?> </td>
-                                                    <td data-title='Company'> <?php echo $gasto->produto_adquirido ?> </td>
+                                                    <td data-title='Company'> <?php echo substr($gasto->produto_adquirido, 0, 20) ?> </td>
                                                     <td class='numeric' data-title='Price'> <?php echo number_format($gasto->valor, 2, ',', '.') ?> </td>
                                                     <td class='hidden-phone'> <?php echo ($gasto->cartao_credito == 0 ? "Não" : "Sim") ?> </td>
                                                     <td>

@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <meta name="theme-color" content="#002966">
+    <meta name="theme-color" content="##000000">
 
     <title>Finanza</title>
     
